@@ -1,6 +1,6 @@
-# **Scaffold x Uniswap v4**
+# **Scaffold x Uniswap v4** - [LIVE](https://scaffold-uniswapv4.vercel.app)
 
-_Available in Base & Mumbai_
+_Available in Base, Goerli & Mumbai _
 
 Learn more about [Scaffold](https://github.com/scaffold-eth/scaffold-eth-2) and [Uniswap v4](https://blog.uniswap.org/uniswap-v4).
 
@@ -20,7 +20,7 @@ Learn more about [Scaffold](https://github.com/scaffold-eth/scaffold-eth-2) and 
 
 ### Usage => _/debug_
 
-1. Go to `UniversalHookFactory` tab and _`deploy`_ your first hook.
+1. Go to `UniversalHookFactory` tab and _`deploy`_ your first hook. ( make sure there are available salts in the factory ), use string "Scaffold Is awesome" as a parameter.
 2. Copy the hook address and paste it in the address section of `UniversalHook` tab.
 3. Start customizing your hook.
 4. learn more about [Uniswap v4](https://blog.uniswap.org/uniswap-v4) and start playing with the router.
