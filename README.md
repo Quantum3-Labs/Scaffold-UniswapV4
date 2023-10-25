@@ -4,6 +4,16 @@ _Available in Base, Goerli & Mumbai _
 
 Learn more about [Scaffold](https://github.com/scaffold-eth/scaffold-eth-2) and [Uniswap v4](https://blog.uniswap.org/uniswap-v4).
 
+### Local Development
+
+- `yarn install` ( terminal 1)
+- `yarn chain` (terminal 2)
+- `cp packages/foundry/.env.example packages/foundry/.env` ( terminal 1)
+- `yarn deploy` ( terminal 1)
+- `yarn start` ( terminal 1)
+
+go to localhost:3000 to test the app.
+
 ### Objectives
 
 - provide an interface where users can interact with uniswap v4, routers and hooks.
