@@ -21,13 +21,7 @@ import {SafeCast} from "openzeppelin-contracts/utils/math/SafeCast.sol";
 // TODO : in SelfFunction calls : add a way to call the manager functions
 // TODO : for SelfFunction calls : modularize it, for demo purpose is everything in one contract.
 
-contract UniversalHook is
-    IUniversalHook,
-    IHooks,
-    IHookFeeManager,
-    IDynamicFeeManager,
-    Ownable
-{
+contract UniversalHook is IUniversalHook, IHooks, IHookFeeManager, IDynamicFeeManager, Ownable {
     using SafeCast for *;
     using PoolIdLibrary for PoolKey;
     using BokkyPooBahsDateTimeLibrary for uint256;
@@ -45,8 +39,7 @@ contract UniversalHook is
     mapping(PoolId => uint24) private hookFeeForPool;
     mapping(Action => bytes4[]) private functionsForAction;
     mapping(address => uint256) private userGeneralTradingVolume;
-    mapping(address => mapping(PoolId => uint256))
-        private userTradingVolumeByPool;
+    mapping(address => mapping(PoolId => uint256)) private userTradingVolumeByPool;
     mapping(address => PoolId[]) private userCreatedPools;
     mapping(address => PoolId) private userLastSwapPool;
     bool[8] private allowedDaysOfTheWeek; // dont use 0, use 1-7
@@ -79,26 +72,15 @@ contract UniversalHook is
     /////////////// SETTER FUNCTIONS /////////////////
     //////////////////////////////////////////////////
 
-    function setWhitelistedForAction(
-        address user,
-        Action action,
-        bool whitelisted
-    ) external onlyOwner {
+    function setWhitelistedForAction(address user, Action action, bool whitelisted) external onlyOwner {
         whitelistedForAction[user][action] = whitelisted;
     }
 
-    function setBlacklistedForAction(
-        address user,
-        Action action,
-        bool blacklisted
-    ) external onlyOwner {
+    function setBlacklistedForAction(address user, Action action, bool blacklisted) external onlyOwner {
         BlacklistedForAction[user][action] = blacklisted;
     }
 
-    function setFunctionsForAction(
-        Action action,
-        bytes4[] memory functions
-    ) external onlyOwner {
+    function setFunctionsForAction(Action action, bytes4[] memory functions) external onlyOwner {
         functionsForAction[action] = functions;
     }
 
@@ -106,23 +88,15 @@ contract UniversalHook is
         generalHookFee = hookFee;
     }
 
-    function setHookFeeForPool(
-        PoolKey calldata key,
-        uint24 hookFee
-    ) external onlyOwner {
+    function setHookFeeForPool(PoolKey calldata key, uint24 hookFee) external onlyOwner {
         hookFeeForPool[key.toId()] = hookFee;
     }
 
-    function setAllowedDaysOfTheWeek(
-        bool[8] memory allowedDaysOfTheWeek
-    ) external onlyOwner {
+    function setAllowedDaysOfTheWeek(bool[8] memory allowedDaysOfTheWeek) external onlyOwner {
         allowedDaysOfTheWeek = allowedDaysOfTheWeek;
     }
 
-    function setTradingHours(
-        uint8 _tradingHoursStart,
-        uint8 _tradingHoursEnd
-    ) external onlyOwner {
+    function setTradingHours(uint8 _tradingHoursStart, uint8 _tradingHoursEnd) external onlyOwner {
         require(_tradingHoursStart < _tradingHoursEnd);
         require(_tradingHoursStart >= 0 && _tradingHoursStart <= 23);
         require(_tradingHoursEnd >= 0 && _tradingHoursEnd <= 23);
@@ -133,9 +107,10 @@ contract UniversalHook is
 
     // TODO : naive way due to solidity error
     // Unimplemented feature (/solidity/libsolidity/codegen/ArrayUtils.cpp:228):Copying of type struct IUniversalHook.TradingVolumeDiscountThreshold memory[] memory to storage not yet supported.
-    function addTradingVolumeDiscountThresholds(
-        TradingVolumeDiscountThreshold memory _tradingVolumeDiscountThreshold
-    ) external onlyOwner {
+    function addTradingVolumeDiscountThresholds(TradingVolumeDiscountThreshold memory _tradingVolumeDiscountThreshold)
+        external
+        onlyOwner
+    {
         tradingVolumeDiscountThresholds.push(_tradingVolumeDiscountThreshold);
     }
 
@@ -155,17 +130,14 @@ contract UniversalHook is
     /////////////// HOOKS FUNCTIONS //////////////////
     //////////////////////////////////////////////////
 
-    function beforeInitialize(
-        address sender,
-        PoolKey memory key,
-        uint160 sqrtPriceX96,
-        bytes memory hookData
-    ) external override onlyManager returns (bytes4) {
+    function beforeInitialize(address sender, PoolKey memory key, uint160 sqrtPriceX96, bytes memory hookData)
+        external
+        override
+        onlyManager
+        returns (bytes4)
+    {
         _executeFunctionsForAction(
-            Action.BeforeInitialize,
-            abi.encode(
-                BeforeInitializeParams(sender, key, sqrtPriceX96, hookData)
-            )
+            Action.BeforeInitialize, abi.encode(BeforeInitializeParams(sender, key, sqrtPriceX96, hookData))
         );
         return this.beforeInitialize.selector;
     }
@@ -205,10 +177,7 @@ contract UniversalHook is
         IPoolManager.SwapParams calldata params,
         bytes calldata hookData
     ) external override onlyManager returns (bytes4) {
-        _executeFunctionsForAction(
-            Action.BeforeSwap,
-            abi.encode(BeforeSwapParams(sender, key, params, hookData))
-        );
+        _executeFunctionsForAction(Action.BeforeSwap, abi.encode(BeforeSwapParams(sender, key, params, hookData)));
         return this.beforeSwap.selector;
     }
 
@@ -221,23 +190,16 @@ contract UniversalHook is
     ) external override onlyManager returns (bytes4) {
         // update the user trading volume
         // TODO : use a median of both deltas
-        UniversalHookParams memory universalHookParams = abi.decode(
-            hookData,
-            (UniversalHookParams)
-        );
+        UniversalHookParams memory universalHookParams = abi.decode(hookData, (UniversalHookParams));
         uint256 median;
         if (delta.amount0() >= 0) {
             median = int256(delta.amount0()).toUint256();
             median = median + int256(-delta.amount1()).toUint256();
-            userTradingVolumeByPool[universalHookParams.sender][
-                key.toId()
-            ] += median;
+            userTradingVolumeByPool[universalHookParams.sender][key.toId()] += median;
         } else {
             median = int256(delta.amount1()).toUint256();
             median = median + int256(-delta.amount0()).toUint256();
-            userTradingVolumeByPool[universalHookParams.sender][
-                key.toId()
-            ] += median;
+            userTradingVolumeByPool[universalHookParams.sender][key.toId()] += median;
         }
         return this.afterSwap.selector;
     }
@@ -266,118 +228,71 @@ contract UniversalHook is
     ///////////// HOOKS FEE FUNCTIONS ////////////////
     //////////////////////////////////////////////////
 
-    function getFee(
-        address sender,
-        PoolKey calldata key,
-        IPoolManager.SwapParams calldata params,
-        bytes calldata data
-    ) public override returns (uint24 fee) {
-        bytes4[] memory functionsToExecute = functionsForAction[
-            Action.DynamicFee
-        ];
-        bytes memory _data = abi.encode(
-            BeforeSwapParams(sender, key, params, data)
-        );
+    function getFee(address sender, PoolKey calldata key, IPoolManager.SwapParams calldata params, bytes calldata data)
+        public
+        override
+        returns (uint24 fee)
+    {
+        bytes4[] memory functionsToExecute = functionsForAction[Action.DynamicFee];
+        bytes memory _data = abi.encode(BeforeSwapParams(sender, key, params, data));
         uint8 discount = 1;
         for (uint256 i = 0; i < functionsToExecute.length; i++) {
-            (bool success, bytes memory returnData) = address(this).call(
-                abi.encodeWithSelector(functionsToExecute[i], _data)
-            );
-            if (!success)
-                revert FunctionFailed(
-                    functionsToExecute[i],
-                    Action.BeforeInitialize
-                );
+            (bool success, bytes memory returnData) =
+                address(this).call(abi.encodeWithSelector(functionsToExecute[i], _data));
+            if (!success) {
+                revert FunctionFailed(functionsToExecute[i], Action.BeforeInitialize);
+            }
             discount += abi.decode(returnData, (uint8));
         }
         return (UNISWAP_MAX_FEE_BIPS - 1) / discount;
     }
 
-    function getHookFees(
-        PoolKey calldata key
-    ) external view override returns (uint24 hookFee) {
-        return
-            hookFeeForPool[key.toId()] > 0
-                ? hookFeeForPool[key.toId()]
-                : generalHookFee;
+    function getHookFees(PoolKey calldata key) external view override returns (uint24 hookFee) {
+        return hookFeeForPool[key.toId()] > 0 ? hookFeeForPool[key.toId()] : generalHookFee;
     }
 
     //////////////////////////////////////////////////
     ///////////// PLUGINS FOR ACTIONS ////////////////
     //////////////////////////////////////////////////
 
-    function whitelist_before_initialize(
-        bytes memory data
-    ) external view onlySelf {
-        BeforeInitializeParams memory params = abi.decode(
-            data,
-            (BeforeInitializeParams)
-        );
+    function whitelist_before_initialize(bytes memory data) external view onlySelf {
+        BeforeInitializeParams memory params = abi.decode(data, (BeforeInitializeParams));
         require(whitelistedForAction[params.sender][Action.BeforeInitialize]);
     }
 
-    function only_owner_before_initialize(
-        bytes memory data
-    ) external view onlySelf {
-        BeforeInitializeParams memory params = abi.decode(
-            data,
-            (BeforeInitializeParams)
-        );
+    function only_owner_before_initialize(bytes memory data) external view onlySelf {
+        BeforeInitializeParams memory params = abi.decode(data, (BeforeInitializeParams));
         require(params.sender == owner());
     }
 
-    function not_blacklisted_before_initialize(
-        bytes memory data
-    ) external view onlySelf {
-        BeforeInitializeParams memory params = abi.decode(
-            data,
-            (BeforeInitializeParams)
-        );
+    function not_blacklisted_before_initialize(bytes memory data) external view onlySelf {
+        BeforeInitializeParams memory params = abi.decode(data, (BeforeInitializeParams));
         require(!BlacklistedForAction[params.sender][Action.BeforeInitialize]);
     }
 
-    function day_of_the_week_before_swap(
-        bytes memory data
-    ) external view onlySelf {
+    function day_of_the_week_before_swap(bytes memory data) external view onlySelf {
+        BeforeSwapParams memory params = abi.decode(data, (BeforeSwapParams));
+        require(allowedDaysOfTheWeek[BokkyPooBahsDateTimeLibrary.getDayOfWeek(block.timestamp)]);
+    }
+
+    function trading_hours_before_Swap(bytes memory data) external view onlySelf {
         BeforeSwapParams memory params = abi.decode(data, (BeforeSwapParams));
         require(
-            allowedDaysOfTheWeek[
-                BokkyPooBahsDateTimeLibrary.getDayOfWeek(block.timestamp)
-            ]
+            BokkyPooBahsDateTimeLibrary.getHour(block.timestamp) >= tradingHoursStart
+                && BokkyPooBahsDateTimeLibrary.getHour(block.timestamp) <= tradingHoursEnd
         );
     }
 
-    function trading_hours_before_Swap(
-        bytes memory data
-    ) external view onlySelf {
+    function user_trading_volume_dynamic_fee(bytes memory data) external view onlySelf returns (uint8) {
         BeforeSwapParams memory params = abi.decode(data, (BeforeSwapParams));
-        require(
-            BokkyPooBahsDateTimeLibrary.getHour(block.timestamp) >=
-                tradingHoursStart &&
-                BokkyPooBahsDateTimeLibrary.getHour(block.timestamp) <=
-                tradingHoursEnd
-        );
-    }
-
-    function user_trading_volume_dynamic_fee(
-        bytes memory data
-    ) external view onlySelf returns (uint8) {
-        BeforeSwapParams memory params = abi.decode(data, (BeforeSwapParams));
-        UniversalHookParams memory hookData = abi.decode(
-            params.hookData,
-            (UniversalHookParams)
-        );
+        UniversalHookParams memory hookData = abi.decode(params.hookData, (UniversalHookParams));
         // get the user trading
-        uint256 userTradingVolume = userTradingVolumeByPool[hookData.sender][
-            params.key.toId()
-        ];
+        uint256 userTradingVolume = userTradingVolumeByPool[hookData.sender][params.key.toId()];
         // find where in the threshold array is located
         uint256 index = 0;
         bool found = false;
         for (uint256 i = 0; i < tradingVolumeDiscountThresholds.length; i++) {
-            if (
-                userTradingVolume >= tradingVolumeDiscountThresholds[i].volume
-            ) {
+            if (userTradingVolume >= tradingVolumeDiscountThresholds[i].volume) {
                 index = i;
                 found = true;
             }
@@ -398,20 +313,13 @@ contract UniversalHook is
     //////////// INTERNAL CORE FUNCTION //////////////
     //////////////////////////////////////////////////
 
-    function _executeFunctionsForAction(
-        Action action,
-        bytes memory data
-    ) internal {
+    function _executeFunctionsForAction(Action action, bytes memory data) internal {
         bytes4[] memory functionsToExecute = functionsForAction[action];
         for (uint256 i = 0; i < functionsToExecute.length; i++) {
-            (bool success, ) = address(this).call(
-                abi.encodeWithSelector(functionsToExecute[i], data)
-            );
-            if (!success)
-                revert FunctionFailed(
-                    functionsToExecute[i],
-                    Action.BeforeInitialize
-                );
+            (bool success,) = address(this).call(abi.encodeWithSelector(functionsToExecute[i], data));
+            if (!success) {
+                revert FunctionFailed(functionsToExecute[i], Action.BeforeInitialize);
+            }
         }
     }
 
@@ -419,10 +327,7 @@ contract UniversalHook is
     //////////// SOME GETTERS FUNCTION ///////////////
     //////////////////////////////////////////////////
 
-    function getUserTradingVolumeByPool(
-        address user,
-        PoolId poolId
-    ) external view returns (uint256) {
+    function getUserTradingVolumeByPool(address user, PoolId poolId) external view returns (uint256) {
         return userTradingVolumeByPool[user][poolId];
     }
 }

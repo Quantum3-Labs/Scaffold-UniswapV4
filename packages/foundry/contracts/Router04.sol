@@ -44,15 +44,13 @@ contract Router04 is ILockCallback {
         _;
     }
 
-    function swap(
-        PoolKey memory key,
-        IPoolManager.SwapParams memory params
-    ) external payable returns (BalanceDelta delta) {
+    function swap(PoolKey memory key, IPoolManager.SwapParams memory params)
+        external
+        payable
+        returns (BalanceDelta delta)
+    {
         bytes memory returnData = manager.lock(
-            abi.encodeWithSelector(
-                this.lockAcquiredSwap.selector,
-                (CallbackDataSwap(msg.sender, key, params))
-            )
+            abi.encodeWithSelector(this.lockAcquiredSwap.selector, (CallbackDataSwap(msg.sender, key, params)))
         );
 
         delta = abi.decode(returnData, (BalanceDelta));
@@ -63,9 +61,7 @@ contract Router04 is ILockCallback {
         }
     }
 
-    function lockAcquired(
-        bytes calldata data
-    ) external onlyManager returns (bytes memory) {
+    function lockAcquired(bytes calldata data) external onlyManager returns (bytes memory) {
         (bool success, bytes memory returnData) = address(this).call(data);
         if (success) return returnData;
         if (returnData.length == 0) revert LockFailure();
@@ -74,69 +70,47 @@ contract Router04 is ILockCallback {
         }
     }
 
-    function lockAcquiredSwap(
-        CallbackDataSwap memory data
-    ) external onlySelf returns (BalanceDelta delta) {
-        delta = manager.swap(
-            data.key,
-            data.params,
-            abi.encode(IUniversalHook.UniversalHookParams(data.sender))
-        );
+    function lockAcquiredSwap(CallbackDataSwap memory data) external onlySelf returns (BalanceDelta delta) {
+        delta = manager.swap(data.key, data.params, abi.encode(IUniversalHook.UniversalHookParams(data.sender)));
 
         if (data.params.zeroForOne) {
             if (delta.amount0() > 0) {
                 if (data.key.currency0.isNative()) {
-                    manager.settle{value: uint128(delta.amount0())}(
-                        data.key.currency0
-                    );
+                    manager.settle{value: uint128(delta.amount0())}(data.key.currency0);
                 } else {
-                    IERC20Minimal(Currency.unwrap(data.key.currency0))
-                        .transferFrom(
-                            data.sender,
-                            address(manager),
-                            uint128(delta.amount0())
-                        );
+                    IERC20Minimal(Currency.unwrap(data.key.currency0)).transferFrom(
+                        data.sender, address(manager), uint128(delta.amount0())
+                    );
                     manager.settle(data.key.currency0);
                 }
             }
             if (delta.amount1() < 0) {
-                manager.take(
-                    data.key.currency1,
-                    data.sender,
-                    uint128(-delta.amount1())
-                );
+                manager.take(data.key.currency1, data.sender, uint128(-delta.amount1()));
             }
         } else {
             if (delta.amount1() > 0) {
                 if (data.key.currency1.isNative()) {} else {
-                    IERC20Minimal(Currency.unwrap(data.key.currency1))
-                        .transferFrom(
-                            data.sender,
-                            address(manager),
-                            uint128(delta.amount1())
-                        );
+                    IERC20Minimal(Currency.unwrap(data.key.currency1)).transferFrom(
+                        data.sender, address(manager), uint128(delta.amount1())
+                    );
                     manager.settle(data.key.currency1);
                 }
             }
             if (delta.amount0() < 0) {
-                manager.take(
-                    data.key.currency0,
-                    data.sender,
-                    uint128(-delta.amount0())
-                );
+                manager.take(data.key.currency0, data.sender, uint128(-delta.amount0()));
             }
         }
     }
 
-    function modifyPosition(
-        PoolKey memory key,
-        IPoolManager.ModifyPositionParams memory params
-    ) external payable returns (BalanceDelta delta) {
+    function modifyPosition(PoolKey memory key, IPoolManager.ModifyPositionParams memory params)
+        external
+        payable
+        returns (BalanceDelta delta)
+    {
         delta = abi.decode(
             manager.lock(
                 abi.encodeWithSelector(
-                    this.lockAcquiredModifyPosition.selector,
-                    CallbackDataModifyPosition(msg.sender, key, params)
+                    this.lockAcquiredModifyPosition.selector, CallbackDataModifyPosition(msg.sender, key, params)
                 )
             ),
             (BalanceDelta)
@@ -148,57 +122,40 @@ contract Router04 is ILockCallback {
         }
     }
 
-    function lockAcquiredModifyPosition(
-        CallbackDataModifyPosition memory data
-    ) external onlySelf returns (BalanceDelta delta) {
-        delta = manager.modifyPosition(
-            data.key,
-            data.params,
-            abi.encode(IUniversalHook.UniversalHookParams(data.sender))
-        );
+    function lockAcquiredModifyPosition(CallbackDataModifyPosition memory data)
+        external
+        onlySelf
+        returns (BalanceDelta delta)
+    {
+        delta =
+            manager.modifyPosition(data.key, data.params, abi.encode(IUniversalHook.UniversalHookParams(data.sender)));
 
         if (delta.amount0() > 0) {
             if (data.key.currency0.isNative()) {
-                manager.settle{value: uint128(delta.amount0())}(
-                    data.key.currency0
-                );
+                manager.settle{value: uint128(delta.amount0())}(data.key.currency0);
             } else {
                 IERC20Minimal(Currency.unwrap(data.key.currency0)).transferFrom(
-                        data.sender,
-                        address(manager),
-                        uint128(delta.amount0())
-                    );
+                    data.sender, address(manager), uint128(delta.amount0())
+                );
                 manager.settle(data.key.currency0);
             }
         }
         if (delta.amount1() > 0) {
             if (data.key.currency1.isNative()) {
-                manager.settle{value: uint128(delta.amount1())}(
-                    data.key.currency1
-                );
+                manager.settle{value: uint128(delta.amount1())}(data.key.currency1);
             } else {
                 IERC20Minimal(Currency.unwrap(data.key.currency1)).transferFrom(
-                        data.sender,
-                        address(manager),
-                        uint128(delta.amount1())
-                    );
+                    data.sender, address(manager), uint128(delta.amount1())
+                );
                 manager.settle(data.key.currency1);
             }
         }
 
         if (delta.amount0() < 0) {
-            manager.take(
-                data.key.currency0,
-                data.sender,
-                uint128(-delta.amount0())
-            );
+            manager.take(data.key.currency0, data.sender, uint128(-delta.amount0()));
         }
         if (delta.amount1() < 0) {
-            manager.take(
-                data.key.currency1,
-                data.sender,
-                uint128(-delta.amount1())
-            );
+            manager.take(data.key.currency1, data.sender, uint128(-delta.amount1()));
         }
     }
 }

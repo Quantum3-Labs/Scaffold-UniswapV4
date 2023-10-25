@@ -10,12 +10,9 @@ import {IPoolManager} from "../v4-core/interfaces/IPoolManager.sol";
 /// cause the 'before swap' hook to be invoked. See the Hooks library for the full spec.
 /// @dev Should only be callable by the v4 PoolManager.
 interface ITweakedHooks {
-    function beforeInitialize(
-        address sender,
-        PoolKey calldata key,
-        uint160 sqrtPriceX96,
-        bytes calldata hookData
-    ) external returns (bytes4);
+    function beforeInitialize(address sender, PoolKey calldata key, uint160 sqrtPriceX96, bytes calldata hookData)
+        external
+        returns (bytes4);
 
     /// @notice The hook called after the state of a pool is initialized
     /// @param sender The initial msg.sender for the initialize call

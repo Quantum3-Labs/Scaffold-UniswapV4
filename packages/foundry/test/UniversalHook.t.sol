@@ -35,19 +35,14 @@ contract TestRouterUniV4 is Test, TokenFixture {
     PoolManager manager;
     UniversalHook universalHook;
     UniversalHookFactory universalHookFactory;
-    address payable allHooksAddress =
-        payable(
-            address(
-                uint160(
-                    Hooks.BEFORE_INITIALIZE_FLAG |
-                        Hooks.BEFORE_SWAP_FLAG |
-                        Hooks.AFTER_SWAP_FLAG |
-                        Hooks.AFTER_INITIALIZE_FLAG |
-                        Hooks.BEFORE_MODIFY_POSITION_FLAG |
-                        Hooks.AFTER_MODIFY_POSITION_FLAG
-                )
+    address payable allHooksAddress = payable(
+        address(
+            uint160(
+                Hooks.BEFORE_INITIALIZE_FLAG | Hooks.BEFORE_SWAP_FLAG | Hooks.AFTER_SWAP_FLAG
+                    | Hooks.AFTER_INITIALIZE_FLAG | Hooks.BEFORE_MODIFY_POSITION_FLAG | Hooks.AFTER_MODIFY_POSITION_FLAG
             )
-        );
+        )
+    );
 
     PoolKey key;
     PoolId id;
@@ -74,11 +69,7 @@ contract TestRouterUniV4 is Test, TokenFixture {
         unchecked {
             for (uint256 i = 0; i < writes.length; i++) {
                 bytes32 slot = writes[i];
-                vm.store(
-                    allHooksAddress,
-                    slot,
-                    vm.load(address(universalHookImpl), slot)
-                );
+                vm.store(allHooksAddress, slot, vm.load(address(universalHookImpl), slot));
             }
         }
 
@@ -90,13 +81,7 @@ contract TestRouterUniV4 is Test, TokenFixture {
         console.logUint(fee);
 
         // params to initalize pool
-        key = PoolKey(
-            currency0,
-            currency1,
-            fee,
-            2,
-            IHooks(address(universalHook))
-        );
+        key = PoolKey(currency0, currency1, fee, 2, IHooks(address(universalHook)));
 
         console.logString("KEYYY");
         console.logBytes32(PoolId.unwrap(key.toId()));
@@ -107,19 +92,13 @@ contract TestRouterUniV4 is Test, TokenFixture {
     }
 
     function testOwnerOfHooks() public {
-        require(
-            universalHook.owner() == address(this),
-            "owner of universal hook is not this contract"
-        );
+        require(universalHook.owner() == address(this), "owner of universal hook is not this contract");
     }
 
     function test_hook_only_owner_before_initialize() public {
         bytes4[] memory selectors = new bytes4[](1);
         selectors[0] = UniversalHook.only_owner_before_initialize.selector;
-        universalHook.setFunctionsForAction(
-            IUniversalHook.Action.BeforeInitialize,
-            selectors
-        );
+        universalHook.setFunctionsForAction(IUniversalHook.Action.BeforeInitialize, selectors);
 
         // should fail if not called by owner
         vm.expectRevert();
@@ -133,10 +112,7 @@ contract TestRouterUniV4 is Test, TokenFixture {
     function test_hook_whitelist_before_initialize() public {
         bytes4[] memory selectors = new bytes4[](1);
         selectors[0] = UniversalHook.whitelist_before_initialize.selector;
-        universalHook.setFunctionsForAction(
-            IUniversalHook.Action.BeforeInitialize,
-            selectors
-        );
+        universalHook.setFunctionsForAction(IUniversalHook.Action.BeforeInitialize, selectors);
 
         // should fail if not called by owner
         vm.expectRevert();
@@ -144,11 +120,7 @@ contract TestRouterUniV4 is Test, TokenFixture {
         manager.initialize(key, SQRT_RATIO_1_1, bytes(""));
 
         //whitelist the account
-        universalHook.setWhitelistedForAction(
-            account1,
-            IUniversalHook.Action.BeforeInitialize,
-            true
-        );
+        universalHook.setWhitelistedForAction(account1, IUniversalHook.Action.BeforeInitialize, true);
 
         // should succeed if called by whitelisted
         vm.prank(account1);
@@ -158,17 +130,10 @@ contract TestRouterUniV4 is Test, TokenFixture {
     function test_hook_not_blacklisted_before_initialize() public {
         bytes4[] memory selectors = new bytes4[](1);
         selectors[0] = UniversalHook.not_blacklisted_before_initialize.selector;
-        universalHook.setFunctionsForAction(
-            IUniversalHook.Action.BeforeInitialize,
-            selectors
-        );
+        universalHook.setFunctionsForAction(IUniversalHook.Action.BeforeInitialize, selectors);
 
         //blacklist the account
-        universalHook.setBlacklistedForAction(
-            account1,
-            IUniversalHook.Action.BeforeInitialize,
-            true
-        );
+        universalHook.setBlacklistedForAction(account1, IUniversalHook.Action.BeforeInitialize, true);
 
         // should revert if blacklisted
         vm.expectRevert();
@@ -176,11 +141,7 @@ contract TestRouterUniV4 is Test, TokenFixture {
         manager.initialize(key, SQRT_RATIO_1_1, bytes(""));
 
         // remove from blacklist
-        universalHook.setBlacklistedForAction(
-            account1,
-            IUniversalHook.Action.BeforeInitialize,
-            false
-        );
+        universalHook.setBlacklistedForAction(account1, IUniversalHook.Action.BeforeInitialize, false);
         // should succeed if not blacklisted
         vm.prank(account1);
         manager.initialize(key, SQRT_RATIO_1_1, bytes(""));
@@ -190,29 +151,18 @@ contract TestRouterUniV4 is Test, TokenFixture {
         bytes4[] memory selectors = new bytes4[](2);
         selectors[0] = UniversalHook.not_blacklisted_before_initialize.selector;
         selectors[1] = UniversalHook.whitelist_before_initialize.selector;
-        universalHook.setFunctionsForAction(
-            IUniversalHook.Action.BeforeInitialize,
-            selectors
-        );
+        universalHook.setFunctionsForAction(IUniversalHook.Action.BeforeInitialize, selectors);
 
         vm.expectRevert();
         manager.initialize(key, SQRT_RATIO_1_1, bytes(""));
 
         //whitelist this contract
-        universalHook.setWhitelistedForAction(
-            address(this),
-            IUniversalHook.Action.BeforeInitialize,
-            true
-        );
+        universalHook.setWhitelistedForAction(address(this), IUniversalHook.Action.BeforeInitialize, true);
 
         manager.initialize(key, SQRT_RATIO_1_1, bytes(""));
 
         //blacklist the account
-        universalHook.setBlacklistedForAction(
-            address(this),
-            IUniversalHook.Action.BeforeInitialize,
-            true
-        );
+        universalHook.setBlacklistedForAction(address(this), IUniversalHook.Action.BeforeInitialize, true);
 
         vm.expectRevert();
         manager.initialize(key, SQRT_RATIO_1_1, bytes(""));
@@ -221,61 +171,34 @@ contract TestRouterUniV4 is Test, TokenFixture {
     function test_user_trading_volume_dynamic_fee() public {
         bytes4[] memory selectors = new bytes4[](1);
         selectors[0] = UniversalHook.user_trading_volume_dynamic_fee.selector;
-        universalHook.setFunctionsForAction(
-            IUniversalHook.Action.DynamicFee,
-            selectors
-        );
+        universalHook.setFunctionsForAction(IUniversalHook.Action.DynamicFee, selectors);
         console.log("IMPORTANT");
         console.logBytes4(selectors[0]);
         console.logUint(uint8(IUniversalHook.Action.DynamicFee));
         selectors[0] = UniversalHook.whitelist_swap.selector;
-        universalHook.setFunctionsForAction(
-            IUniversalHook.Action.BeforeSwap,
-            selectors
-        );
+        universalHook.setFunctionsForAction(IUniversalHook.Action.BeforeSwap, selectors);
         //whitelist this contract
-        universalHook.setWhitelistedForAction(
-            address(router),
-            IUniversalHook.Action.BeforeSwap,
-            true
-        );
+        universalHook.setWhitelistedForAction(address(router), IUniversalHook.Action.BeforeSwap, true);
 
         manager.initialize(key, SQRT_RATIO_1_1, bytes(""));
 
         // add liquidity ==>  1000 ETH
-        router.modifyPosition(
-            key,
-            IPoolManager.ModifyPositionParams(-100000, 100000, 1000 ether)
-        );
+        router.modifyPosition(key, IPoolManager.ModifyPositionParams(-100000, 100000, 1000 ether));
 
         // add thresholds for swap
-        universalHook.addTradingVolumeDiscountThresholds(
-            IUniversalHook.TradingVolumeDiscountThreshold(200 ether, 3)
-        );
+        universalHook.addTradingVolumeDiscountThresholds(IUniversalHook.TradingVolumeDiscountThreshold(200 ether, 3));
 
         uint160 sqrtPriceLimit = TickMath.getSqrtRatioAtTick(-100);
         console.logString("CHECKPOIINT 1 SWAP");
         console.logUint(sqrtPriceLimit);
         vm.recordLogs();
         // swap 100 ETH
-        router.swap(
-            key,
-            IPoolManager.SwapParams(true, 100 ether, sqrtPriceLimit)
-        );
+        router.swap(key, IPoolManager.SwapParams(true, 100 ether, sqrtPriceLimit));
 
         Vm.Log[] memory logs = vm.getRecordedLogs();
 
-        (
-            int128 amount0,
-            int128 amount1,
-            uint160 sqrtPriceX96,
-            uint128 liquidity,
-            int24 tick,
-            uint24 fee
-        ) = abi.decode(
-                logs[0].data,
-                (int128, int128, uint160, uint128, int24, uint24)
-            );
+        (int128 amount0, int128 amount1, uint160 sqrtPriceX96, uint128 liquidity, int24 tick, uint24 fee) =
+            abi.decode(logs[0].data, (int128, int128, uint160, uint128, int24, uint24));
         console.logString("performed swap");
         console.logInt(amount0);
         console.logInt(amount1);
@@ -288,17 +211,12 @@ contract TestRouterUniV4 is Test, TokenFixture {
 
         sqrtPriceLimit = TickMath.getSqrtRatioAtTick(20);
         vm.recordLogs();
-        router.swap(
-            key,
-            IPoolManager.SwapParams(false, 100 ether, sqrtPriceLimit)
-        );
+        router.swap(key, IPoolManager.SwapParams(false, 100 ether, sqrtPriceLimit));
 
         logs = vm.getRecordedLogs();
 
-        (amount0, amount1, sqrtPriceX96, liquidity, tick, fee) = abi.decode(
-            logs[0].data,
-            (int128, int128, uint160, uint128, int24, uint24)
-        );
+        (amount0, amount1, sqrtPriceX96, liquidity, tick, fee) =
+            abi.decode(logs[0].data, (int128, int128, uint160, uint128, int24, uint24));
         console.logString("performed swap");
         console.logInt(amount0);
         console.logInt(amount1);
@@ -309,10 +227,7 @@ contract TestRouterUniV4 is Test, TokenFixture {
 
         console.log("user trading volume");
         require(
-            universalHook.getUserTradingVolumeByPool(
-                address(this),
-                key.toId()
-            ) > 100 ether,
+            universalHook.getUserTradingVolumeByPool(address(this), key.toId()) > 100 ether,
             "user trading volume is not 200"
         );
 
@@ -320,17 +235,12 @@ contract TestRouterUniV4 is Test, TokenFixture {
 
         sqrtPriceLimit = TickMath.getSqrtRatioAtTick(20);
         vm.recordLogs();
-        router.swap(
-            key,
-            IPoolManager.SwapParams(false, 100 ether, sqrtPriceLimit)
-        );
+        router.swap(key, IPoolManager.SwapParams(false, 100 ether, sqrtPriceLimit));
 
         logs = vm.getRecordedLogs();
 
-        (amount0, amount1, sqrtPriceX96, liquidity, tick, fee) = abi.decode(
-            logs[0].data,
-            (int128, int128, uint160, uint128, int24, uint24)
-        );
+        (amount0, amount1, sqrtPriceX96, liquidity, tick, fee) =
+            abi.decode(logs[0].data, (int128, int128, uint160, uint128, int24, uint24));
         console.logString("performed swap");
         console.logInt(amount0);
         console.logInt(amount1);
@@ -342,9 +252,7 @@ contract TestRouterUniV4 is Test, TokenFixture {
 
     function testUniversalFactory() public {
         universalHookFactory = new UniversalHookFactory(manager);
-        address testAddr = address(
-            uint160(0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF)
-        );
+        address testAddr = address(uint160(0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF));
         require(_addressStartsWithPrefix(testAddr));
         testAddr = address(uint160(0xFf0000000000000120000000000000010000000F));
         require(_addressStartsWithPrefix(testAddr));
@@ -360,23 +268,17 @@ contract TestRouterUniV4 is Test, TokenFixture {
     function testBulkPrecomputeAddresses() public {
         universalHookFactory = new UniversalHookFactory(manager);
         uint256 gasUsed = gasleft();
-        address[] memory addresses = universalHookFactory
-            .getBulkPrecomputeHookAddresses(0, 390);
+        address[] memory addresses = universalHookFactory.getBulkPrecomputeHookAddresses(0, 390);
         gasUsed = gasUsed - gasleft();
         console.logUint(gasUsed);
     }
 
-    function _addressStartsWithPrefix(
-        address _address
-    ) internal view returns (bool) {
+    function _addressStartsWithPrefix(address _address) internal view returns (bool) {
         address universalHookAddressPrefix = address(0xff);
         address universalHookAddressPrefixAlt = address(allHooksAddress);
 
-        return
-            uint160(_address) / (2 ** (8 * (19))) ==
-            uint160(universalHookAddressPrefix) ||
-            uint160(_address) / (2 ** (8 * (19))) ==
-            uint160(universalHookAddressPrefixAlt);
+        return uint160(_address) / (2 ** (8 * (19))) == uint160(universalHookAddressPrefix)
+            || uint160(_address) / (2 ** (8 * (19))) == uint160(universalHookAddressPrefixAlt);
     }
 
     function _mintTokensForAllAccounts() internal {
@@ -411,12 +313,7 @@ contract TestRouterUniV4 is Test, TokenFixture {
     }
 
     function printSlot0() internal {
-        (
-            uint160 sqrtPriceX96,
-            int24 tick,
-            uint24 protocolFees,
-            uint24 hookFees
-        ) = manager.getSlot0(key.toId());
+        (uint160 sqrtPriceX96, int24 tick, uint24 protocolFees, uint24 hookFees) = manager.getSlot0(key.toId());
 
         console.log("variables of this pool");
         console.logUint(sqrtPriceX96);
@@ -432,25 +329,15 @@ contract TestRouterUniV4 is Test, TokenFixture {
     }
 
     function testFork() external {
-        vm.createSelectFork(
-            "https://base-goerli.g.alchemy.com/v2/JsSsdQeYjg9VZK7Dp2kjAxtFM2Dwa4dv"
-        );
+        vm.createSelectFork("https://base-goerli.g.alchemy.com/v2/JsSsdQeYjg9VZK7Dp2kjAxtFM2Dwa4dv");
         token0 = TestERC20(0x14fC0CB561caE7d22312Bf3A95C0fe6648E366E4);
         token1 = TestERC20(0xE7EC7F742040752b1bd15ED7eb83D2c9762EEDbd);
-        universalHook = UniversalHook(
-            0xfCf5AB405d646b3Ba00AD87180Ee8fc848783cc6
-        );
+        universalHook = UniversalHook(0xfCf5AB405d646b3Ba00AD87180Ee8fc848783cc6);
         key = PoolKey(
-            Currency.wrap(address(token0)),
-            Currency.wrap(address(token1)),
-            8391608,
-            2,
-            IHooks(address(universalHook))
+            Currency.wrap(address(token0)), Currency.wrap(address(token1)), 8391608, 2, IHooks(address(universalHook))
         );
 
-        manager = PoolManager(
-            payable(0x2b7C01904C5D84EEF811d4D557F08edd89016F92)
-        );
+        manager = PoolManager(payable(0x2b7C01904C5D84EEF811d4D557F08edd89016F92));
         router = Router04(payable(0xa469458A8De06c6433407DD9c1e82A18126e451f));
         vm.startPrank(0xDe3089d40F3491De794fBb1ECA109fAc36F889d0);
 
@@ -483,24 +370,12 @@ contract TestRouterUniV4 is Test, TokenFixture {
         console.logUint(sqrtPriceLimit);
         vm.recordLogs();
         // swap 100 ETH
-        router.swap(
-            key,
-            IPoolManager.SwapParams(false, 100 ether, sqrtPriceLimit)
-        );
+        router.swap(key, IPoolManager.SwapParams(false, 100 ether, sqrtPriceLimit));
 
         Vm.Log[] memory logs = vm.getRecordedLogs();
 
-        (
-            int128 amount0,
-            int128 amount1,
-            uint160 sqrtPriceX96,
-            uint128 liquidity,
-            int24 tick,
-            uint24 fee
-        ) = abi.decode(
-                logs[0].data,
-                (int128, int128, uint160, uint128, int24, uint24)
-            );
+        (int128 amount0, int128 amount1, uint160 sqrtPriceX96, uint128 liquidity, int24 tick, uint24 fee) =
+            abi.decode(logs[0].data, (int128, int128, uint160, uint128, int24, uint24));
         console.logString("performed swap");
         console.logInt(amount0);
         console.logInt(amount1);

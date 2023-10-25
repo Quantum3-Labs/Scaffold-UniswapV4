@@ -16,6 +16,7 @@ import {UniversalHook} from "../contracts/UniversalHook.sol";
 
 contract DeployScript is ScaffoldETHDeploy, TokenFixture {
     error InvalidPrivateKey(string);
+
     TestERC20 token0;
     TestERC20 token1;
     PoolManager manager;
@@ -23,8 +24,7 @@ contract DeployScript is ScaffoldETHDeploy, TokenFixture {
     UniversalHookFactory hookFactory;
     UniversalHook sampleHook;
 
-    address secondTestWallet =
-        address(0x51f9B9fcBDCb13029779bcaA3fbb34adCcf04BCC);
+    address secondTestWallet = address(0x51f9B9fcBDCb13029779bcaA3fbb34adCcf04BCC);
 
     function run() external {
         uint256 deployerPrivateKey = setupLocalhostEnv();

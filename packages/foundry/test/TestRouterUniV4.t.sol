@@ -74,10 +74,7 @@ contract TestRouterUniV4 is Test, TokenFixture {
 
         printSlot0();
 
-        router.modifyPosition(
-            key,
-            IPoolManager.ModifyPositionParams(-100000, 100000, 100 ether)
-        );
+        router.modifyPosition(key, IPoolManager.ModifyPositionParams(-100000, 100000, 100 ether));
         printSlot0();
 
         console.log("balance of manager");
@@ -102,10 +99,7 @@ contract TestRouterUniV4 is Test, TokenFixture {
         uint160 sqrtPriceLimit = TickMath.getSqrtRatioAtTick(-1000);
         vm.startPrank(account1);
         token0.approve(address(router), type(uint256).max);
-        router.swap(
-            key,
-            IPoolManager.SwapParams(true, 1000 ether, sqrtPriceLimit)
-        );
+        router.swap(key, IPoolManager.SwapParams(true, 1000 ether, sqrtPriceLimit));
         console.logString("balances");
 
         console.logUint(balance0 - token0.balanceOf(account1));
@@ -138,12 +132,7 @@ contract TestRouterUniV4 is Test, TokenFixture {
     }
 
     function printSlot0() internal {
-        (
-            uint160 sqrtPriceX96,
-            int24 tick,
-            uint24 protocolFees,
-            uint24 hookFees
-        ) = manager.getSlot0(id);
+        (uint160 sqrtPriceX96, int24 tick, uint24 protocolFees, uint24 hookFees) = manager.getSlot0(id);
 
         console.log("variables of this pool");
         console.logUint(sqrtPriceX96);

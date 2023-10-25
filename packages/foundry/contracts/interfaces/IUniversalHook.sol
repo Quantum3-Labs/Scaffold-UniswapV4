@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 
 pragma solidity ^0.8.19;
+
 import {PoolKey} from "../v4-core/types/PoolKey.sol";
 import {IPoolManager} from "../v4-core/interfaces/IPoolManager.sol";
 
@@ -42,6 +43,7 @@ interface IUniversalHook {
     struct UniversalHookParams {
         address sender; // we only pass the sender for now
     }
+
     error FunctionFailed(bytes4, Action);
     error InvalidFee(uint24);
 }

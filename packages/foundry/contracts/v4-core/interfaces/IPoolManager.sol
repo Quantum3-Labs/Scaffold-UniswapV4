@@ -56,11 +56,7 @@ interface IPoolManager is IFees, IERC1155 {
     /// @param tickUpper The upper tick of the position
     /// @param liquidityDelta The amount of liquidity that was added or removed
     event ModifyPosition(
-        PoolId indexed id,
-        address indexed sender,
-        int24 tickLower,
-        int24 tickUpper,
-        int256 liquidityDelta
+        PoolId indexed id, address indexed sender, int24 tickLower, int24 tickUpper, int256 liquidityDelta
     );
 
     /// @notice Emitted for swaps between currency0 and currency1
@@ -93,36 +89,25 @@ interface IPoolManager is IFees, IERC1155 {
     function MIN_TICK_SPACING() external view returns (int24);
 
     /// @notice Get the current value in slot0 of the given pool
-    function getSlot0(
-        PoolId id
-    )
+    function getSlot0(PoolId id)
         external
         view
-        returns (
-            uint160 sqrtPriceX96,
-            int24 tick,
-            uint24 protocolFees,
-            uint24 hookFees
-        );
+        returns (uint160 sqrtPriceX96, int24 tick, uint24 protocolFees, uint24 hookFees);
 
     /// @notice Get the current value of liquidity of the given pool
     function getLiquidity(PoolId id) external view returns (uint128 liquidity);
 
     /// @notice Get the current value of liquidity for the specified pool and position
-    function getLiquidity(
-        PoolId id,
-        address owner,
-        int24 tickLower,
-        int24 tickUpper
-    ) external view returns (uint128 liquidity);
+    function getLiquidity(PoolId id, address owner, int24 tickLower, int24 tickUpper)
+        external
+        view
+        returns (uint128 liquidity);
 
     /// @notice Get the position struct for a specified pool and position
-    function getPosition(
-        PoolId id,
-        address owner,
-        int24 tickLower,
-        int24 tickUpper
-    ) external view returns (Position.Info memory position);
+    function getPosition(PoolId id, address owner, int24 tickLower, int24 tickUpper)
+        external
+        view
+        returns (Position.Info memory position);
 
     /// @notice Returns the reserves for a given ERC20 currency
     function reservesOf(Currency currency) external view returns (uint256);
@@ -139,25 +124,17 @@ interface IPoolManager is IFees, IERC1155 {
     function getLock(uint256 i) external view returns (address locker);
 
     /// @notice Returns lock data
-    function lockData()
-        external
-        view
-        returns (uint128 length, uint128 nonzeroDeltaCount);
+    function lockData() external view returns (uint128 length, uint128 nonzeroDeltaCount);
 
     /// @notice Initialize the state for a given pool ID
-    function initialize(
-        PoolKey memory key,
-        uint160 sqrtPriceX96,
-        bytes calldata hookData
-    ) external returns (int24 tick);
+    function initialize(PoolKey memory key, uint160 sqrtPriceX96, bytes calldata hookData)
+        external
+        returns (int24 tick);
 
     /// @notice Get the current delta for a locker in the given currency
     /// @param locker The address of the locker
     /// @param currency The currency for which to lookup the delta
-    function currencyDelta(
-        address locker,
-        Currency currency
-    ) external view returns (int256);
+    function currencyDelta(address locker, Currency currency) external view returns (int256);
 
     /// @notice All operations go through this function
     /// @param data Any data to pass to the callback, via `ILockCallback(msg.sender).lockCallback(data)`
@@ -173,11 +150,9 @@ interface IPoolManager is IFees, IERC1155 {
     }
 
     /// @notice Modify the position for the given pool
-    function modifyPosition(
-        PoolKey memory key,
-        ModifyPositionParams memory params,
-        bytes calldata hookData
-    ) external returns (BalanceDelta);
+    function modifyPosition(PoolKey memory key, ModifyPositionParams memory params, bytes calldata hookData)
+        external
+        returns (BalanceDelta);
 
     struct SwapParams {
         bool zeroForOne;
@@ -186,11 +161,9 @@ interface IPoolManager is IFees, IERC1155 {
     }
 
     /// @notice Swap against the given pool
-    function swap(
-        PoolKey memory key,
-        SwapParams memory params,
-        bytes calldata hookData
-    ) external returns (BalanceDelta);
+    function swap(PoolKey memory key, SwapParams memory params, bytes calldata hookData)
+        external
+        returns (BalanceDelta);
 
     /// @notice Called by the user to net out some value owed to the user
     /// @dev Can also be used as a mechanism for _free_ flash loans
