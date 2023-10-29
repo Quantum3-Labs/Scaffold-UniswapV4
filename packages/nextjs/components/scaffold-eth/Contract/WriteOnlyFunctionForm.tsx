@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Abi, AbiFunction } from "abitype";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Address, TransactionReceipt } from "viem";
 import { useContractWrite, useNetwork, useWaitForTransaction } from "wagmi";
+import { DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import {
   ContractInput,
   IntegerInput,
@@ -80,6 +82,14 @@ export const WriteOnlyFunctionForm = ({ abiFunction, onChange, contractAddress }
   });
   const zeroInputs = inputs.length === 0 && abiFunction.stateMutability !== "payable";
 
+  //capturing event address
+
+  const getAdressHook = (txResult: TransactionReceipt) => {
+    const { logs } = txResult;
+    const { data: lastData } = logs[logs.length - 1];
+    return lastData.slice(-64);
+  };
+
   return (
     <div className="py-5 space-y-3 first:pt-0 last:pb-1">
       <div className={`flex gap-3 ${zeroInputs ? "flex-row justify-between items-center" : "flex-col"}`}>
@@ -98,7 +108,23 @@ export const WriteOnlyFunctionForm = ({ abiFunction, onChange, contractAddress }
         <div className="flex justify-between gap-2">
           {!zeroInputs && (
             <div className="flex-grow basis-0">
-              {displayedTxResult ? <TxReceipt txResult={displayedTxResult} /> : null}
+              {displayedTxResult ? (
+                <div>
+                  {abiFunction.name === "deploy" ? (
+                    <div className="overflow-auto bg-secondary overflow-auto bg-secondary rounded rounded-[20px] tex-center mb-[15px] flex items-center p-[7px]">
+                      <pre className="text-xs ">{getAdressHook(displayedTxResult)} </pre>
+                      <CopyToClipboard text={getAdressHook(displayedTxResult)}>
+                        <DocumentDuplicateIcon
+                          className="text-xl font-normal text-sky-600 h-5 w-5 cursor-pointer"
+                          aria-hidden="true"
+                        />
+                      </CopyToClipboard>
+                    </div>
+                  ) : null}
+
+                  <TxReceipt txResult={displayedTxResult} />
+                </div>
+              ) : null}
             </div>
           )}
           <div
@@ -115,6 +141,7 @@ export const WriteOnlyFunctionForm = ({ abiFunction, onChange, contractAddress }
           </div>
         </div>
       </div>
+
       {zeroInputs && txResult ? (
         <div className="flex-grow basis-0">
           <TxReceipt txResult={txResult} />

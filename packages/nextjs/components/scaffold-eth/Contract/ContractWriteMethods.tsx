@@ -24,6 +24,8 @@ export const ContractWriteMethods = ({
     return <>No write methods</>;
   }
 
+  console.log(functionsToDisplay);
+
   return (
     <>
       {functionsToDisplay.map((fn, idx) => (
