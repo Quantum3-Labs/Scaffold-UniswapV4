@@ -16,6 +16,7 @@ const ExampleUI: NextPage = () => {
       </MetaHeader>
       <div className="grid lg:grid-cols-2 flex-grow" data-theme="exampleUi">
         <ContractInteraction />
+        <button></button>
         <ContractData />
       </div>
     </>
