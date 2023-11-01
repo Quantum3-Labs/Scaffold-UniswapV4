@@ -26,7 +26,7 @@ const enabledChains =
  * Chains for the app
  */
 export const appChains = configureChains(
-  enabledChains,
+  [chains.goerli, chains.mainnet],
   [
     alchemyProvider({
       apiKey: scaffoldConfig.alchemyApiKey,
@@ -65,5 +65,5 @@ export const wagmiConnectors = connectorsForWallets([
   {
     groupName: "Supported Wallets",
     wallets,
-  },
-]);
+  },]
+  );

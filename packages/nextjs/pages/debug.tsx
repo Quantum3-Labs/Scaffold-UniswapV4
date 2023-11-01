@@ -29,6 +29,7 @@ const Debug: NextPage = () => {
         title="Debug Contracts | Scaffold-ETH 2"
         description="Debug your deployed 🏗 Scaffold-ETH 2 contracts in an easy way"
       />
+      <h1>hello</h1>
       <div className="flex flex-col gap-y-6 lg:gap-y-8 py-8 lg:py-12 justify-center items-center">
         {contractNames.length === 0 ? (
           <p className="text-3xl mt-14">No contracts found!</p>
