@@ -26,7 +26,21 @@ const enabledChains =
  * Chains for the app
  */
 export const appChains = configureChains(
-  [chains.goerli, chains.mainnet],
+  [chains.goerli, chains.mainnet, chains.localhost,{id : 31337,
+  name : "localhost",
+  network: "localhost",
+  nativeCurrency: {decimals: 18, name: "ether", symbol: "ETH"},
+  rpcUrls : {
+    default : {
+      http: ["http://127.0.0.1:8545"]
+    },
+    public : {
+      http: ["http://127.0.0.1:8545"]
+    }
+  }
+
+
+}],
   [
     alchemyProvider({
       apiKey: scaffoldConfig.alchemyApiKey,
