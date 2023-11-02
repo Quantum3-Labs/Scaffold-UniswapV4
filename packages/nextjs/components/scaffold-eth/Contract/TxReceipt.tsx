@@ -1,9 +1,12 @@
+import React from "react";
 import { TransactionReceipt } from "viem";
 import { displayTxResult } from "~~/components/scaffold-eth";
 
-export const TxReceipt = (
-  txResult: string | number | bigint | Record<string, any> | TransactionReceipt | undefined,
-) => {
+interface TxReceiptProps {
+  txResult: string | number | bigint | Record<string, any> | TransactionReceipt | undefined;
+}
+
+export const TxReceipt: React.FC<TxReceiptProps> = ({ txResult }) => {
   return (
     <div className="flex-wrap collapse collapse-arrow mb-2">
       <input type="checkbox" className="min-h-0 peer" />

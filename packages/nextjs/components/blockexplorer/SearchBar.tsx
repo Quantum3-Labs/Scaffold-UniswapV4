@@ -12,6 +12,7 @@ export const SearchBar = () => {
 
   const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
+    //valida si es un hash
     if (isHex(searchInput)) {
       try {
         const tx = await client.getTransaction({ hash: searchInput });
@@ -24,10 +25,16 @@ export const SearchBar = () => {
       }
     }
 
+    //valida si es una direccion
+
     if (isAddress(searchInput)) {
       router.push(`/blockexplorer/address/${searchInput}`);
       return;
     }
+
+    //mensaje de error en caso de entrada no valida
+
+    console.error("Invalid input. Please enter a valid hash or address.");
   };
 
   return (
@@ -37,7 +44,7 @@ export const SearchBar = () => {
         type="text"
         value={searchInput}
         placeholder="Search by hash or address"
-        onChange={e => setSearchInput(e.target.value)}
+        onChange={event => setSearchInput(event.target.value)}
       />
       <button className="btn btn-sm btn-primary" type="submit">
         Search

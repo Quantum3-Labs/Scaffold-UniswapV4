@@ -26,7 +26,7 @@ contract UniversalHookFactory is Ownable {
         manager = _manager;
     }
 
-    // use next available salt
+    // Use the next available salt and deploy a UniversalHook contract
     function deploy(string memory key) external returns (address contractDeployed) {
         require(keccak256(bytes(key)) == (hashedKey), "Invalid key");
         bytes32 salt = _consumeNextSalt();
@@ -35,6 +35,7 @@ contract UniversalHookFactory is Ownable {
         emit HookCreated(msg.sender, contractDeployed);
     }
 
+    // Add salts to the available salts list
     function addSalts(uint256[] memory saltsUints) external onlyOwner {
         for (uint256 i = 0; i < saltsUints.length; i++) {
             bytes32 salt = bytes32(saltsUints[i]);
@@ -44,6 +45,8 @@ contract UniversalHookFactory is Ownable {
             }
         }
     }
+
+    // Get an array of precomputed hook addresses within a specified range
 
     function getBulkPrecomputeHookAddresses(uint256 start, uint256 end)
         external
@@ -55,24 +58,27 @@ contract UniversalHookFactory is Ownable {
             addresses[i - start] = getPrecomputedHookAddress(bytes32(i));
         }
     }
+    // Get the precomputed hook address based on a salt
 
     function getPrecomputedHookAddress(bytes32 salt) public view returns (address) {
         bytes32 bytecodeHash = keccak256(abi.encodePacked(type(UniversalHook).creationCode, abi.encode(manager)));
         bytes32 hash = keccak256(abi.encodePacked(bytes1(0xff), address(this), salt, bytecodeHash));
         return address(uint160(uint256(hash)));
     }
+     // Set the hashed key required for deployment
 
     function setHashedKey(bytes32 _hashedKey) external onlyOwner {
         hashedKey = _hashedKey;
     }
 
+    // Internal function to consume the next available salt
     function _consumeNextSalt() internal returns (bytes32 salt) {
         require(availableSalts.length > 0, "No salts available");
         salt = availableSalts[0];
         availableSalts[0] = availableSalts[availableSalts.length - 1];
         availableSalts.pop();
     }
-
+    // Get the list of available salts
     function getAvailableSalts() external view returns (bytes32[] memory) {
         return availableSalts;
     }
