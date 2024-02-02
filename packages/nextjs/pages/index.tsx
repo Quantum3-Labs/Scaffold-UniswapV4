@@ -1,68 +1,155 @@
-import Link from "next/link";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import type { NextPage } from "next";
-import { BugAntIcon, MagnifyingGlassIcon, SparklesIcon } from "@heroicons/react/24/outline";
+import { MdArrowDropDown, MdOutlineCheckBox } from "react-icons/md";
 import { MetaHeader } from "~~/components/MetaHeader";
 
 const Home: NextPage = () => {
+  const router = useRouter();
+  const [visibleItems, setVisibleItems] = useState(5);
+
+  const formatAddress = (address: string) => {
+    const formattedAddress = address && address.startsWith("0x") ? address : `0x${address || ""}`;
+    return formattedAddress.slice(0, 8) + "..." + formattedAddress.slice(-13);
+  };
+  const data = [
+    {
+      name: "eCBC Universal Hook",
+      symbol: "xxx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+    {
+      name: "OCBC Universal Hook",
+      symbol: "xx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+    {
+      name: "OCBC Universal Hook",
+      symbol: "xxx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79DC",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+    {
+      name: "OCBC Universal Hook",
+      symbol: "xx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79DC",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+    {
+      name: "OCBC Universal Hook",
+      symbol: "xxx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+    {
+      name: "OCBC Universal Hook",
+      symbol: "xx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+    {
+      name: "OCBC Universal Hook",
+      symbol: "xxx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+    {
+      name: "OCBC Universal Hook",
+      symbol: "xx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+    {
+      name: "OCBC Universal Hook",
+      symbol: "xxx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+    {
+      name: "OCBC Universal Hook",
+      symbol: "xx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+    {
+      name: "OCBC Universal Hook",
+      symbol: "xxx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+    {
+      name: "OCBe Universal Hook",
+      symbol: "xx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79DC",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+
+    {
+      name: "OCBC Universal Hook",
+      symbol: "xx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79DC",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+    {
+      name: "OCBC Universal Hook",
+      symbol: "xxx",
+      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    },
+  ];
   return (
     <>
       <MetaHeader />
-      <div className="flex items-center flex-col flex-grow pt-10">
-        <div className="px-5">
-          <h1 className="text-center mb-8">
-            <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">Scaffold-ETH 2</span>
-          </h1>
-          <p className="text-center text-lg">
-            Get started by editing{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/nextjs/pages/index.tsx
-            </code>
-          </p>
-          <p className="text-center text-lg">
-            Edit your smart contract{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              YourContract.sol
-            </code>{" "}
-            in{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/hardhat/contracts
-            </code>
-          </p>
-        </div>
-
-        <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <BugAntIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Tinker with your smart contract using the{" "}
-                <Link href="/debug" passHref className="link">
-                  Debug Contract
-                </Link>{" "}
-                tab.
-              </p>
+      <div className="flex justify-center">
+        <div className="flex flex-col max-w-[1768px] w-full items-center">
+          <div className="flex w-full gap-[20px] py-[15px] justify-between">
+            <div className="flex gap-[20px] items-center">
+              <span className="font-bold text-2xl">All Hooks</span>
+              <div className="text-[#3878EF] flex items-center cursor-pointer">
+                <MdOutlineCheckBox />
+                <span className="px-[5px]">Show my hooks</span>
+              </div>
             </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <SparklesIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Experiment with{" "}
-                <Link href="/example-ui" passHref className="link">
-                  Example UI
-                </Link>{" "}
-                to build your own UI.
-              </p>
+            <button
+              className="rounded-md text-[#FFE290] border-2 border-[#FFE290] p-[10px] text-sm px-[30px] py-[10px]"
+              onClick={() => router.push("/hooks")}
+            >
+              Deploy hook
+            </button>
+          </div>
+          <div className="max-w-[1768px] w-full flex flex-col items-center bg-[#151F30] rounded-lg">
+            <div className="flex w-full font-bold bg-[#1E293B] p-[30px] rounded-t-lg">
+              <span className=" flex-1">Hook Name</span>
+              <span className="flex-1">Hook symbol</span>
+              <span className="flex-1">Hook address</span>
+              <span className="flex-1">Hook owner</span>
             </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Explore your local transactions with the{" "}
-                <Link href="/blockexplorer" passHref className="link">
-                  Block Explorer
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
+            {data.length === 0 ? (
+              <div className="p-[20px] w-full text-sm">
+                <span>There is no hook on this moment</span>
+              </div>
+            ) : (
+              <>
+                {data.slice(0, visibleItems).map(item => (
+                  <div className="flex w-full py-[20px] px-[30px]" key={item.address}>
+                    <span className="flex-1 ">{item.name}</span>
+                    <span className=" flex-1 ">{item.symbol}</span>
+                    <span className=" flex-1 ">{formatAddress(item.address)}</span>
+                    <span className="flex-1 ">{formatAddress(item.owner)}</span>
+                  </div>
+                ))}
+                {visibleItems < data.length && (
+                  <div className="w-full py-[20px] flex justify-center border-t-2 border-[#0F172A]">
+                    <button className="flex items-center font-bold" onClick={() => setVisibleItems(prev => prev + 10)}>
+                      <span>Load More</span>
+                      <MdArrowDropDown />
+                    </button>
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>

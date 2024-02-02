@@ -4,11 +4,13 @@
 
 :root,
 [data-theme] {
-  background: hsl(var(--b2));
+  background:#0F172A;
 }
 
 body {
   min-height: 100vh;
+
+;
 }
 
 h1,
@@ -30,3 +32,7 @@ p {
 .btn.btn-ghost {
   @apply shadow-none;
 }
+.custom-input::placeholder{
+  color: #56748A;
+}
+
