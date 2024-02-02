@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import type { NextPage } from "next";
 import { MdArrowDropDown, MdOutlineCheckBox } from "react-icons/md";
 import { MetaHeader } from "~~/components/MetaHeader";
+import { data } from "~~/domain/domain";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -12,93 +13,7 @@ const Home: NextPage = () => {
     const formattedAddress = address && address.startsWith("0x") ? address : `0x${address || ""}`;
     return formattedAddress.slice(0, 8) + "..." + formattedAddress.slice(-13);
   };
-  const data = [
-    {
-      name: "eCBC Universal Hook",
-      symbol: "xxx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-    {
-      name: "OCBC Universal Hook",
-      symbol: "xx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-    {
-      name: "OCBC Universal Hook",
-      symbol: "xxx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79DC",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-    {
-      name: "OCBC Universal Hook",
-      symbol: "xx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79DC",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-    {
-      name: "OCBC Universal Hook",
-      symbol: "xxx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-    {
-      name: "OCBC Universal Hook",
-      symbol: "xx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-    {
-      name: "OCBC Universal Hook",
-      symbol: "xxx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-    {
-      name: "OCBC Universal Hook",
-      symbol: "xx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-    {
-      name: "OCBC Universal Hook",
-      symbol: "xxx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-    {
-      name: "OCBC Universal Hook",
-      symbol: "xx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-    {
-      name: "OCBC Universal Hook",
-      symbol: "xxx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-    {
-      name: "OCBe Universal Hook",
-      symbol: "xx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79DC",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
 
-    {
-      name: "OCBC Universal Hook",
-      symbol: "xx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79DC",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-    {
-      name: "OCBC Universal Hook",
-      symbol: "xxx",
-      address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-      owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
-    },
-  ];
   return (
     <>
       <MetaHeader />
