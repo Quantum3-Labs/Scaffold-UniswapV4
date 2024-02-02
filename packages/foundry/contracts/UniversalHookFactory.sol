@@ -15,65 +15,56 @@ contract UniversalHookFactory is Ownable {
     event HookCreated(address owner, address hookAddr);
 
     IPoolManager public immutable manager;
-    bytes32[] public availableSalts;
+    mapping(uint256 => bool) public usedNonces;
+    uint256 lastNonce;
 
     using EnumerableSet for EnumerableSet.Bytes32Set;
-
-    EnumerableSet.Bytes32Set private _registeredSalts;
-    bytes32 private hashedKey;
 
     constructor(IPoolManager _manager) {
         manager = _manager;
     }
 
     // use next available salt
-    function deploy(string memory key) external returns (address contractDeployed) {
-        require(keccak256(bytes(key)) == (hashedKey), "Invalid key");
-        bytes32 salt = _consumeNextSalt();
-        contractDeployed = address(new UniversalHook{salt: salt}(manager));
+    function deploy(uint256 nonce) external returns (address contractDeployed) {
+        require(!usedNonces[nonce], "Salt has already been used");
+        address precomputedAddr = getPrecomputedHookAddress(nonce);
+        require(bytes1(bytes20(precomputedAddr)) == 0xff, "Invalid address");
+        usedNonces[nonce] = true;
+        lastNonce = uint256(nonce);
+        contractDeployed = address(
+            new UniversalHook{salt: bytes32(nonce)}(manager)
+        );
         IOwnable(contractDeployed).transferOwnership(msg.sender);
         emit HookCreated(msg.sender, contractDeployed);
     }
 
-    function addSalts(uint256[] memory saltsUints) external onlyOwner {
-        for (uint256 i = 0; i < saltsUints.length; i++) {
-            bytes32 salt = bytes32(saltsUints[i]);
-            if (!_registeredSalts.contains(salt)) {
-                availableSalts.push(salt);
-                _registeredSalts.add(salt);
-            }
+    function getBulkPrecomputeHookAddresses(
+        uint256 startNonce,
+        uint256 endNonce
+    ) external view returns (address[] memory addresses) {
+        addresses = new address[](endNonce - startNonce);
+        for (uint256 i = startNonce; i < endNonce; i++) {
+            addresses[i - startNonce] = getPrecomputedHookAddress(i);
         }
     }
 
-    function getBulkPrecomputeHookAddresses(uint256 start, uint256 end)
-        external
-        view
-        returns (address[] memory addresses)
-    {
-        addresses = new address[](end - start);
-        for (uint256 i = start; i < end; i++) {
-            addresses[i - start] = getPrecomputedHookAddress(bytes32(i));
-        }
-    }
-
-    function getPrecomputedHookAddress(bytes32 salt) public view returns (address) {
-        bytes32 bytecodeHash = keccak256(abi.encodePacked(type(UniversalHook).creationCode, abi.encode(manager)));
-        bytes32 hash = keccak256(abi.encodePacked(bytes1(0xff), address(this), salt, bytecodeHash));
+    function getPrecomputedHookAddress(
+        uint256 nonce
+    ) public view returns (address) {
+        bytes32 bytecodeHash = keccak256(
+            abi.encodePacked(
+                type(UniversalHook).creationCode,
+                abi.encode(manager)
+            )
+        );
+        bytes32 hash = keccak256(
+            abi.encodePacked(
+                bytes1(0xff),
+                address(this),
+                bytes32(nonce),
+                bytecodeHash
+            )
+        );
         return address(uint160(uint256(hash)));
-    }
-
-    function setHashedKey(bytes32 _hashedKey) external onlyOwner {
-        hashedKey = _hashedKey;
-    }
-
-    function _consumeNextSalt() internal returns (bytes32 salt) {
-        require(availableSalts.length > 0, "No salts available");
-        salt = availableSalts[0];
-        availableSalts[0] = availableSalts[availableSalts.length - 1];
-        availableSalts.pop();
-    }
-
-    function getAvailableSalts() external view returns (bytes32[] memory) {
-        return availableSalts;
     }
 }
