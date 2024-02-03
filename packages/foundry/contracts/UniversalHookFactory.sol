@@ -12,21 +12,32 @@ interface IOwnable {
 }
 
 contract UniversalHookFactory is Ownable {
-    event HookCreated(address owner, address hookAddr);
+    struct Hook {
+        address owner;
+        address hookAddr;
+        string name;
+        string symbol;
+        uint256 creationTime;
+    }
+    event HookCreated(Hook hook);
 
     IPoolManager public immutable manager;
     mapping(uint256 => bool) public usedNonces;
-    uint256 lastNonce;
-
-    using EnumerableSet for EnumerableSet.Bytes32Set;
+    mapping(uint256 => Hook) public deployedHooks;
+    uint256 public lastNonce;
+    uint256 public hookCount;
 
     constructor(IPoolManager _manager) {
         manager = _manager;
     }
 
     // use next available salt
-    function deploy(uint256 nonce) external returns (address contractDeployed) {
-        require(!usedNonces[nonce], "Salt has already been used");
+    function deploy(
+        uint256 nonce,
+        string memory name,
+        string memory symbol
+    ) external returns (address contractDeployed) {
+        require(!usedNonces[nonce], "nonce has already been used");
         address precomputedAddr = getPrecomputedHookAddress(nonce);
         require(bytes1(bytes20(precomputedAddr)) == 0xff, "Invalid address");
         usedNonces[nonce] = true;
@@ -35,7 +46,16 @@ contract UniversalHookFactory is Ownable {
             new UniversalHook{salt: bytes32(nonce)}(manager)
         );
         IOwnable(contractDeployed).transferOwnership(msg.sender);
-        emit HookCreated(msg.sender, contractDeployed);
+        hookCount++;
+        Hook memory newHook = Hook({
+            owner: msg.sender,
+            hookAddr: contractDeployed,
+            name: name,
+            symbol: symbol,
+            creationTime: block.timestamp
+        });
+        deployedHooks[hookCount] = newHook;
+        emit HookCreated(newHook);
     }
 
     function getBulkPrecomputeHookAddresses(
@@ -66,5 +86,11 @@ contract UniversalHookFactory is Ownable {
             )
         );
         return address(uint160(uint256(hash)));
+    }
+
+    function getHookInfo(
+        uint256 hookId
+    ) external view returns (Hook memory hook) {
+        return deployedHooks[hookId];
     }
 }
