@@ -2,7 +2,7 @@ interface ButtonProps {
   onClick?: () => void;
   texButton: string;
 }
-const Button: React.FC<ButtonProps> = ({ onClick, texButton }) => {
+const ButtonSecondary: React.FC<ButtonProps> = ({ onClick, texButton }) => {
   return (
     <button
       onClick={onClick}
@@ -13,4 +13,4 @@ const Button: React.FC<ButtonProps> = ({ onClick, texButton }) => {
   );
 };
 
-export default Button;
+export default ButtonSecondary;

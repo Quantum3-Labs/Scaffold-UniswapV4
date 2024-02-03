@@ -17,7 +17,7 @@ import { useAutoConnect, useNetworkColor } from "~~/hooks/scaffold-eth";
 import { getBlockExplorerAddressLink, getTargetNetwork } from "~~/utils/scaffold-eth";
 
 /**
- * Custom Wagmi Connect Button (watch balance + custom design)
+ * Custom Wagmi Connect ButtonSecondary (watch balance + custom design)
  */
 export const RainbowKitCustomConnectButton = () => {
   useAutoConnect();

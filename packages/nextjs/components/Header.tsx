@@ -37,7 +37,7 @@ export const Header = () => {
         <NavLink href="/">Hook Factory</NavLink>
       </li>
       <li>
-        <NavLink href="/">Pool</NavLink>
+        <NavLink href="/pool">Pool</NavLink>
       </li>
     </>
   );

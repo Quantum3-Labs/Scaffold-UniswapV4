@@ -3,12 +3,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { HiArrowLeft } from "react-icons/hi";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import Button from "~~/components/Button/Button";
+import ButtonSecondary from "~~/components/Button/ButtonSecondary";
 import CustomInput from "~~/components/InputDetails/CustomInput";
-import DetailsInputer from "~~/components/InputDetails/DetailsInputer";
 
 const Hooks = () => {
-  const router = useRouter();
   const [showSecondBlock, setShowSecondBlock] = useState(false);
 
   const handleDeployClick = () => {
@@ -41,7 +39,7 @@ const Hooks = () => {
                 </div>
               </div>
               <div className="py-[30px]">
-                <Button texButton={"Deploy"} onClick={handleDeployClick} />
+                <ButtonSecondary texButton={"Deploy"} onClick={handleDeployClick} />
               </div>
             </div>
             {showSecondBlock && (

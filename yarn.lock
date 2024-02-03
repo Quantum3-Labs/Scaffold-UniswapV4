@@ -3389,6 +3389,7 @@ __metadata:
     react-dom: ~18.2.0
     react-fast-marquee: ~1.3.5
     react-hot-toast: ~2.4.0
+    react-icons: ^5.0.1
     tailwindcss: ~3.3.3
     typescript: ~5.1.6
     use-debounce: ~8.0.4
@@ -12156,15 +12157,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.2.4":
-  version: 3.2.4
-  resolution: "prettier@npm:3.2.4"
-  bin:
-    prettier: bin/prettier.cjs
-  checksum: 6ec9385a836e0b9bac549e585101c086d1521c31d7b882d5c8bb7d7646da0693da5f31f4fff6dc080710e5e2d34c85e6fb2f8766876b3645c8be2f33b9c3d1a3
-  languageName: node
-  linkType: hard
-
 "prettier@npm:~2.8.4, prettier@npm:~2.8.8":
   version: 2.8.8
   resolution: "prettier@npm:2.8.8"
@@ -13179,8 +13171,6 @@ __metadata:
   dependencies:
     husky: ~8.0.3
     lint-staged: ~13.2.2
-    prettier: ^3.2.4
-    react-icons: ^5.0.1
   languageName: unknown
   linkType: soft
 

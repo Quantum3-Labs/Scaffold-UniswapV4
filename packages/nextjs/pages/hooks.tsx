@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { IoExtensionPuzzleOutline } from "react-icons/io5";
 import { SiSearxng } from "react-icons/si";
-import Button from "~~/components/Button/Button";
+import ButtonSecondary from "~~/components/Button/ButtonSecondary";
 import DetailsInputer from "~~/components/InputDetails/DetailsInputer";
 
 const Hooks = () => {
@@ -51,7 +51,7 @@ const Hooks = () => {
                 <DetailsInputer label={"Discount Point"} />
               </div>
               <div className="p-[40px]">
-                <Button texButton={"Execute"} onClick={() => router.push("/deploy")} />
+                <ButtonSecondary texButton={"Execute"} onClick={() => router.push("/deploy")} />
               </div>
             </div>
           </div>
