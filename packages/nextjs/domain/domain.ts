@@ -24,3 +24,20 @@ export const data = [
     owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
   },
 ];
+
+export const dataPool = [
+  {
+    id: "1",
+    address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    tvl: "1.39",
+    token: "",
+  },
+  {
+    id: "2",
+    address: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
+    tvl: "1.39",
+    token: "",
+  },
+];

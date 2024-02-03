@@ -10,13 +10,18 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
   const isActive = router.pathname === href;
 
   return (
-    <Link
-      href={href}
-      passHref
-      className={`${isActive ? " shadow-md" : ""} hover:text-[#FFE290] py-1.5 px-3 text-lg  gap-2 `}
-    >
-      {children}
-    </Link>
+    <li className="flex-1 text-center">
+      {isActive && <div className={`w-full bg-[#FFE290] h-[5px] rounded-b-lg`}></div>}
+      <div className="py-[10px]">
+        <Link
+          href={href}
+          passHref
+          className={`hover:text-[#FFE290] ${isActive ? "text-[#FFE290]" : ""} py-1.5 px-3 text-lg  gap-2 `}
+        >
+          {children}
+        </Link>
+      </div>
+    </li>
   );
 };
 
@@ -33,12 +38,8 @@ export const Header = () => {
 
   const navLinks = (
     <>
-      <li>
-        <NavLink href="/">Hook Factory</NavLink>
-      </li>
-      <li>
-        <NavLink href="/pool">Pool</NavLink>
-      </li>
+      <NavLink href="/">Hook Factory</NavLink>
+      <NavLink href="/pool">Pool</NavLink>
     </>
   );
 
@@ -73,7 +74,7 @@ export const Header = () => {
           </div>
         </Link>
       </div>
-      <ul className="hidden bg-[#151F30] lg:flex lg:flex-nowrap max-w-[412px] w-full py-[13px] justify-around  rounded-md">
+      <ul className="hidden bg-[#151F30] lg:flex lg:flex-nowrap max-w-[412px] w-full justify-around  rounded-md">
         {navLinks}
       </ul>
       <div className="navbar-end flex-grow mr-4">

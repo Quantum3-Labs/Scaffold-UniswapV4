@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import type { NextPage } from "next";
-import { MdArrowDropDown, MdOutlineCheckBox } from "react-icons/md";
+import { MdOutlineCheckBox } from "react-icons/md";
 import ButtonPrimary from "~~/components/Button/ButtonPrimary";
 import { MetaHeader } from "~~/components/MetaHeader";
 import Table from "~~/components/Table/Table";
 import { data } from "~~/domain/domain";
 
+export const formatAddress = (address: string) => {
+  const formattedAddress = address && address.startsWith("0x") ? address : `0x${address || ""}`;
+  return formattedAddress.slice(0, 8) + "..." + formattedAddress.slice(-13);
+};
+
 const Home: NextPage = () => {
   const router = useRouter();
   // const [visibleItems, setVisibleItems] = useState(5);
-
-  const formatAddress = (address: string) => {
-    const formattedAddress = address && address.startsWith("0x") ? address : `0x${address || ""}`;
-    return formattedAddress.slice(0, 8) + "..." + formattedAddress.slice(-13);
-  };
 
   const columnItems = data.map(item => [
     item.name,

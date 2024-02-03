@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 
-type Column = string[];
+type Column = ReactNode[];
 interface TableProps {
   headers: string[];
   columns: Column[];
@@ -23,11 +23,11 @@ const Table: React.FC<TableProps> = ({ headers, columns, onShowMore = () => ({})
         </div>
       ) : (
         <>
-          {columns.map((row, index) => (
-            <div className="flex w-full py-[20px] px-[30px]" key={index}>
-              {row.map(value => (
-                <span className="flex-1" key={value}>
-                  {value}
+          {columns.map((column, columnIndex) => (
+            <div className="flex w-full py-[20px] px-[30px] items-center hover:bg-[#202C3F] " key={columnIndex}>
+              {column.map((row, rowIndex) => (
+                <span className="flex-1" key={rowIndex}>
+                  {row}
                 </span>
               ))}
             </div>
