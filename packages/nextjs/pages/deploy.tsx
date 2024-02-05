@@ -18,7 +18,10 @@ const Hooks = () => {
       <div className="flex justify-center">
         <div className="flex flex-col max-w-[1768px] w-full  ">
           <div className="max-w-[721px] w-full p-[10px]">
-            <Link href="/hooks" className="flex items-center text-[#56748A] font-bold py-[20px]">
+            <Link
+              href="/packages/nextjs/pages/factory"
+              className="flex items-center text-[#56748A] font-bold py-[20px]"
+            >
               <HiArrowLeft />
               <span className="ml-2">Go back</span>
             </Link>

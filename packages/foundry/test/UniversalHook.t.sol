@@ -10,7 +10,7 @@ import {CurrencyLibrary, Currency} from "../contracts/v4-core/types/Currency.sol
 import {PoolKey} from "../contracts/v4-core/types/PoolKey.sol";
 import {PoolId, PoolIdLibrary} from "../contracts/v4-core/types/PoolId.sol";
 import {IHooks} from "../contracts/v4-core/interfaces/IHooks.sol";
-import {Hooks} from "../contracts/v4-core/libraries/Hooks.sol";
+import {Factory} from "../contracts/v4-core/libraries/Factory.sol";
 import {Router04} from "../contracts/Router04.sol";
 import {TickMath} from "../contracts/v4-core/libraries/TickMath.sol";
 import {UniversalHook} from "../contracts/UniversalHook.sol";
@@ -38,8 +38,8 @@ contract TestRouterUniV4 is Test, TokenFixture {
     address payable allHooksAddress = payable(
         address(
             uint160(
-                Hooks.BEFORE_INITIALIZE_FLAG | Hooks.BEFORE_SWAP_FLAG | Hooks.AFTER_SWAP_FLAG
-                    | Hooks.AFTER_INITIALIZE_FLAG | Hooks.BEFORE_MODIFY_POSITION_FLAG | Hooks.AFTER_MODIFY_POSITION_FLAG
+                Factory.BEFORE_INITIALIZE_FLAG | Factory.BEFORE_SWAP_FLAG | Factory.AFTER_SWAP_FLAG
+                    | Factory.AFTER_INITIALIZE_FLAG | Factory.BEFORE_MODIFY_POSITION_FLAG | Factory.AFTER_MODIFY_POSITION_FLAG
             )
         )
     );

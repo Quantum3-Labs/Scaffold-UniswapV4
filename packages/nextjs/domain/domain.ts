@@ -41,3 +41,16 @@ export const dataPool = [
     token: "",
   },
 ];
+
+export const dataToken = [
+  {
+    name: "Uniswap",
+    symbol: "UNI",
+    Token: "2000",
+  },
+  {
+    name: "Uniswap",
+    symbol: "UNI",
+    Token: "2000",
+  },
+];

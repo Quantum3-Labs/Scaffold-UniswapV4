@@ -14,7 +14,7 @@ export const Footer = () => {
     <div className="flex justify-center">
       <div className="flex max-w-[1768px] w-full justify-between border-t-2 border-t-[#334155] p-[10px]">
         <div className="flex items-center">
-          <Link href="/">
+          <Link href="/token-list">
             <div className="flex gap-[10px] items-center">
               <span>Token list</span>
               <MdOutlineArrowOutward />

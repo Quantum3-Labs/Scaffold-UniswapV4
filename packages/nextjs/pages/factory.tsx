@@ -5,7 +5,7 @@ import { SiSearxng } from "react-icons/si";
 import ButtonSecondary from "~~/components/Button/ButtonSecondary";
 import DetailsInputer from "~~/components/InputDetails/DetailsInputer";
 
-const Hooks = () => {
+const Factory = () => {
   const router = useRouter();
   return (
     <div className="flex justify-center">
@@ -59,4 +59,4 @@ const Hooks = () => {
   );
 };
 
-export default Hooks;
+export default Factory;

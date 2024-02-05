@@ -1,7 +1,7 @@
 import React from "react";
 import { router } from "next/client";
 import Link from "next/link";
-import { MdOutlineArrowOutward } from "react-icons/md";
+import { HiOutlineArrowTopRightOnSquare } from "react-icons/hi2";
 import ButtonPrimary from "~~/components/Button/ButtonPrimary";
 import Table from "~~/components/Table/Table";
 import { dataPool } from "~~/domain/domain";
@@ -28,7 +28,7 @@ const Pool = () => {
     <>
       <div className="flex justify-end px-[20px]">
         <Link href="/pool-detail">
-          <MdOutlineArrowOutward />
+          <HiOutlineArrowTopRightOnSquare />
         </Link>
       </div>
     </>,

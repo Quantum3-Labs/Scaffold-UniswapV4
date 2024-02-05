@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity ^0.8.20;
 
-import {Hooks} from "./libraries/Hooks.sol";
+import {Factory} from "./libraries/Factory.sol";
 import {Pool} from "./libraries/Pool.sol";
 import {SafeCast} from "./libraries/SafeCast.sol";
 import {Position} from "./libraries/Position.sol";
@@ -26,7 +26,7 @@ contract PoolManager is IPoolManager, Fees, ERC1155, IERC1155Receiver {
     using PoolIdLibrary for PoolKey;
     using SafeCast for *;
     using Pool for *;
-    using Hooks for IHooks;
+    using Factory for IHooks;
     using Position for mapping(bytes32 => Position.Info);
     using CurrencyLibrary for Currency;
     using LockDataLibrary for IPoolManager.LockData;
@@ -112,13 +112,13 @@ contract PoolManager is IPoolManager, Fees, ERC1155, IERC1155Receiver {
             revert CurrenciesInitializedOutOfOrder();
         }
         if (!key.hooks.isValidHookAddress(key.fee)) {
-            revert Hooks.HookAddressNotValid(address(key.hooks));
+            revert Factory.HookAddressNotValid(address(key.hooks));
         }
 
         if (key.hooks.shouldCallBeforeInitialize()) {
             if (key.hooks.beforeInitialize(msg.sender, key, sqrtPriceX96, hookData) != IHooks.beforeInitialize.selector)
             {
-                revert Hooks.InvalidHookResponse();
+                revert Factory.InvalidHookResponse();
             }
         }
 
@@ -132,7 +132,7 @@ contract PoolManager is IPoolManager, Fees, ERC1155, IERC1155Receiver {
                 key.hooks.afterInitialize(msg.sender, key, sqrtPriceX96, tick, hookData)
                     != IHooks.afterInitialize.selector
             ) {
-                revert Hooks.InvalidHookResponse();
+                revert Factory.InvalidHookResponse();
             }
         }
 
@@ -195,7 +195,7 @@ contract PoolManager is IPoolManager, Fees, ERC1155, IERC1155Receiver {
                 key.hooks.beforeModifyPosition(msg.sender, key, params, hookData)
                     != IHooks.beforeModifyPosition.selector
             ) {
-                revert Hooks.InvalidHookResponse();
+                revert Factory.InvalidHookResponse();
             }
         }
 
@@ -233,7 +233,7 @@ contract PoolManager is IPoolManager, Fees, ERC1155, IERC1155Receiver {
                 key.hooks.afterModifyPosition(msg.sender, key, params, delta, hookData)
                     != IHooks.afterModifyPosition.selector
             ) {
-                revert Hooks.InvalidHookResponse();
+                revert Factory.InvalidHookResponse();
             }
         }
 
@@ -249,7 +249,7 @@ contract PoolManager is IPoolManager, Fees, ERC1155, IERC1155Receiver {
     {
         if (key.hooks.shouldCallBeforeSwap()) {
             if (key.hooks.beforeSwap(msg.sender, key, params, hookData) != IHooks.beforeSwap.selector) {
-                revert Hooks.InvalidHookResponse();
+                revert Factory.InvalidHookResponse();
             }
         }
 
@@ -291,7 +291,7 @@ contract PoolManager is IPoolManager, Fees, ERC1155, IERC1155Receiver {
 
         if (key.hooks.shouldCallAfterSwap()) {
             if (key.hooks.afterSwap(msg.sender, key, params, delta, hookData) != IHooks.afterSwap.selector) {
-                revert Hooks.InvalidHookResponse();
+                revert Factory.InvalidHookResponse();
             }
         }
 
