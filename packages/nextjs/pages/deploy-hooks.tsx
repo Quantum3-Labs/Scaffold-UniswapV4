@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { HiArrowLeft } from "react-icons/hi";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import ButtonSecondary from "~~/components/Button/ButtonSecondary";
@@ -19,7 +18,7 @@ const Hooks = () => {
         <div className="flex flex-col max-w-[1768px] w-full  ">
           <div className="max-w-[721px] w-full p-[10px]">
             <Link
-              href="/packages/nextjs/pages/factory"
+              href="/packages/nextjs/pages/universalFactory-deployHook"
               className="flex items-center text-[#56748A] font-bold py-[20px]"
             >
               <HiArrowLeft />
@@ -42,7 +41,7 @@ const Hooks = () => {
                 </div>
               </div>
               <div className="py-[30px]">
-                <ButtonSecondary texButton={"Deploy"} onClick={handleDeployClick} />
+                <ButtonSecondary textButton={"Deploy"} onClick={handleDeployClick} />
               </div>
             </div>
             {showSecondBlock && (

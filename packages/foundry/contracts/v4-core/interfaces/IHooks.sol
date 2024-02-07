@@ -7,7 +7,7 @@ import {IPoolManager} from "./IPoolManager.sol";
 
 /// @notice The PoolManager contract decides whether to invoke specific hooks by inspecting the leading bits
 /// of the hooks contract address. For example, a 1 bit in the first bit of the address will
-/// cause the 'before swap' hook to be invoked. See the Factory library for the full spec.
+/// cause the 'before swap' hook to be invoked. See the UniversalFactoryDeployHook library for the full spec.
 /// @dev Should only be callable by the v4 PoolManager.
 interface IHooks {
     /// @notice The hook called before the state of a pool is initialized

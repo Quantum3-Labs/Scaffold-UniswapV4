@@ -5,7 +5,7 @@ import { SiSearxng } from "react-icons/si";
 import ButtonSecondary from "~~/components/Button/ButtonSecondary";
 import DetailsInputer from "~~/components/InputDetails/DetailsInputer";
 
-const Factory = () => {
+const UniversalFactoryDeployHook = () => {
   const router = useRouter();
   return (
     <div className="flex justify-center">
@@ -50,7 +50,7 @@ const Factory = () => {
               <DetailsInputer label={"Discount Point"} />
             </div>
             <div className="p-[40px]">
-              <ButtonSecondary texButton={"Execute"} onClick={() => router.push("/deploy")} />
+              <ButtonSecondary textButton={"Execute"} onClick={() => router.push("/deploy")} />
             </div>
           </div>
         </div>
@@ -59,4 +59,4 @@ const Factory = () => {
   );
 };
 
-export default Factory;
+export default UniversalFactoryDeployHook;

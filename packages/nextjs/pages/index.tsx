@@ -36,7 +36,7 @@ const Home: NextPage = () => {
                 <span className="px-[5px]">Show my hooks</span>
               </div>
             </div>
-            <ButtonPrimary destination={() => router.push("/hooks")} buttonText={"Deploy hook"} />
+            <ButtonPrimary destination={() => router.push("/universalFactory-deployHook")} buttonText={"Deploy hook"} />
           </div>
           <Table headers={["Hook name", "Hook symbol", "Hook address", "Hook owner"]} columns={columnItems} />
         </div>

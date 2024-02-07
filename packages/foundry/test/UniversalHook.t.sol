@@ -10,7 +10,7 @@ import {CurrencyLibrary, Currency} from "../contracts/v4-core/types/Currency.sol
 import {PoolKey} from "../contracts/v4-core/types/PoolKey.sol";
 import {PoolId, PoolIdLibrary} from "../contracts/v4-core/types/PoolId.sol";
 import {IHooks} from "../contracts/v4-core/interfaces/IHooks.sol";
-import {Factory} from "../contracts/v4-core/libraries/Factory.sol";
+import {UniversalFactoryDeployHook} from "../contracts/v4-core/libraries/UniversalFactoryDeployHook.sol";
 import {Router04} from "../contracts/Router04.sol";
 import {TickMath} from "../contracts/v4-core/libraries/TickMath.sol";
 import {UniversalHook} from "../contracts/UniversalHook.sol";
@@ -38,8 +38,8 @@ contract TestRouterUniV4 is Test, TokenFixture {
     address payable allHooksAddress = payable(
         address(
             uint160(
-                Factory.BEFORE_INITIALIZE_FLAG | Factory.BEFORE_SWAP_FLAG | Factory.AFTER_SWAP_FLAG
-                    | Factory.AFTER_INITIALIZE_FLAG | Factory.BEFORE_MODIFY_POSITION_FLAG | Factory.AFTER_MODIFY_POSITION_FLAG
+                UniversalFactoryDeployHook.BEFORE_INITIALIZE_FLAG | UniversalFactoryDeployHook.BEFORE_SWAP_FLAG | UniversalFactoryDeployHook.AFTER_SWAP_FLAG
+                    | UniversalFactoryDeployHook.AFTER_INITIALIZE_FLAG | UniversalFactoryDeployHook.BEFORE_MODIFY_POSITION_FLAG | UniversalFactoryDeployHook.AFTER_MODIFY_POSITION_FLAG
             )
         )
     );

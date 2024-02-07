@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { router } from "next/client";
 import ButtonPrimary from "~~/components/Button/ButtonPrimary";
+import Modal from "~~/components/Modal/Modal";
 import DataTable from "~~/components/Table/DataTable";
-import Table from "~~/components/Table/Table";
+import TokenPopUp, { ModalStep } from "~~/components/TokenPopUp/TokenPopUp";
 import { dataToken } from "~~/domain/domain";
 
 const TokenList = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [pageModalStep, setPageModalStep] = useState(ModalStep.Approve);
+
   const columnItems = dataToken.map(item => [
     item.name,
     item.symbol,
     item.Token,
     <>
       <div className="flex justify-end px-[10px]">
-        <ButtonPrimary destination={() => router.push("/")} buttonText={"Aprove"} />
+        <ButtonPrimary destination={() => setShowModal(true)} buttonText={"Aprove"} />
       </div>
     </>,
     <>
@@ -46,6 +50,11 @@ const TokenList = () => {
           </div>
         </div>
       </div>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <TokenPopUp startStep={pageModalStep} />
+        </Modal>
+      )}
     </>
   );
 };

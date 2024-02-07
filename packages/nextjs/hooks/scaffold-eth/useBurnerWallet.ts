@@ -62,7 +62,7 @@ export const loadBurnerSK = (): Hex => {
  * - methods of interacting with burner signer
  * - methods to save and loadd signer from local storage
  *
- * @category Factory
+ * @category UniversalFactoryDeployHook
  */
 export type TBurnerSigner = {
   walletClient: WalletClient | undefined;
@@ -82,7 +82,7 @@ export type TBurnerSigner = {
  * A hook that creates a burner signer/address and provides ways of interacting with
  * and updating the signer
  *
- * @category Factory
+ * @category UniversalFactoryDeployHook
  *
  * @param localProvider localhost provider
  * @returns IBurnerSigner
