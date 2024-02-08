@@ -1982,7 +1982,7 @@ const contracts = {
                       type: "uint24",
                     },
                   ],
-                  internalType: "struct Pool.Slot0",
+                  internalType: "struct PoolList.Slot0",
                   name: "slot0",
                   type: "tuple",
                 },
@@ -3059,8 +3059,7 @@ const contracts = {
                       type: "uint8",
                     },
                   ],
-                  internalType:
-                    "struct IUniversalHook.TradingVolumeDiscountThreshold",
+                  internalType: "struct IUniversalHook.TradingVolumeDiscountThreshold",
                   name: "_tradingVolumeDiscountThreshold",
                   type: "tuple",
                 },

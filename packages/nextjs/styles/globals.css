@@ -35,4 +35,7 @@ p {
 .custom-input::placeholder{
   color: #56748A;
 }
+.traslate-logo{
+  transform: translateX(-20px)
+}
 

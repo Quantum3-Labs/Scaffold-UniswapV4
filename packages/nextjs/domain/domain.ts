@@ -32,6 +32,7 @@ export const dataPool = [
     owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
     tvl: "1.39",
     token: "",
+    paid: "0.2%",
   },
   {
     id: "2",
@@ -39,6 +40,7 @@ export const dataPool = [
     owner: "0x2B7E4B80A1C217cCe8f749d5c4fF226AEB1c79D",
     tvl: "1.39",
     token: "",
+    paid: "0.2%",
   },
 ];
 

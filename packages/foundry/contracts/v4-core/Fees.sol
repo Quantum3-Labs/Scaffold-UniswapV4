@@ -6,7 +6,7 @@ import {IProtocolFeeController} from "./interfaces/IProtocolFeeController.sol";
 import {IHookFeeManager} from "./interfaces/IHookFeeManager.sol";
 import {IFees} from "./interfaces/IFees.sol";
 import {FeeLibrary} from "./libraries/FeeLibrary.sol";
-import {Pool} from "./libraries/Pool.sol";
+import {PoolList} from "./libraries/PoolList.sol";
 import {PoolKey} from "./types/PoolKey.sol";
 import {Owned} from "./Owned.sol";
 

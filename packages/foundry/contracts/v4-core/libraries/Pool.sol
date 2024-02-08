@@ -11,7 +11,7 @@ import {SqrtPriceMath} from "./SqrtPriceMath.sol";
 import {SwapMath} from "./SwapMath.sol";
 import {BalanceDelta, toBalanceDelta} from "../types/BalanceDelta.sol";
 
-library Pool {
+library PoolList {
     using SafeCast for *;
     using TickBitmap for mapping(int16 => uint256);
     using Position for mapping(bytes32 => Position.Info);
@@ -496,7 +496,7 @@ library Pool {
             if (state.sqrtPriceX96 == step.sqrtPriceNextX96) {
                 // if the tick is initialized, run the tick transition
                 if (step.initialized) {
-                    int128 liquidityNet = Pool.crossTick(
+                    int128 liquidityNet = PoolList.crossTick(
                         self,
                         step.tickNext,
                         (params.zeroForOne ? state.feeGrowthGlobalX128 : self.feeGrowthGlobal0X128),
@@ -552,7 +552,7 @@ library Pool {
     }
 
     /// @notice Retrieves fee growth data
-    /// @param self The Pool state struct
+    /// @param self The PoolList state struct
     /// @param tickLower The lower tick boundary of the position
     /// @param tickUpper The upper tick boundary of the position
     /// @return feeGrowthInside0X128 The all-time fee growth in token0, per unit of liquidity, inside the position's tick boundaries
@@ -661,7 +661,7 @@ library Pool {
     }
 
     /// @notice Transitions to next tick as needed by price movement
-    /// @param self The Pool state struct
+    /// @param self The PoolList state struct
     /// @param tick The destination tick of the transition
     /// @param feeGrowthGlobal0X128 The all-time global fee growth, per unit of liquidity, in token0
     /// @param feeGrowthGlobal1X128 The all-time global fee growth, per unit of liquidity, in token1

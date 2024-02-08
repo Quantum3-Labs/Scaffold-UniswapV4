@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import {UniversalFactoryDeployHook} from "./libraries/UniversalFactoryDeployHook.sol";
-import {Pool} from "./libraries/Pool.sol";
+import {PoolList} from "./libraries/PoolList.sol";
 import {SafeCast} from "./libraries/SafeCast.sol";
 import {Position} from "./libraries/Position.sol";
 import {FeeLibrary} from "./libraries/FeeLibrary.sol";
@@ -25,7 +25,7 @@ import {BalanceDelta} from "./types/BalanceDelta.sol";
 contract PoolManager is IPoolManager, Fees, ERC1155, IERC1155Receiver {
     using PoolIdLibrary for PoolKey;
     using SafeCast for *;
-    using Pool for *;
+    using PoolList for *;
     using UniversalFactoryDeployHook for IHooks;
     using Position for mapping(bytes32 => Position.Info);
     using CurrencyLibrary for Currency;
@@ -48,11 +48,11 @@ contract PoolManager is IPoolManager, Fees, ERC1155, IERC1155Receiver {
     /// @inheritdoc IPoolManager
     mapping(Currency currency => uint256) public override reservesOf;
 
-    mapping(PoolId id => Pool.State) public pools;
+    mapping(PoolId id => PoolList.State) public pools;
 
     constructor(uint256 controllerGasLimit) Fees(controllerGasLimit) ERC1155("") {}
 
-    function _getPool(PoolKey memory key) private view returns (Pool.State storage) {
+    function _getPool(PoolKey memory key) private view returns (PoolList.State storage) {
         return pools[key.toId()];
     }
 
@@ -63,7 +63,7 @@ contract PoolManager is IPoolManager, Fees, ERC1155, IERC1155Receiver {
         override
         returns (uint160 sqrtPriceX96, int24 tick, uint24 protocolFees, uint24 hookFees)
     {
-        Pool.Slot0 memory slot0 = pools[id].slot0;
+        PoolList.Slot0 memory slot0 = pools[id].slot0;
 
         return (slot0.sqrtPriceX96, slot0.tick, slot0.protocolFees, slot0.hookFees);
     }
@@ -200,9 +200,9 @@ contract PoolManager is IPoolManager, Fees, ERC1155, IERC1155Receiver {
         }
 
         PoolId id = key.toId();
-        Pool.FeeAmounts memory feeAmounts;
+        PoolList.FeeAmounts memory feeAmounts;
         (delta, feeAmounts) = pools[id].modifyPosition(
-            Pool.ModifyPositionParams({
+            PoolList.ModifyPositionParams({
                 owner: msg.sender,
                 tickLower: params.tickLower,
                 tickUpper: params.tickUpper,
@@ -265,10 +265,10 @@ contract PoolManager is IPoolManager, Fees, ERC1155, IERC1155Receiver {
 
         uint256 feeForProtocol;
         uint256 feeForHook;
-        Pool.SwapState memory state;
+        PoolList.SwapState memory state;
         PoolId id = key.toId();
         (delta, feeForProtocol, feeForHook, state) = pools[id].swap(
-            Pool.SwapParams({
+            PoolList.SwapParams({
                 fee: totalSwapFee,
                 tickSpacing: key.tickSpacing,
                 zeroForOne: params.zeroForOne,
