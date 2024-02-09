@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { router } from "next/client";
 import Link from "next/link";
 import { HiOutlineArrowTopRightOnSquare } from "react-icons/hi2";
 import { MdOutlineCheckBox } from "react-icons/md";
 import ButtonPrimary from "~~/components/Button/ButtonPrimary";
+import ButtonSecondary from "~~/components/Button/ButtonSecondary";
+import CustomInput from "~~/components/InputDetails/CustomInput";
+import Modal from "~~/components/Modal/Modal";
+import AddLiquidityForm from "~~/components/PoolDetailPopUp/AddLiquidityForm";
+import SwapForm from "~~/components/PoolDetailPopUp/SwapForm";
 import PoolInfoTable from "~~/components/Table/PoolInfoTable";
 import Table from "~~/components/Table/Table";
+import TokenPopUp from "~~/components/TokenPopUp/TokenPopUp";
 import { dataPool } from "~~/domain/domain";
 import { formatAddress } from "~~/pages/index";
 
 const PoolDetail = () => {
+  const [showModalSwap, setShowModalSwap] = useState(false);
+  const [ShowModalAddLiquidity, setShowModalAddLiquidity] = useState(false);
+
   const columnItems = dataPool.map(item => [
     formatAddress(item.address),
     <>
@@ -47,8 +56,8 @@ const PoolDetail = () => {
           <div className="flex justify-between py-[20px] ">
             <span className="font-bold text-2xl"> Pool Details</span>
             <div className="flex gap-[10px]">
-              <ButtonPrimary destination={() => router.push("/swap")} buttonText={"Swap"} />
-              <ButtonPrimary destination={() => router.push("/add-liquidity")} buttonText={"Add liquidity"} />
+              <ButtonPrimary destination={() => setShowModalSwap(true)} buttonText={"Swap"} />
+              <ButtonPrimary destination={() => setShowModalAddLiquidity(true)} buttonText={"Add liquidity"} />
             </div>
           </div>
           <div className="pb-[30px]">
@@ -67,6 +76,16 @@ const PoolDetail = () => {
           </div>
         </div>
       </div>
+      {showModalSwap && (
+        <Modal onClose={() => setShowModalSwap(false)}>
+          <SwapForm />
+        </Modal>
+      )}
+      {ShowModalAddLiquidity && (
+        <Modal onClose={() => setShowModalAddLiquidity(false)}>
+          <AddLiquidityForm />
+        </Modal>
+      )}
     </>
   );
 };
