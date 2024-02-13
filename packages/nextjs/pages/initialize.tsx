@@ -1,13 +1,24 @@
 import React, { useState } from "react";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import ButtonSecondary from "~~/components/Button/ButtonSecondary";
+import ConfirmationOfPoolInitialize from "~~/components/InitializePoolSteps/ConfirmationOfPoolInitialize";
+import InitializePoolChoosePairAndFee from "~~/components/InitializePoolSteps/InitializePoolChoosePairAndFee";
+import InitializePoolSelectHookAddress from "~~/components/InitializePoolSteps/InitializePoolSelectHookAddress";
+import InitializePoolSetHook from "~~/components/InitializePoolSteps/InitializePoolSetHook";
+import InitializePoolSetPrice from "~~/components/InitializePoolSteps/InitializePoolSetPrice";
+import InitializePoolSuccess from "~~/components/InitializePoolSteps/InitializePoolSuccess";
+import CustomInput from "~~/components/InputDetails/CustomInput";
 import Step from "~~/components/Step/Step";
 
 const Initialize = () => {
-  const [currentStep, setCurrentStep] = useState(2);
-
+  const [currentStep, setCurrentStep] = useState(1);
+  const handleNextStep = () => {
+    setCurrentStep(prevStep => (prevStep < 6 ? prevStep + 1 : prevStep));
+  };
   return (
     <div className="flex justify-center">
-      <div className="max-w-[1768px] w-full">
-        <div className="max-w-[358px] w-full bg-[#151F30] flex flex-col justify-center items-center rounded-lg">
+      <div className="max-w-[1768px] w-full flex justify-center gap-[50px] pb-[20px]">
+        <div className="max-w-[358px] w-full bg-[#151F30] flex flex-col justify-center items-center rounded-lg max-h-[400px]">
           <div className="py-[30px] w-full px-[50px]">
             <span className="font-bold text-xl">Initialize a pool steps</span>
           </div>
@@ -21,7 +32,7 @@ const Initialize = () => {
               <div className="flex flex-col justify-center max-w-[23px] items-center">
                 <div
                   className={`w-[22px] h-[22px] rounded-full border-2 border-white flex justify-center items-center ${
-                    currentStep === 6 ? "color-linear" : ""
+                    currentStep === 6 ? "color-linear border-none" : ""
                   }`}
                 >
                   <span>6</span>
@@ -29,6 +40,16 @@ const Initialize = () => {
               </div>
               <span className={`${currentStep === 6 ? "text-color-step font-bold" : ""}`}>Transaction Complete</span>
             </div>
+          </div>
+        </div>
+        <div className="bg-[#151F30] rounded-lg w-full max-w-[1171px]">
+          <div className="p-[30px]">
+            {currentStep === 1 && <InitializePoolChoosePairAndFee onNextStep={handleNextStep} />}
+            {currentStep === 2 && <InitializePoolSelectHookAddress onNextStep={handleNextStep} />}
+            {currentStep === 3 && <InitializePoolSetPrice onNextStep={handleNextStep} />}
+            {currentStep === 4 && <InitializePoolSetHook onNextStep={handleNextStep} />}
+            {currentStep === 5 && <ConfirmationOfPoolInitialize onNextStep={handleNextStep} />}
+            {currentStep === 6 && <InitializePoolSuccess onNextStep={handleNextStep} />}
           </div>
         </div>
       </div>
