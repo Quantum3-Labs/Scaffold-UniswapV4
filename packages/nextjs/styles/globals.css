@@ -38,4 +38,12 @@ p {
 .traslate-logo{
   transform: translateX(-20px)
 }
+.color-linear {
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(47,110,237,1) 100%)
+}
+.text-color-step {
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(47,110,237,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
