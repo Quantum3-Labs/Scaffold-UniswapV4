@@ -21,7 +21,7 @@ contract UniversalHookFactory is Ownable {
     }
     event HookCreated(Hook hook);
 
-    IPoolManager public immutable manager;
+    IPoolManager public manager;
     mapping(uint256 => bool) public usedNonces;
     mapping(uint256 => Hook) public deployedHooks;
     uint256 public lastNonce;
@@ -31,7 +31,6 @@ contract UniversalHookFactory is Ownable {
         manager = _manager;
     }
 
-    // use next available salt
     function deploy(
         uint256 nonce,
         string memory name,
@@ -86,6 +85,10 @@ contract UniversalHookFactory is Ownable {
             )
         );
         return address(uint160(uint256(hash)));
+    }
+
+    function updateManager(IPoolManager _manager) external onlyOwner {
+        manager = _manager;
     }
 
     function getHookInfo(
