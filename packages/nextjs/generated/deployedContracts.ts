@@ -2428,6 +2428,16 @@ const contracts = {
                   type: "uint256",
                   internalType: "uint256",
                 },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
               ],
               outputs: [
                 {
@@ -2437,6 +2447,45 @@ const contracts = {
                 },
               ],
               stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "deployedHooks",
+              inputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "owner",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "hookAddr",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "creationTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
             },
             {
               type: "function",
@@ -2464,6 +2513,52 @@ const contracts = {
             },
             {
               type: "function",
+              name: "getHookInfo",
+              inputs: [
+                {
+                  name: "hookId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "hook",
+                  type: "tuple",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
               name: "getPrecomputedHookAddress",
               inputs: [
                 {
@@ -2477,6 +2572,32 @@ const contracts = {
                   name: "",
                   type: "address",
                   internalType: "address",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "hookCount",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "lastNonce",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
@@ -2529,6 +2650,19 @@ const contracts = {
             },
             {
               type: "function",
+              name: "updateManager",
+              inputs: [
+                {
+                  name: "_manager",
+                  type: "address",
+                  internalType: "contract IPoolManager",
+                },
+              ],
+              outputs: [],
+              stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
               name: "usedNonces",
               inputs: [
                 {
@@ -2551,16 +2685,37 @@ const contracts = {
               name: "HookCreated",
               inputs: [
                 {
-                  name: "owner",
-                  type: "address",
+                  name: "hook",
+                  type: "tuple",
                   indexed: false,
-                  internalType: "address",
-                },
-                {
-                  name: "hookAddr",
-                  type: "address",
-                  indexed: false,
-                  internalType: "address",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
                 },
               ],
               anonymous: false,
@@ -6872,6 +7027,16 @@ const contracts = {
                   type: "uint256",
                   internalType: "uint256",
                 },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
               ],
               outputs: [
                 {
@@ -6881,6 +7046,45 @@ const contracts = {
                 },
               ],
               stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "deployedHooks",
+              inputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "owner",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "hookAddr",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "creationTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
             },
             {
               type: "function",
@@ -6908,6 +7112,52 @@ const contracts = {
             },
             {
               type: "function",
+              name: "getHookInfo",
+              inputs: [
+                {
+                  name: "hookId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "hook",
+                  type: "tuple",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
               name: "getPrecomputedHookAddress",
               inputs: [
                 {
@@ -6921,6 +7171,32 @@ const contracts = {
                   name: "",
                   type: "address",
                   internalType: "address",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "hookCount",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "lastNonce",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
@@ -6973,6 +7249,19 @@ const contracts = {
             },
             {
               type: "function",
+              name: "updateManager",
+              inputs: [
+                {
+                  name: "_manager",
+                  type: "address",
+                  internalType: "contract IPoolManager",
+                },
+              ],
+              outputs: [],
+              stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
               name: "usedNonces",
               inputs: [
                 {
@@ -6995,16 +7284,37 @@ const contracts = {
               name: "HookCreated",
               inputs: [
                 {
-                  name: "owner",
-                  type: "address",
+                  name: "hook",
+                  type: "tuple",
                   indexed: false,
-                  internalType: "address",
-                },
-                {
-                  name: "hookAddr",
-                  type: "address",
-                  indexed: false,
-                  internalType: "address",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
                 },
               ],
               anonymous: false,
@@ -10941,6 +11251,16 @@ const contracts = {
                   type: "uint256",
                   internalType: "uint256",
                 },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
               ],
               outputs: [
                 {
@@ -10950,6 +11270,45 @@ const contracts = {
                 },
               ],
               stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "deployedHooks",
+              inputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "owner",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "hookAddr",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "creationTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
             },
             {
               type: "function",
@@ -10977,6 +11336,52 @@ const contracts = {
             },
             {
               type: "function",
+              name: "getHookInfo",
+              inputs: [
+                {
+                  name: "hookId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "hook",
+                  type: "tuple",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
               name: "getPrecomputedHookAddress",
               inputs: [
                 {
@@ -10990,6 +11395,32 @@ const contracts = {
                   name: "",
                   type: "address",
                   internalType: "address",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "hookCount",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "lastNonce",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
@@ -11042,6 +11473,19 @@ const contracts = {
             },
             {
               type: "function",
+              name: "updateManager",
+              inputs: [
+                {
+                  name: "_manager",
+                  type: "address",
+                  internalType: "contract IPoolManager",
+                },
+              ],
+              outputs: [],
+              stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
               name: "usedNonces",
               inputs: [
                 {
@@ -11064,16 +11508,37 @@ const contracts = {
               name: "HookCreated",
               inputs: [
                 {
-                  name: "owner",
-                  type: "address",
+                  name: "hook",
+                  type: "tuple",
                   indexed: false,
-                  internalType: "address",
-                },
-                {
-                  name: "hookAddr",
-                  type: "address",
-                  indexed: false,
-                  internalType: "address",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
                 },
               ],
               anonymous: false,
@@ -15010,6 +15475,16 @@ const contracts = {
                   type: "uint256",
                   internalType: "uint256",
                 },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
               ],
               outputs: [
                 {
@@ -15019,6 +15494,45 @@ const contracts = {
                 },
               ],
               stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "deployedHooks",
+              inputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "owner",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "hookAddr",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "creationTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
             },
             {
               type: "function",
@@ -15046,6 +15560,52 @@ const contracts = {
             },
             {
               type: "function",
+              name: "getHookInfo",
+              inputs: [
+                {
+                  name: "hookId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "hook",
+                  type: "tuple",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
               name: "getPrecomputedHookAddress",
               inputs: [
                 {
@@ -15059,6 +15619,32 @@ const contracts = {
                   name: "",
                   type: "address",
                   internalType: "address",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "hookCount",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "lastNonce",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
@@ -15111,6 +15697,19 @@ const contracts = {
             },
             {
               type: "function",
+              name: "updateManager",
+              inputs: [
+                {
+                  name: "_manager",
+                  type: "address",
+                  internalType: "contract IPoolManager",
+                },
+              ],
+              outputs: [],
+              stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
               name: "usedNonces",
               inputs: [
                 {
@@ -15133,16 +15732,37 @@ const contracts = {
               name: "HookCreated",
               inputs: [
                 {
-                  name: "owner",
-                  type: "address",
+                  name: "hook",
+                  type: "tuple",
                   indexed: false,
-                  internalType: "address",
-                },
-                {
-                  name: "hookAddr",
-                  type: "address",
-                  indexed: false,
-                  internalType: "address",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
                 },
               ],
               anonymous: false,
