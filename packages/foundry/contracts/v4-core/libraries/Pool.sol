@@ -11,7 +11,7 @@ import {SqrtPriceMath} from "./SqrtPriceMath.sol";
 import {SwapMath} from "./SwapMath.sol";
 import {BalanceDelta, toBalanceDelta} from "../types/BalanceDelta.sol";
 
-library PoolList {
+library Pool {
     using SafeCast for *;
     using TickBitmap for mapping(int16 => uint256);
     using Position for mapping(bytes32 => Position.Info);
@@ -49,7 +49,10 @@ library PoolList {
     /// @notice Thrown when sqrtPriceLimitX96 on a swap has already exceeded its limit
     /// @param sqrtPriceCurrentX96 The invalid, already surpassed sqrtPriceLimitX96
     /// @param sqrtPriceLimitX96 The surpassed price limit
-    error PriceLimitAlreadyExceeded(uint160 sqrtPriceCurrentX96, uint160 sqrtPriceLimitX96);
+    error PriceLimitAlreadyExceeded(
+        uint160 sqrtPriceCurrentX96,
+        uint160 sqrtPriceLimitX96
+    );
 
     /// @notice Thrown when sqrtPriceLimitX96 lies outside of valid tick/price range
     /// @param sqrtPriceLimitX96 The invalid, out-of-bounds sqrtPriceLimitX96
@@ -110,15 +113,22 @@ library PoolList {
         }
     }
 
-    function initialize(State storage self, uint160 sqrtPriceX96, uint24 protocolFees, uint24 hookFees)
-        internal
-        returns (int24 tick)
-    {
+    function initialize(
+        State storage self,
+        uint160 sqrtPriceX96,
+        uint24 protocolFees,
+        uint24 hookFees
+    ) internal returns (int24 tick) {
         if (self.slot0.sqrtPriceX96 != 0) revert PoolAlreadyInitialized();
 
         tick = TickMath.getTickAtSqrtRatio(sqrtPriceX96);
 
-        self.slot0 = Slot0({sqrtPriceX96: sqrtPriceX96, tick: tick, protocolFees: protocolFees, hookFees: hookFees});
+        self.slot0 = Slot0({
+            sqrtPriceX96: sqrtPriceX96,
+            tick: tick,
+            protocolFees: protocolFees,
+            hookFees: hookFees
+        });
     }
 
     function getSwapFee(uint24 feesStorage) internal pure returns (uint16) {
@@ -172,10 +182,10 @@ library PoolList {
     /// @dev Effect changes to a position in a pool
     /// @param params the position details and the change to the position's liquidity to effect
     /// @return result the deltas of the token balances of the pool
-    function modifyPosition(State storage self, ModifyPositionParams memory params)
-        internal
-        returns (BalanceDelta result, FeeAmounts memory fees)
-    {
+    function modifyPosition(
+        State storage self,
+        ModifyPositionParams memory params
+    ) internal returns (BalanceDelta result, FeeAmounts memory fees) {
         if (self.slot0.sqrtPriceX96 == 0) revert PoolNotInitialized();
 
         checkTicks(params.tickLower, params.tickUpper);
@@ -187,13 +197,29 @@ library PoolList {
             // if we need to update the ticks, do it
 
             if (params.liquidityDelta != 0) {
-                (state.flippedLower, state.liquidityGrossAfterLower) =
-                    updateTick(self, params.tickLower, params.liquidityDelta, false);
-                (state.flippedUpper, state.liquidityGrossAfterUpper) =
-                    updateTick(self, params.tickUpper, params.liquidityDelta, true);
+                (
+                    state.flippedLower,
+                    state.liquidityGrossAfterLower
+                ) = updateTick(
+                    self,
+                    params.tickLower,
+                    params.liquidityDelta,
+                    false
+                );
+                (
+                    state.flippedUpper,
+                    state.liquidityGrossAfterUpper
+                ) = updateTick(
+                    self,
+                    params.tickUpper,
+                    params.liquidityDelta,
+                    true
+                );
 
                 if (params.liquidityDelta > 0) {
-                    uint128 maxLiquidityPerTick = tickSpacingToMaxLiquidityPerTick(params.tickSpacing);
+                    uint128 maxLiquidityPerTick = tickSpacingToMaxLiquidityPerTick(
+                            params.tickSpacing
+                        );
                     if (state.liquidityGrossAfterLower > maxLiquidityPerTick) {
                         revert TickLiquidityOverflow(params.tickLower);
                     }
@@ -203,19 +229,32 @@ library PoolList {
                 }
 
                 if (state.flippedLower) {
-                    self.tickBitmap.flipTick(params.tickLower, params.tickSpacing);
+                    self.tickBitmap.flipTick(
+                        params.tickLower,
+                        params.tickSpacing
+                    );
                 }
                 if (state.flippedUpper) {
-                    self.tickBitmap.flipTick(params.tickUpper, params.tickSpacing);
+                    self.tickBitmap.flipTick(
+                        params.tickUpper,
+                        params.tickSpacing
+                    );
                 }
             }
 
-            (state.feeGrowthInside0X128, state.feeGrowthInside1X128) =
-                getFeeGrowthInside(self, params.tickLower, params.tickUpper);
+            (
+                state.feeGrowthInside0X128,
+                state.feeGrowthInside1X128
+            ) = getFeeGrowthInside(self, params.tickLower, params.tickUpper);
 
-            (feesOwed0, feesOwed1) = self.positions.get(params.owner, params.tickLower, params.tickUpper).update(
-                params.liquidityDelta, state.feeGrowthInside0X128, state.feeGrowthInside1X128
-            );
+            (feesOwed0, feesOwed1) = self
+                .positions
+                .get(params.owner, params.tickLower, params.tickUpper)
+                .update(
+                    params.liquidityDelta,
+                    state.feeGrowthInside0X128,
+                    state.feeGrowthInside1X128
+                );
 
             // clear any tick data that is no longer needed
             if (params.liquidityDelta < 0) {
@@ -232,24 +271,36 @@ library PoolList {
             if (self.slot0.tick < params.tickLower) {
                 // current tick is below the passed range; liquidity can only become in range by crossing from left to
                 // right, when we'll need _more_ currency0 (it's becoming more valuable) so user must provide it
-                result = result
-                    + toBalanceDelta(
-                        SqrtPriceMath.getAmount0Delta(
-                            TickMath.getSqrtRatioAtTick(params.tickLower),
-                            TickMath.getSqrtRatioAtTick(params.tickUpper),
-                            params.liquidityDelta
-                        ).toInt128(),
+                result =
+                    result +
+                    toBalanceDelta(
+                        SqrtPriceMath
+                            .getAmount0Delta(
+                                TickMath.getSqrtRatioAtTick(params.tickLower),
+                                TickMath.getSqrtRatioAtTick(params.tickUpper),
+                                params.liquidityDelta
+                            )
+                            .toInt128(),
                         0
                     );
             } else if (self.slot0.tick < params.tickUpper) {
-                result = result
-                    + toBalanceDelta(
-                        SqrtPriceMath.getAmount0Delta(
-                            self.slot0.sqrtPriceX96, TickMath.getSqrtRatioAtTick(params.tickUpper), params.liquidityDelta
-                        ).toInt128(),
-                        SqrtPriceMath.getAmount1Delta(
-                            TickMath.getSqrtRatioAtTick(params.tickLower), self.slot0.sqrtPriceX96, params.liquidityDelta
-                        ).toInt128()
+                result =
+                    result +
+                    toBalanceDelta(
+                        SqrtPriceMath
+                            .getAmount0Delta(
+                                self.slot0.sqrtPriceX96,
+                                TickMath.getSqrtRatioAtTick(params.tickUpper),
+                                params.liquidityDelta
+                            )
+                            .toInt128(),
+                        SqrtPriceMath
+                            .getAmount1Delta(
+                                TickMath.getSqrtRatioAtTick(params.tickLower),
+                                self.slot0.sqrtPriceX96,
+                                params.liquidityDelta
+                            )
+                            .toInt128()
                     );
 
                 self.liquidity = params.liquidityDelta < 0
@@ -258,41 +309,50 @@ library PoolList {
             } else {
                 // current tick is above the passed range; liquidity can only become in range by crossing from right to
                 // left, when we'll need _more_ currency1 (it's becoming more valuable) so user must provide it
-                result = result
-                    + toBalanceDelta(
+                result =
+                    result +
+                    toBalanceDelta(
                         0,
-                        SqrtPriceMath.getAmount1Delta(
-                            TickMath.getSqrtRatioAtTick(params.tickLower),
-                            TickMath.getSqrtRatioAtTick(params.tickUpper),
-                            params.liquidityDelta
-                        ).toInt128()
+                        SqrtPriceMath
+                            .getAmount1Delta(
+                                TickMath.getSqrtRatioAtTick(params.tickLower),
+                                TickMath.getSqrtRatioAtTick(params.tickUpper),
+                                params.liquidityDelta
+                            )
+                            .toInt128()
                     );
             }
         }
 
-        if (params.liquidityDelta < 0 && getWithdrawFee(self.slot0.hookFees) > 0) {
+        if (
+            params.liquidityDelta < 0 && getWithdrawFee(self.slot0.hookFees) > 0
+        ) {
             // Only take fees if the hook withdraw fee is set and the liquidity is being removed.
             fees = _calculateExternalFees(self, result);
 
             // Amounts are balances owed to the pool. When negative, they represent the balance a user can take.
             // Since protocol and hook fees are extracted on the balance a user can take
             // they are owed (added) back to the pool where they are kept to be collected by the fee recipients.
-            result = result
-                + toBalanceDelta(
-                    fees.feeForHook0.toInt128() + fees.feeForProtocol0.toInt128(),
-                    fees.feeForHook1.toInt128() + fees.feeForProtocol1.toInt128()
+            result =
+                result +
+                toBalanceDelta(
+                    fees.feeForHook0.toInt128() +
+                        fees.feeForProtocol0.toInt128(),
+                    fees.feeForHook1.toInt128() +
+                        fees.feeForProtocol1.toInt128()
                 );
         }
 
         // Fees earned from LPing are removed from the pool balance.
-        result = result - toBalanceDelta(feesOwed0.toInt128(), feesOwed1.toInt128());
+        result =
+            result -
+            toBalanceDelta(feesOwed0.toInt128(), feesOwed1.toInt128());
     }
 
-    function _calculateExternalFees(State storage self, BalanceDelta result)
-        internal
-        view
-        returns (FeeAmounts memory fees)
-    {
+    function _calculateExternalFees(
+        State storage self,
+        BalanceDelta result
+    ) internal view returns (FeeAmounts memory fees) {
         int128 amount0 = result.amount0();
         int128 amount1 = result.amount1();
 
@@ -378,9 +438,17 @@ library PoolList {
     }
 
     /// @dev Executes a swap against the state, and returns the amount deltas of the pool
-    function swap(State storage self, SwapParams memory params)
+    function swap(
+        State storage self,
+        SwapParams memory params
+    )
         internal
-        returns (BalanceDelta result, uint256 feeForProtocol, uint256 feeForHook, SwapState memory state)
+        returns (
+            BalanceDelta result,
+            uint256 feeForProtocol,
+            uint256 feeForHook,
+            SwapState memory state
+        )
     {
         if (params.amountSpecified == 0) revert SwapAmountCannotBeZero();
 
@@ -388,14 +456,20 @@ library PoolList {
         if (slot0Start.sqrtPriceX96 == 0) revert PoolNotInitialized();
         if (params.zeroForOne) {
             if (params.sqrtPriceLimitX96 >= slot0Start.sqrtPriceX96) {
-                revert PriceLimitAlreadyExceeded(slot0Start.sqrtPriceX96, params.sqrtPriceLimitX96);
+                revert PriceLimitAlreadyExceeded(
+                    slot0Start.sqrtPriceX96,
+                    params.sqrtPriceLimitX96
+                );
             }
             if (params.sqrtPriceLimitX96 <= TickMath.MIN_SQRT_RATIO) {
                 revert PriceLimitOutOfBounds(params.sqrtPriceLimitX96);
             }
         } else {
             if (params.sqrtPriceLimitX96 <= slot0Start.sqrtPriceX96) {
-                revert PriceLimitAlreadyExceeded(slot0Start.sqrtPriceX96, params.sqrtPriceLimitX96);
+                revert PriceLimitAlreadyExceeded(
+                    slot0Start.sqrtPriceX96,
+                    params.sqrtPriceLimitX96
+                );
             }
             if (params.sqrtPriceLimitX96 >= TickMath.MAX_SQRT_RATIO) {
                 revert PriceLimitOutOfBounds(params.sqrtPriceLimitX96);
@@ -407,7 +481,9 @@ library PoolList {
             protocolFee: params.zeroForOne
                 ? (getSwapFee(slot0Start.protocolFees) % 64)
                 : (getSwapFee(slot0Start.protocolFees) >> 6),
-            hookFee: params.zeroForOne ? (getSwapFee(slot0Start.hookFees) % 64) : (getSwapFee(slot0Start.hookFees) >> 6)
+            hookFee: params.zeroForOne
+                ? (getSwapFee(slot0Start.hookFees) % 64)
+                : (getSwapFee(slot0Start.hookFees) >> 6)
         });
 
         bool exactInput = params.amountSpecified > 0;
@@ -417,17 +493,27 @@ library PoolList {
             amountCalculated: 0,
             sqrtPriceX96: slot0Start.sqrtPriceX96,
             tick: slot0Start.tick,
-            feeGrowthGlobalX128: params.zeroForOne ? self.feeGrowthGlobal0X128 : self.feeGrowthGlobal1X128,
+            feeGrowthGlobalX128: params.zeroForOne
+                ? self.feeGrowthGlobal0X128
+                : self.feeGrowthGlobal1X128,
             liquidity: cache.liquidityStart
         });
 
         StepComputations memory step;
         // continue swapping as long as we haven't used the entire input/output and haven't reached the price limit
-        while (state.amountSpecifiedRemaining != 0 && state.sqrtPriceX96 != params.sqrtPriceLimitX96) {
+        while (
+            state.amountSpecifiedRemaining != 0 &&
+            state.sqrtPriceX96 != params.sqrtPriceLimitX96
+        ) {
             step.sqrtPriceStartX96 = state.sqrtPriceX96;
 
-            (step.tickNext, step.initialized) =
-                self.tickBitmap.nextInitializedTickWithinOneWord(state.tick, params.tickSpacing, params.zeroForOne);
+            (step.tickNext, step.initialized) = self
+                .tickBitmap
+                .nextInitializedTickWithinOneWord(
+                    state.tick,
+                    params.tickSpacing,
+                    params.zeroForOne
+                );
 
             // ensure that we do not overshoot the min/max tick, as the tick bitmap is not aware of these bounds
             if (step.tickNext < TickMath.MIN_TICK) {
@@ -440,13 +526,20 @@ library PoolList {
             step.sqrtPriceNextX96 = TickMath.getSqrtRatioAtTick(step.tickNext);
 
             // compute values to swap to the target tick, price limit, or point where input/output amount is exhausted
-            (state.sqrtPriceX96, step.amountIn, step.amountOut, step.feeAmount) = SwapMath.computeSwapStep(
+            (
+                state.sqrtPriceX96,
+                step.amountIn,
+                step.amountOut,
+                step.feeAmount
+            ) = SwapMath.computeSwapStep(
                 state.sqrtPriceX96,
                 (
                     params.zeroForOne
                         ? step.sqrtPriceNextX96 < params.sqrtPriceLimitX96
                         : step.sqrtPriceNextX96 > params.sqrtPriceLimitX96
-                ) ? params.sqrtPriceLimitX96 : step.sqrtPriceNextX96,
+                )
+                    ? params.sqrtPriceLimitX96
+                    : step.sqrtPriceNextX96,
                 state.liquidity,
                 state.amountSpecifiedRemaining,
                 params.fee
@@ -455,14 +548,19 @@ library PoolList {
             if (exactInput) {
                 // safe because we test that amountSpecified > amountIn + feeAmount in SwapMath
                 unchecked {
-                    state.amountSpecifiedRemaining -= (step.amountIn + step.feeAmount).toInt256();
+                    state.amountSpecifiedRemaining -= (step.amountIn +
+                        step.feeAmount).toInt256();
                 }
-                state.amountCalculated = state.amountCalculated - step.amountOut.toInt256();
+                state.amountCalculated =
+                    state.amountCalculated -
+                    step.amountOut.toInt256();
             } else {
                 unchecked {
                     state.amountSpecifiedRemaining += step.amountOut.toInt256();
                 }
-                state.amountCalculated = state.amountCalculated + (step.amountIn + step.feeAmount).toInt256();
+                state.amountCalculated =
+                    state.amountCalculated +
+                    (step.amountIn + step.feeAmount).toInt256();
             }
 
             // if the protocol fee is on, calculate how much is owed, decrement feeAmount, and increment protocolFee
@@ -488,7 +586,11 @@ library PoolList {
             // update global fee tracker
             if (state.liquidity > 0) {
                 unchecked {
-                    state.feeGrowthGlobalX128 += FullMath.mulDiv(step.feeAmount, FixedPoint128.Q128, state.liquidity);
+                    state.feeGrowthGlobalX128 += FullMath.mulDiv(
+                        step.feeAmount,
+                        FixedPoint128.Q128,
+                        state.liquidity
+                    );
                 }
             }
 
@@ -496,11 +598,19 @@ library PoolList {
             if (state.sqrtPriceX96 == step.sqrtPriceNextX96) {
                 // if the tick is initialized, run the tick transition
                 if (step.initialized) {
-                    int128 liquidityNet = PoolList.crossTick(
+                    int128 liquidityNet = Pool.crossTick(
                         self,
                         step.tickNext,
-                        (params.zeroForOne ? state.feeGrowthGlobalX128 : self.feeGrowthGlobal0X128),
-                        (params.zeroForOne ? self.feeGrowthGlobal1X128 : state.feeGrowthGlobalX128)
+                        (
+                            params.zeroForOne
+                                ? state.feeGrowthGlobalX128
+                                : self.feeGrowthGlobal0X128
+                        ),
+                        (
+                            params.zeroForOne
+                                ? self.feeGrowthGlobal1X128
+                                : state.feeGrowthGlobalX128
+                        )
                     );
                     // if we're moving leftward, we interpret liquidityNet as the opposite sign
                     // safe because liquidityNet cannot be type(int128).min
@@ -514,7 +624,9 @@ library PoolList {
                 }
 
                 unchecked {
-                    state.tick = params.zeroForOne ? step.tickNext - 1 : step.tickNext;
+                    state.tick = params.zeroForOne
+                        ? step.tickNext - 1
+                        : step.tickNext;
                 }
             } else if (state.sqrtPriceX96 != step.sqrtPriceStartX96) {
                 // recompute unless we're on a lower tick boundary (i.e. already transitioned ticks), and haven't moved
@@ -522,7 +634,10 @@ library PoolList {
             }
         }
 
-        (self.slot0.sqrtPriceX96, self.slot0.tick) = (state.sqrtPriceX96, state.tick);
+        (self.slot0.sqrtPriceX96, self.slot0.tick) = (
+            state.sqrtPriceX96,
+            state.tick
+        );
 
         // update liquidity if it changed
         if (cache.liquidityStart != state.liquidity) {
@@ -539,25 +654,31 @@ library PoolList {
         unchecked {
             if (params.zeroForOne == exactInput) {
                 result = toBalanceDelta(
-                    (params.amountSpecified - state.amountSpecifiedRemaining).toInt128(),
+                    (params.amountSpecified - state.amountSpecifiedRemaining)
+                        .toInt128(),
                     state.amountCalculated.toInt128()
                 );
             } else {
                 result = toBalanceDelta(
                     state.amountCalculated.toInt128(),
-                    (params.amountSpecified - state.amountSpecifiedRemaining).toInt128()
+                    (params.amountSpecified - state.amountSpecifiedRemaining)
+                        .toInt128()
                 );
             }
         }
     }
 
     /// @notice Retrieves fee growth data
-    /// @param self The PoolList state struct
+    /// @param self The Pool state struct
     /// @param tickLower The lower tick boundary of the position
     /// @param tickUpper The upper tick boundary of the position
     /// @return feeGrowthInside0X128 The all-time fee growth in token0, per unit of liquidity, inside the position's tick boundaries
     /// @return feeGrowthInside1X128 The all-time fee growth in token1, per unit of liquidity, inside the position's tick boundaries
-    function getFeeGrowthInside(State storage self, int24 tickLower, int24 tickUpper)
+    function getFeeGrowthInside(
+        State storage self,
+        int24 tickLower,
+        int24 tickUpper
+    )
         internal
         view
         returns (uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128)
@@ -568,16 +689,28 @@ library PoolList {
 
         unchecked {
             if (tickCurrent < tickLower) {
-                feeGrowthInside0X128 = lower.feeGrowthOutside0X128 - upper.feeGrowthOutside0X128;
-                feeGrowthInside1X128 = lower.feeGrowthOutside1X128 - upper.feeGrowthOutside1X128;
+                feeGrowthInside0X128 =
+                    lower.feeGrowthOutside0X128 -
+                    upper.feeGrowthOutside0X128;
+                feeGrowthInside1X128 =
+                    lower.feeGrowthOutside1X128 -
+                    upper.feeGrowthOutside1X128;
             } else if (tickCurrent >= tickUpper) {
-                feeGrowthInside0X128 = upper.feeGrowthOutside0X128 - lower.feeGrowthOutside0X128;
-                feeGrowthInside1X128 = upper.feeGrowthOutside1X128 - lower.feeGrowthOutside1X128;
+                feeGrowthInside0X128 =
+                    upper.feeGrowthOutside0X128 -
+                    lower.feeGrowthOutside0X128;
+                feeGrowthInside1X128 =
+                    upper.feeGrowthOutside1X128 -
+                    lower.feeGrowthOutside1X128;
             } else {
                 feeGrowthInside0X128 =
-                    self.feeGrowthGlobal0X128 - lower.feeGrowthOutside0X128 - upper.feeGrowthOutside0X128;
+                    self.feeGrowthGlobal0X128 -
+                    lower.feeGrowthOutside0X128 -
+                    upper.feeGrowthOutside0X128;
                 feeGrowthInside1X128 =
-                    self.feeGrowthGlobal1X128 - lower.feeGrowthOutside1X128 - upper.feeGrowthOutside1X128;
+                    self.feeGrowthGlobal1X128 -
+                    lower.feeGrowthOutside1X128 -
+                    upper.feeGrowthOutside1X128;
             }
         }
     }
@@ -589,10 +722,12 @@ library PoolList {
     /// @param upper true for updating a position's upper tick, or false for updating a position's lower tick
     /// @return flipped Whether the tick was flipped from initialized to uninitialized, or vice versa
     /// @return liquidityGrossAfter The total amount of  liquidity for all positions that references the tick after the update
-    function updateTick(State storage self, int24 tick, int128 liquidityDelta, bool upper)
-        internal
-        returns (bool flipped, uint128 liquidityGrossAfter)
-    {
+    function updateTick(
+        State storage self,
+        int24 tick,
+        int128 liquidityDelta,
+        bool upper
+    ) internal returns (bool flipped, uint128 liquidityGrossAfter) {
         TickInfo storage info = self.ticks[tick];
 
         uint128 liquidityGrossBefore;
@@ -622,7 +757,9 @@ library PoolList {
         }
 
         // when the lower (upper) tick is crossed left to right (right to left), liquidity must be added (removed)
-        int128 liquidityNet = upper ? liquidityNetBefore - liquidityDelta : liquidityNetBefore + liquidityDelta;
+        int128 liquidityNet = upper
+            ? liquidityNetBefore - liquidityDelta
+            : liquidityNetBefore + liquidityDelta;
         assembly {
             // liquidityGrossAfter and liquidityNet are packed in the first slot of `info`
             // So we can store them with a single sstore by packing them ourselves first
@@ -644,12 +781,15 @@ library PoolList {
     /// @param tickSpacing The amount of required tick separation, realized in multiples of `tickSpacing`
     ///     e.g., a tickSpacing of 3 requires ticks to be initialized every 3rd tick i.e., ..., -6, -3, 0, 3, 6, ...
     /// @return The max liquidity per tick
-    function tickSpacingToMaxLiquidityPerTick(int24 tickSpacing) internal pure returns (uint128) {
+    function tickSpacingToMaxLiquidityPerTick(
+        int24 tickSpacing
+    ) internal pure returns (uint128) {
         unchecked {
-            return uint128(
-                (type(uint128).max * uint256(int256(tickSpacing)))
-                    / uint256(int256(TickMath.MAX_TICK * 2 + tickSpacing))
-            );
+            return
+                uint128(
+                    (type(uint128).max * uint256(int256(tickSpacing))) /
+                        uint256(int256(TickMath.MAX_TICK * 2 + tickSpacing))
+                );
         }
     }
 
@@ -661,19 +801,25 @@ library PoolList {
     }
 
     /// @notice Transitions to next tick as needed by price movement
-    /// @param self The PoolList state struct
+    /// @param self The Pool state struct
     /// @param tick The destination tick of the transition
     /// @param feeGrowthGlobal0X128 The all-time global fee growth, per unit of liquidity, in token0
     /// @param feeGrowthGlobal1X128 The all-time global fee growth, per unit of liquidity, in token1
     /// @return liquidityNet The amount of liquidity added (subtracted) when tick is crossed from left to right (right to left)
-    function crossTick(State storage self, int24 tick, uint256 feeGrowthGlobal0X128, uint256 feeGrowthGlobal1X128)
-        internal
-        returns (int128 liquidityNet)
-    {
+    function crossTick(
+        State storage self,
+        int24 tick,
+        uint256 feeGrowthGlobal0X128,
+        uint256 feeGrowthGlobal1X128
+    ) internal returns (int128 liquidityNet) {
         unchecked {
             TickInfo storage info = self.ticks[tick];
-            info.feeGrowthOutside0X128 = feeGrowthGlobal0X128 - info.feeGrowthOutside0X128;
-            info.feeGrowthOutside1X128 = feeGrowthGlobal1X128 - info.feeGrowthOutside1X128;
+            info.feeGrowthOutside0X128 =
+                feeGrowthGlobal0X128 -
+                info.feeGrowthOutside0X128;
+            info.feeGrowthOutside1X128 =
+                feeGrowthGlobal1X128 -
+                info.feeGrowthOutside1X128;
             liquidityNet = info.liquidityNet;
         }
     }

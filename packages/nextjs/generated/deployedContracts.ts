@@ -758,1650 +758,1650 @@ const contracts = {
           address: "0x963663a86D85903A0A95079dFa1EdF21D812B8Fb",
           abi: [
             {
+              type: "constructor",
               inputs: [
                 {
-                  internalType: "uint256",
                   name: "controllerGasLimit",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "constructor",
             },
             {
-              inputs: [],
-              name: "CannotUpdateEmptyPosition",
-              type: "error",
+              type: "receive",
+              stateMutability: "payable",
             },
             {
-              inputs: [],
-              name: "CurrenciesInitializedOutOfOrder",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "CurrencyNotSettled",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "ERC20TransferFailed",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "FeeTooLarge",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "hooks",
-                  type: "address",
-                },
-              ],
-              name: "HookAddressNotValid",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidCaller",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidHookResponse",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidSqrtRatio",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidTick",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "locker",
-                  type: "address",
-                },
-              ],
-              name: "LockedBy",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "MaxCurrenciesTouched",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "NativeTransferFailed",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "NotPoolManagerToken",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "PoolAlreadyInitialized",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "PoolNotInitialized",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint160",
-                  name: "sqrtPriceCurrentX96",
-                  type: "uint160",
-                },
-                {
-                  internalType: "uint160",
-                  name: "sqrtPriceLimitX96",
-                  type: "uint160",
-                },
-              ],
-              name: "PriceLimitAlreadyExceeded",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint160",
-                  name: "sqrtPriceLimitX96",
-                  type: "uint160",
-                },
-              ],
-              name: "PriceLimitOutOfBounds",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "ProtocolFeeCannotBeFetched",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "SwapAmountCannotBeZero",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tick",
-                  type: "int24",
-                },
-              ],
-              name: "TickLiquidityOverflow",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tickLower",
-                  type: "int24",
-                },
-              ],
-              name: "TickLowerOutOfBounds",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tick",
-                  type: "int24",
-                },
-                {
-                  internalType: "int24",
-                  name: "tickSpacing",
-                  type: "int24",
-                },
-              ],
-              name: "TickMisaligned",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "TickSpacingTooLarge",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "TickSpacingTooSmall",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tickUpper",
-                  type: "int24",
-                },
-              ],
-              name: "TickUpperOutOfBounds",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tickLower",
-                  type: "int24",
-                },
-                {
-                  internalType: "int24",
-                  name: "tickUpper",
-                  type: "int24",
-                },
-              ],
-              name: "TicksMisordered",
-              type: "error",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "account",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "operator",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "bool",
-                  name: "approved",
-                  type: "bool",
-                },
-              ],
-              name: "ApprovalForAll",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "hookFees",
-                  type: "uint24",
-                },
-              ],
-              name: "HookFeeUpdated",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: true,
-                  internalType: "Currency",
-                  name: "currency0",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "Currency",
-                  name: "currency1",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "fee",
-                  type: "uint24",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tickSpacing",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "contract IHooks",
-                  name: "hooks",
-                  type: "address",
-                },
-              ],
-              name: "Initialize",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "sender",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tickLower",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tickUpper",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "int256",
-                  name: "liquidityDelta",
-                  type: "int256",
-                },
-              ],
-              name: "ModifyPosition",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "oldOwner",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "newOwner",
-                  type: "address",
-                },
-              ],
-              name: "OwnerChanged",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: false,
-                  internalType: "address",
-                  name: "protocolFeeController",
-                  type: "address",
-                },
-              ],
-              name: "ProtocolFeeControllerUpdated",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "protocolFees",
-                  type: "uint24",
-                },
-              ],
-              name: "ProtocolFeeUpdated",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "sender",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "int128",
-                  name: "amount0",
-                  type: "int128",
-                },
-                {
-                  indexed: false,
-                  internalType: "int128",
-                  name: "amount1",
-                  type: "int128",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint160",
-                  name: "sqrtPriceX96",
-                  type: "uint160",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint128",
-                  name: "liquidity",
-                  type: "uint128",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tick",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "fee",
-                  type: "uint24",
-                },
-              ],
-              name: "Swap",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "operator",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "from",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "to",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256[]",
-                  name: "ids",
-                  type: "uint256[]",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256[]",
-                  name: "values",
-                  type: "uint256[]",
-                },
-              ],
-              name: "TransferBatch",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "operator",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "from",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "to",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256",
-                  name: "id",
-                  type: "uint256",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256",
-                  name: "value",
-                  type: "uint256",
-                },
-              ],
-              name: "TransferSingle",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: false,
-                  internalType: "string",
-                  name: "value",
-                  type: "string",
-                },
-                {
-                  indexed: true,
-                  internalType: "uint256",
-                  name: "id",
-                  type: "uint256",
-                },
-              ],
-              name: "URI",
-              type: "event",
-            },
-            {
-              inputs: [],
+              type: "function",
               name: "MAX_TICK_SPACING",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "int24",
                   name: "",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "MIN_PROTOCOL_FEE_DENOMINATOR",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "uint8",
                   name: "",
                   type: "uint8",
+                  internalType: "uint8",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "MIN_TICK_SPACING",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "int24",
                   name: "",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "balanceOf",
               inputs: [
                 {
-                  internalType: "address",
                   name: "account",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "id",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "balanceOf",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "balanceOfBatch",
               inputs: [
                 {
-                  internalType: "address[]",
                   name: "accounts",
                   type: "address[]",
+                  internalType: "address[]",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "ids",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
               ],
-              name: "balanceOfBatch",
               outputs: [
                 {
-                  internalType: "uint256[]",
                   name: "",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "recipient",
-                  type: "address",
-                },
-                {
-                  internalType: "Currency",
-                  name: "currency",
-                  type: "address",
-                },
-                {
-                  internalType: "uint256",
-                  name: "amount",
-                  type: "uint256",
-                },
-              ],
+              type: "function",
               name: "collectHookFees",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "amountCollected",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "nonpayable",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "address",
                   name: "recipient",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "collectProtocolFees",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "amountCollected",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "collectProtocolFees",
               inputs: [
                 {
+                  name: "recipient",
+                  type: "address",
                   internalType: "address",
+                },
+                {
+                  name: "currency",
+                  type: "address",
+                  internalType: "Currency",
+                },
+                {
+                  name: "amount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "amountCollected",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "currencyDelta",
+              inputs: [
+                {
                   name: "locker",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "currencyDelta",
               outputs: [
                 {
-                  internalType: "int256",
                   name: "currencyDelta",
                   type: "int256",
+                  internalType: "int256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getLiquidity",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
                 {
-                  internalType: "address",
                   name: "_owner",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "int24",
                   name: "tickLower",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "int24",
                   name: "tickUpper",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
-              name: "getLiquidity",
               outputs: [
                 {
-                  internalType: "uint128",
                   name: "liquidity",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getLiquidity",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "getLiquidity",
               outputs: [
                 {
-                  internalType: "uint128",
                   name: "liquidity",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getLock",
               inputs: [
                 {
-                  internalType: "uint256",
                   name: "i",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "getLock",
               outputs: [
                 {
-                  internalType: "address",
                   name: "locker",
                   type: "address",
+                  internalType: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getPosition",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
                 {
-                  internalType: "address",
                   name: "owner",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "int24",
                   name: "tickLower",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "int24",
                   name: "tickUpper",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
-              name: "getPosition",
               outputs: [
                 {
-                  components: [
-                    {
-                      internalType: "uint128",
-                      name: "liquidity",
-                      type: "uint128",
-                    },
-                    {
-                      internalType: "uint256",
-                      name: "feeGrowthInside0LastX128",
-                      type: "uint256",
-                    },
-                    {
-                      internalType: "uint256",
-                      name: "feeGrowthInside1LastX128",
-                      type: "uint256",
-                    },
-                  ],
-                  internalType: "struct Position.Info",
                   name: "position",
                   type: "tuple",
+                  internalType: "struct Position.Info",
+                  components: [
+                    {
+                      name: "liquidity",
+                      type: "uint128",
+                      internalType: "uint128",
+                    },
+                    {
+                      name: "feeGrowthInside0LastX128",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "feeGrowthInside1LastX128",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getSlot0",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "getSlot0",
               outputs: [
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "int24",
                   name: "tick",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "uint24",
                   name: "protocolFees",
                   type: "uint24",
+                  internalType: "uint24",
                 },
                 {
-                  internalType: "uint24",
                   name: "hookFees",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "hookFeesAccrued",
               inputs: [
                 {
-                  internalType: "address",
                   name: "hookAddress",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "hookFeesAccrued",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "initialize",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "initialize",
               outputs: [
                 {
-                  internalType: "int24",
                   name: "tick",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "isApprovedForAll",
               inputs: [
                 {
-                  internalType: "address",
                   name: "account",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "operator",
                   type: "address",
+                  internalType: "address",
                 },
               ],
-              name: "isApprovedForAll",
               outputs: [
                 {
-                  internalType: "bool",
                   name: "",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "lock",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "lock",
               outputs: [
                 {
-                  internalType: "bytes",
                   name: "result",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "lockData",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "uint128",
                   name: "length",
                   type: "uint128",
+                  internalType: "uint128",
                 },
                 {
-                  internalType: "uint128",
                   name: "nonzeroDeltaCount",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "mint",
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "mint",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "modifyPosition",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "modifyPosition",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "onERC1155BatchReceived",
               inputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "ids",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "values",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "bytes",
                   name: "",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "onERC1155BatchReceived",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "onERC1155Received",
               inputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "id",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "value",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "onERC1155Received",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "owner",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "pools",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "pools",
               outputs: [
                 {
-                  components: [
-                    {
-                      internalType: "uint160",
-                      name: "sqrtPriceX96",
-                      type: "uint160",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tick",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "protocolFees",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "hookFees",
-                      type: "uint24",
-                    },
-                  ],
-                  internalType: "struct PoolList.Slot0",
                   name: "slot0",
                   type: "tuple",
+                  internalType: "struct Pool.Slot0",
+                  components: [
+                    {
+                      name: "sqrtPriceX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                    {
+                      name: "tick",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "protocolFees",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "hookFees",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
                   name: "feeGrowthGlobal0X128",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "feeGrowthGlobal1X128",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint128",
                   name: "liquidity",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "protocolFeeController",
+              inputs: [],
               outputs: [
                 {
+                  name: "",
+                  type: "address",
                   internalType: "contract IProtocolFeeController",
-                  name: "",
-                  type: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "Currency",
-                  name: "currency",
-                  type: "address",
-                },
-              ],
+              type: "function",
               name: "protocolFeesAccrued",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "reservesOf",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "reservesOf",
               inputs: [
                 {
-                  internalType: "address",
+                  name: "currency",
+                  type: "address",
+                  internalType: "Currency",
+                },
+              ],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "safeBatchTransferFrom",
+              inputs: [
+                {
                   name: "from",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "ids",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "amounts",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "safeBatchTransferFrom",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "safeTransferFrom",
               inputs: [
                 {
-                  internalType: "address",
                   name: "from",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "id",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "safeTransferFrom",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setApprovalForAll",
               inputs: [
                 {
-                  internalType: "address",
                   name: "operator",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "bool",
                   name: "approved",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
-              name: "setApprovalForAll",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setHookFees",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
               ],
-              name: "setHookFees",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setOwner",
               inputs: [
                 {
-                  internalType: "address",
                   name: "_owner",
                   type: "address",
+                  internalType: "address",
                 },
               ],
-              name: "setOwner",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setProtocolFeeController",
               inputs: [
                 {
-                  internalType: "contract IProtocolFeeController",
                   name: "controller",
                   type: "address",
+                  internalType: "contract IProtocolFeeController",
                 },
               ],
-              name: "setProtocolFeeController",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setProtocolFees",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
               ],
-              name: "setProtocolFees",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "settle",
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "settle",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "paid",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "payable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "supportsInterface",
               inputs: [
                 {
-                  internalType: "bytes4",
                   name: "interfaceId",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
-              name: "supportsInterface",
               outputs: [
                 {
-                  internalType: "bool",
                   name: "",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "swap",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "swap",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "take",
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "take",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "uri",
               inputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "uri",
               outputs: [
                 {
-                  internalType: "string",
                   name: "",
                   type: "string",
+                  internalType: "string",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              stateMutability: "payable",
-              type: "receive",
+              type: "event",
+              name: "ApprovalForAll",
+              inputs: [
+                {
+                  name: "account",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "operator",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "approved",
+                  type: "bool",
+                  indexed: false,
+                  internalType: "bool",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "HookFeeUpdated",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "hookFees",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "Initialize",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "currency0",
+                  type: "address",
+                  indexed: true,
+                  internalType: "Currency",
+                },
+                {
+                  name: "currency1",
+                  type: "address",
+                  indexed: true,
+                  internalType: "Currency",
+                },
+                {
+                  name: "fee",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+                {
+                  name: "tickSpacing",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "hooks",
+                  type: "address",
+                  indexed: false,
+                  internalType: "contract IHooks",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "ModifyPosition",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "sender",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "tickLower",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "tickUpper",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "liquidityDelta",
+                  type: "int256",
+                  indexed: false,
+                  internalType: "int256",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "OwnerChanged",
+              inputs: [
+                {
+                  name: "oldOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "newOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "ProtocolFeeControllerUpdated",
+              inputs: [
+                {
+                  name: "protocolFeeController",
+                  type: "address",
+                  indexed: false,
+                  internalType: "address",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "ProtocolFeeUpdated",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "protocolFees",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "Swap",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "sender",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "amount0",
+                  type: "int128",
+                  indexed: false,
+                  internalType: "int128",
+                },
+                {
+                  name: "amount1",
+                  type: "int128",
+                  indexed: false,
+                  internalType: "int128",
+                },
+                {
+                  name: "sqrtPriceX96",
+                  type: "uint160",
+                  indexed: false,
+                  internalType: "uint160",
+                },
+                {
+                  name: "liquidity",
+                  type: "uint128",
+                  indexed: false,
+                  internalType: "uint128",
+                },
+                {
+                  name: "tick",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "fee",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "TransferBatch",
+              inputs: [
+                {
+                  name: "operator",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "from",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "to",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "ids",
+                  type: "uint256[]",
+                  indexed: false,
+                  internalType: "uint256[]",
+                },
+                {
+                  name: "values",
+                  type: "uint256[]",
+                  indexed: false,
+                  internalType: "uint256[]",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "TransferSingle",
+              inputs: [
+                {
+                  name: "operator",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "from",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "to",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "id",
+                  type: "uint256",
+                  indexed: false,
+                  internalType: "uint256",
+                },
+                {
+                  name: "value",
+                  type: "uint256",
+                  indexed: false,
+                  internalType: "uint256",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "URI",
+              inputs: [
+                {
+                  name: "value",
+                  type: "string",
+                  indexed: false,
+                  internalType: "string",
+                },
+                {
+                  name: "id",
+                  type: "uint256",
+                  indexed: true,
+                  internalType: "uint256",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "error",
+              name: "CannotUpdateEmptyPosition",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "CurrenciesInitializedOutOfOrder",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "CurrencyNotSettled",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "ERC20TransferFailed",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "FeeTooLarge",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "HookAddressNotValid",
+              inputs: [
+                {
+                  name: "hooks",
+                  type: "address",
+                  internalType: "address",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "InvalidCaller",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "InvalidHookResponse",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "InvalidSqrtRatio",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "InvalidTick",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "LockedBy",
+              inputs: [
+                {
+                  name: "locker",
+                  type: "address",
+                  internalType: "address",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "MaxCurrenciesTouched",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "NativeTransferFailed",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "NotPoolManagerToken",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "PoolAlreadyInitialized",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "PoolNotInitialized",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "PriceLimitAlreadyExceeded",
+              inputs: [
+                {
+                  name: "sqrtPriceCurrentX96",
+                  type: "uint160",
+                  internalType: "uint160",
+                },
+                {
+                  name: "sqrtPriceLimitX96",
+                  type: "uint160",
+                  internalType: "uint160",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "PriceLimitOutOfBounds",
+              inputs: [
+                {
+                  name: "sqrtPriceLimitX96",
+                  type: "uint160",
+                  internalType: "uint160",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "ProtocolFeeCannotBeFetched",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "SwapAmountCannotBeZero",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "TickLiquidityOverflow",
+              inputs: [
+                {
+                  name: "tick",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TickLowerOutOfBounds",
+              inputs: [
+                {
+                  name: "tickLower",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TickMisaligned",
+              inputs: [
+                {
+                  name: "tick",
+                  type: "int24",
+                  internalType: "int24",
+                },
+                {
+                  name: "tickSpacing",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TickSpacingTooLarge",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "TickSpacingTooSmall",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "TickUpperOutOfBounds",
+              inputs: [
+                {
+                  name: "tickUpper",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TicksMisordered",
+              inputs: [
+                {
+                  name: "tickLower",
+                  type: "int24",
+                  internalType: "int24",
+                },
+                {
+                  name: "tickUpper",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
             },
           ],
         },
@@ -2428,6 +2428,16 @@ const contracts = {
                   type: "uint256",
                   internalType: "uint256",
                 },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
               ],
               outputs: [
                 {
@@ -2437,6 +2447,45 @@ const contracts = {
                 },
               ],
               stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "deployedHooks",
+              inputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "owner",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "hookAddr",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "creationTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
             },
             {
               type: "function",
@@ -2464,6 +2513,52 @@ const contracts = {
             },
             {
               type: "function",
+              name: "getHookInfo",
+              inputs: [
+                {
+                  name: "hookId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "hook",
+                  type: "tuple",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
               name: "getPrecomputedHookAddress",
               inputs: [
                 {
@@ -2477,6 +2572,32 @@ const contracts = {
                   name: "",
                   type: "address",
                   internalType: "address",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "hookCount",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "lastNonce",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
@@ -2522,6 +2643,19 @@ const contracts = {
                   name: "newOwner",
                   type: "address",
                   internalType: "address",
+                },
+              ],
+              outputs: [],
+              stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "updateManager",
+              inputs: [
+                {
+                  name: "_manager",
+                  type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               outputs: [],
@@ -2551,16 +2685,37 @@ const contracts = {
               name: "HookCreated",
               inputs: [
                 {
-                  name: "owner",
-                  type: "address",
+                  name: "hook",
+                  type: "tuple",
                   indexed: false,
-                  internalType: "address",
-                },
-                {
-                  name: "hookAddr",
-                  type: "address",
-                  indexed: false,
-                  internalType: "address",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
                 },
               ],
               anonymous: false,
@@ -2590,358 +2745,358 @@ const contracts = {
           address: "0xa11d3F9d306305886c84A39EA3cFdc84cEACDf23",
           abi: [
             {
+              type: "constructor",
               inputs: [
                 {
-                  internalType: "contract IPoolManager",
                   name: "_manager",
                   type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "constructor",
             },
             {
-              inputs: [],
-              name: "ERC20TransferFailed",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "LockFailure",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "NativeTransferFailed",
-              type: "error",
-            },
-            {
+              type: "function",
+              name: "lockAcquired",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "lockAcquired",
               outputs: [
                 {
-                  internalType: "bytes",
                   name: "",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "lockAcquiredModifyPosition",
               inputs: [
                 {
+                  name: "data",
+                  type: "tuple",
+                  internalType: "struct Router04.CallbackDataModifyPosition",
                   components: [
                     {
-                      internalType: "address",
                       name: "sender",
                       type: "address",
+                      internalType: "address",
                     },
                     {
-                      components: [
-                        {
-                          internalType: "Currency",
-                          name: "currency0",
-                          type: "address",
-                        },
-                        {
-                          internalType: "Currency",
-                          name: "currency1",
-                          type: "address",
-                        },
-                        {
-                          internalType: "uint24",
-                          name: "fee",
-                          type: "uint24",
-                        },
-                        {
-                          internalType: "int24",
-                          name: "tickSpacing",
-                          type: "int24",
-                        },
-                        {
-                          internalType: "contract IHooks",
-                          name: "hooks",
-                          type: "address",
-                        },
-                      ],
-                      internalType: "struct PoolKey",
                       name: "key",
                       type: "tuple",
-                    },
-                    {
+                      internalType: "struct PoolKey",
                       components: [
                         {
+                          name: "currency0",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "currency1",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "fee",
+                          type: "uint24",
+                          internalType: "uint24",
+                        },
+                        {
+                          name: "tickSpacing",
+                          type: "int24",
                           internalType: "int24",
+                        },
+                        {
+                          name: "hooks",
+                          type: "address",
+                          internalType: "contract IHooks",
+                        },
+                      ],
+                    },
+                    {
+                      name: "params",
+                      type: "tuple",
+                      internalType: "struct IPoolManager.ModifyPositionParams",
+                      components: [
+                        {
                           name: "tickLower",
                           type: "int24",
+                          internalType: "int24",
                         },
                         {
-                          internalType: "int24",
                           name: "tickUpper",
                           type: "int24",
+                          internalType: "int24",
                         },
                         {
-                          internalType: "int256",
                           name: "liquidityDelta",
                           type: "int256",
+                          internalType: "int256",
                         },
                       ],
-                      internalType: "struct IPoolManager.ModifyPositionParams",
-                      name: "params",
-                      type: "tuple",
                     },
                   ],
-                  internalType: "struct Router04.CallbackDataModifyPosition",
-                  name: "data",
-                  type: "tuple",
                 },
               ],
-              name: "lockAcquiredModifyPosition",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "lockAcquiredSwap",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "address",
-                      name: "sender",
-                      type: "address",
-                    },
-                    {
-                      components: [
-                        {
-                          internalType: "Currency",
-                          name: "currency0",
-                          type: "address",
-                        },
-                        {
-                          internalType: "Currency",
-                          name: "currency1",
-                          type: "address",
-                        },
-                        {
-                          internalType: "uint24",
-                          name: "fee",
-                          type: "uint24",
-                        },
-                        {
-                          internalType: "int24",
-                          name: "tickSpacing",
-                          type: "int24",
-                        },
-                        {
-                          internalType: "contract IHooks",
-                          name: "hooks",
-                          type: "address",
-                        },
-                      ],
-                      internalType: "struct PoolKey",
-                      name: "key",
-                      type: "tuple",
-                    },
-                    {
-                      components: [
-                        {
-                          internalType: "bool",
-                          name: "zeroForOne",
-                          type: "bool",
-                        },
-                        {
-                          internalType: "int256",
-                          name: "amountSpecified",
-                          type: "int256",
-                        },
-                        {
-                          internalType: "uint160",
-                          name: "sqrtPriceLimitX96",
-                          type: "uint160",
-                        },
-                      ],
-                      internalType: "struct IPoolManager.SwapParams",
-                      name: "params",
-                      type: "tuple",
-                    },
-                  ],
-                  internalType: "struct Router04.CallbackDataSwap",
                   name: "data",
                   type: "tuple",
+                  internalType: "struct Router04.CallbackDataSwap",
+                  components: [
+                    {
+                      name: "sender",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "key",
+                      type: "tuple",
+                      internalType: "struct PoolKey",
+                      components: [
+                        {
+                          name: "currency0",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "currency1",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "fee",
+                          type: "uint24",
+                          internalType: "uint24",
+                        },
+                        {
+                          name: "tickSpacing",
+                          type: "int24",
+                          internalType: "int24",
+                        },
+                        {
+                          name: "hooks",
+                          type: "address",
+                          internalType: "contract IHooks",
+                        },
+                      ],
+                    },
+                    {
+                      name: "params",
+                      type: "tuple",
+                      internalType: "struct IPoolManager.SwapParams",
+                      components: [
+                        {
+                          name: "zeroForOne",
+                          type: "bool",
+                          internalType: "bool",
+                        },
+                        {
+                          name: "amountSpecified",
+                          type: "int256",
+                          internalType: "int256",
+                        },
+                        {
+                          name: "sqrtPriceLimitX96",
+                          type: "uint160",
+                          internalType: "uint160",
+                        },
+                      ],
+                    },
+                  ],
                 },
               ],
-              name: "lockAcquiredSwap",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "manager",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "contract IPoolManager",
                   name: "",
                   type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "modifyPosition",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
               ],
-              name: "modifyPosition",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "payable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "swap",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
               ],
-              name: "swap",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "payable",
-              type: "function",
+            },
+            {
+              type: "error",
+              name: "ERC20TransferFailed",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "LockFailure",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "NativeTransferFailed",
+              inputs: [],
             },
           ],
         },
@@ -2949,1119 +3104,1119 @@ const contracts = {
           address: "0x775938C3af38f634cd9d3e2CB96e073920ff9eF9",
           abi: [
             {
+              type: "constructor",
               inputs: [
                 {
-                  internalType: "contract IPoolManager",
                   name: "_manager",
                   type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "constructor",
             },
             {
+              type: "function",
+              name: "addTradingVolumeDiscountThresholds",
               inputs: [
                 {
-                  internalType: "bytes4",
-                  name: "",
-                  type: "bytes4",
-                },
-                {
-                  internalType: "enum IUniversalHook.Action",
-                  name: "",
-                  type: "uint8",
-                },
-              ],
-              name: "FunctionFailed",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint24",
-                  name: "",
-                  type: "uint24",
-                },
-              ],
-              name: "InvalidFee",
-              type: "error",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "previousOwner",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "newOwner",
-                  type: "address",
-                },
-              ],
-              name: "OwnershipTransferred",
-              type: "event",
-            },
-            {
-              inputs: [
-                {
-                  components: [
-                    {
-                      internalType: "uint256",
-                      name: "volume",
-                      type: "uint256",
-                    },
-                    {
-                      internalType: "uint8",
-                      name: "discountPts",
-                      type: "uint8",
-                    },
-                  ],
-                  internalType:
-                    "struct IUniversalHook.TradingVolumeDiscountThreshold",
                   name: "_tradingVolumeDiscountThreshold",
                   type: "tuple",
+                  internalType:
+                    "struct IUniversalHook.TradingVolumeDiscountThreshold",
+                  components: [
+                    {
+                      name: "volume",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "discountPts",
+                      type: "uint8",
+                      internalType: "uint8",
+                    },
+                  ],
                 },
               ],
-              name: "addTradingVolumeDiscountThresholds",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterDonate",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
                   name: "amount0",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount1",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterDonate",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterInitialize",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "int24",
                   name: "tick",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterInitialize",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterModifyPosition",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterModifyPosition",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterSwap",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
                       name: "zeroForOne",
                       type: "bool",
+                      internalType: "bool",
                     },
                     {
-                      internalType: "int256",
                       name: "amountSpecified",
                       type: "int256",
+                      internalType: "int256",
                     },
                     {
-                      internalType: "uint160",
                       name: "sqrtPriceLimitX96",
                       type: "uint160",
+                      internalType: "uint160",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterSwap",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeDonate",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
                   name: "amount0",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount1",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeDonate",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeInitialize",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeInitialize",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeModifyPosition",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeModifyPosition",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeSwap",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeSwap",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "clearTradingVolumeDiscountThresholds",
+              inputs: [],
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "day_of_the_week_before_swap",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "day_of_the_week_before_swap",
               outputs: [],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getFee",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "getFee",
               outputs: [
                 {
-                  internalType: "uint24",
                   name: "fee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getHookFees",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
               ],
-              name: "getHookFees",
               outputs: [
                 {
-                  internalType: "uint24",
                   name: "hookFee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getUserTradingVolumeByPool",
               inputs: [
                 {
-                  internalType: "address",
                   name: "user",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "PoolId",
                   name: "poolId",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "getUserTradingVolumeByPool",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "manager",
+              inputs: [],
               outputs: [
                 {
+                  name: "",
+                  type: "address",
                   internalType: "contract IPoolManager",
-                  name: "",
-                  type: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "bytes",
-                  name: "data",
-                  type: "bytes",
-                },
-              ],
+              type: "function",
               name: "not_blacklisted_before_initialize",
-              outputs: [],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "only_owner_before_initialize",
               outputs: [],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
+              name: "only_owner_before_initialize",
+              inputs: [
+                {
+                  name: "data",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+              ],
+              outputs: [],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
               name: "owner",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "renounceOwnership",
+              inputs: [],
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setAllowedDaysOfTheWeek",
               inputs: [
                 {
-                  internalType: "bool[8]",
                   name: "allowedDaysOfTheWeek",
                   type: "bool[8]",
+                  internalType: "bool[8]",
                 },
               ],
-              name: "setAllowedDaysOfTheWeek",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setBlacklistedForAction",
               inputs: [
                 {
-                  internalType: "address",
                   name: "user",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "enum IUniversalHook.Action",
                   name: "action",
                   type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
                 },
                 {
-                  internalType: "bool",
                   name: "blacklisted",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
-              name: "setBlacklistedForAction",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setFunctionsForAction",
               inputs: [
                 {
-                  internalType: "enum IUniversalHook.Action",
                   name: "action",
                   type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
                 },
                 {
-                  internalType: "bytes4[]",
                   name: "functions",
                   type: "bytes4[]",
+                  internalType: "bytes4[]",
                 },
               ],
-              name: "setFunctionsForAction",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setHookFee",
               inputs: [
                 {
-                  internalType: "uint24",
                   name: "hookFee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
-              name: "setHookFee",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setHookFeeForPool",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint24",
                   name: "hookFee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
-              name: "setHookFeeForPool",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setTradingHours",
               inputs: [
                 {
-                  internalType: "uint8",
                   name: "_tradingHoursStart",
                   type: "uint8",
+                  internalType: "uint8",
                 },
                 {
-                  internalType: "uint8",
                   name: "_tradingHoursEnd",
                   type: "uint8",
+                  internalType: "uint8",
                 },
               ],
-              name: "setTradingHours",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setWhitelistedForAction",
               inputs: [
                 {
-                  internalType: "address",
                   name: "user",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "enum IUniversalHook.Action",
                   name: "action",
                   type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
                 },
                 {
-                  internalType: "bool",
                   name: "whitelisted",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
-              name: "setWhitelistedForAction",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "trading_hours_before_Swap",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "trading_hours_before_Swap",
               outputs: [],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "transferOwnership",
               inputs: [
                 {
-                  internalType: "address",
                   name: "newOwner",
                   type: "address",
+                  internalType: "address",
                 },
               ],
-              name: "transferOwnership",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "user_trading_volume_dynamic_fee",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "user_trading_volume_dynamic_fee",
               outputs: [
                 {
-                  internalType: "uint8",
                   name: "",
                   type: "uint8",
+                  internalType: "uint8",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "bytes",
-                  name: "data",
-                  type: "bytes",
-                },
-              ],
+              type: "function",
               name: "whitelist_before_initialize",
-              outputs: [],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "whitelist_swap",
               outputs: [],
               stateMutability: "view",
+            },
+            {
               type: "function",
+              name: "whitelist_swap",
+              inputs: [
+                {
+                  name: "data",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+              ],
+              outputs: [],
+              stateMutability: "view",
+            },
+            {
+              type: "event",
+              name: "OwnershipTransferred",
+              inputs: [
+                {
+                  name: "previousOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "newOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "error",
+              name: "FunctionFailed",
+              inputs: [
+                {
+                  name: "",
+                  type: "bytes4",
+                  internalType: "bytes4",
+                },
+                {
+                  name: "",
+                  type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "InvalidFee",
+              inputs: [
+                {
+                  name: "",
+                  type: "uint24",
+                  internalType: "uint24",
+                },
+              ],
             },
           ],
         },
@@ -5202,1650 +5357,1650 @@ const contracts = {
           address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
           abi: [
             {
+              type: "constructor",
               inputs: [
                 {
-                  internalType: "uint256",
                   name: "controllerGasLimit",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "constructor",
             },
             {
-              inputs: [],
-              name: "CannotUpdateEmptyPosition",
-              type: "error",
+              type: "receive",
+              stateMutability: "payable",
             },
             {
-              inputs: [],
-              name: "CurrenciesInitializedOutOfOrder",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "CurrencyNotSettled",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "ERC20TransferFailed",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "FeeTooLarge",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "hooks",
-                  type: "address",
-                },
-              ],
-              name: "HookAddressNotValid",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidCaller",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidHookResponse",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidSqrtRatio",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidTick",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "locker",
-                  type: "address",
-                },
-              ],
-              name: "LockedBy",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "MaxCurrenciesTouched",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "NativeTransferFailed",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "NotPoolManagerToken",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "PoolAlreadyInitialized",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "PoolNotInitialized",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint160",
-                  name: "sqrtPriceCurrentX96",
-                  type: "uint160",
-                },
-                {
-                  internalType: "uint160",
-                  name: "sqrtPriceLimitX96",
-                  type: "uint160",
-                },
-              ],
-              name: "PriceLimitAlreadyExceeded",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint160",
-                  name: "sqrtPriceLimitX96",
-                  type: "uint160",
-                },
-              ],
-              name: "PriceLimitOutOfBounds",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "ProtocolFeeCannotBeFetched",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "SwapAmountCannotBeZero",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tick",
-                  type: "int24",
-                },
-              ],
-              name: "TickLiquidityOverflow",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tickLower",
-                  type: "int24",
-                },
-              ],
-              name: "TickLowerOutOfBounds",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tick",
-                  type: "int24",
-                },
-                {
-                  internalType: "int24",
-                  name: "tickSpacing",
-                  type: "int24",
-                },
-              ],
-              name: "TickMisaligned",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "TickSpacingTooLarge",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "TickSpacingTooSmall",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tickUpper",
-                  type: "int24",
-                },
-              ],
-              name: "TickUpperOutOfBounds",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tickLower",
-                  type: "int24",
-                },
-                {
-                  internalType: "int24",
-                  name: "tickUpper",
-                  type: "int24",
-                },
-              ],
-              name: "TicksMisordered",
-              type: "error",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "account",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "operator",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "bool",
-                  name: "approved",
-                  type: "bool",
-                },
-              ],
-              name: "ApprovalForAll",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "hookFees",
-                  type: "uint24",
-                },
-              ],
-              name: "HookFeeUpdated",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: true,
-                  internalType: "Currency",
-                  name: "currency0",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "Currency",
-                  name: "currency1",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "fee",
-                  type: "uint24",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tickSpacing",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "contract IHooks",
-                  name: "hooks",
-                  type: "address",
-                },
-              ],
-              name: "Initialize",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "sender",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tickLower",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tickUpper",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "int256",
-                  name: "liquidityDelta",
-                  type: "int256",
-                },
-              ],
-              name: "ModifyPosition",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "oldOwner",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "newOwner",
-                  type: "address",
-                },
-              ],
-              name: "OwnerChanged",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: false,
-                  internalType: "address",
-                  name: "protocolFeeController",
-                  type: "address",
-                },
-              ],
-              name: "ProtocolFeeControllerUpdated",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "protocolFees",
-                  type: "uint24",
-                },
-              ],
-              name: "ProtocolFeeUpdated",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "sender",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "int128",
-                  name: "amount0",
-                  type: "int128",
-                },
-                {
-                  indexed: false,
-                  internalType: "int128",
-                  name: "amount1",
-                  type: "int128",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint160",
-                  name: "sqrtPriceX96",
-                  type: "uint160",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint128",
-                  name: "liquidity",
-                  type: "uint128",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tick",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "fee",
-                  type: "uint24",
-                },
-              ],
-              name: "Swap",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "operator",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "from",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "to",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256[]",
-                  name: "ids",
-                  type: "uint256[]",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256[]",
-                  name: "values",
-                  type: "uint256[]",
-                },
-              ],
-              name: "TransferBatch",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "operator",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "from",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "to",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256",
-                  name: "id",
-                  type: "uint256",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256",
-                  name: "value",
-                  type: "uint256",
-                },
-              ],
-              name: "TransferSingle",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: false,
-                  internalType: "string",
-                  name: "value",
-                  type: "string",
-                },
-                {
-                  indexed: true,
-                  internalType: "uint256",
-                  name: "id",
-                  type: "uint256",
-                },
-              ],
-              name: "URI",
-              type: "event",
-            },
-            {
-              inputs: [],
+              type: "function",
               name: "MAX_TICK_SPACING",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "int24",
                   name: "",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "MIN_PROTOCOL_FEE_DENOMINATOR",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "uint8",
                   name: "",
                   type: "uint8",
+                  internalType: "uint8",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "MIN_TICK_SPACING",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "int24",
                   name: "",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "balanceOf",
               inputs: [
                 {
-                  internalType: "address",
                   name: "account",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "id",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "balanceOf",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "balanceOfBatch",
               inputs: [
                 {
-                  internalType: "address[]",
                   name: "accounts",
                   type: "address[]",
+                  internalType: "address[]",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "ids",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
               ],
-              name: "balanceOfBatch",
               outputs: [
                 {
-                  internalType: "uint256[]",
                   name: "",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "recipient",
-                  type: "address",
-                },
-                {
-                  internalType: "Currency",
-                  name: "currency",
-                  type: "address",
-                },
-                {
-                  internalType: "uint256",
-                  name: "amount",
-                  type: "uint256",
-                },
-              ],
+              type: "function",
               name: "collectHookFees",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "amountCollected",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "nonpayable",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "address",
                   name: "recipient",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "collectProtocolFees",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "amountCollected",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "collectProtocolFees",
               inputs: [
                 {
+                  name: "recipient",
+                  type: "address",
                   internalType: "address",
+                },
+                {
+                  name: "currency",
+                  type: "address",
+                  internalType: "Currency",
+                },
+                {
+                  name: "amount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "amountCollected",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "currencyDelta",
+              inputs: [
+                {
                   name: "locker",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "currencyDelta",
               outputs: [
                 {
-                  internalType: "int256",
                   name: "currencyDelta",
                   type: "int256",
+                  internalType: "int256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getLiquidity",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
                 {
-                  internalType: "address",
                   name: "_owner",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "int24",
                   name: "tickLower",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "int24",
                   name: "tickUpper",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
-              name: "getLiquidity",
               outputs: [
                 {
-                  internalType: "uint128",
                   name: "liquidity",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getLiquidity",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "getLiquidity",
               outputs: [
                 {
-                  internalType: "uint128",
                   name: "liquidity",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getLock",
               inputs: [
                 {
-                  internalType: "uint256",
                   name: "i",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "getLock",
               outputs: [
                 {
-                  internalType: "address",
                   name: "locker",
                   type: "address",
+                  internalType: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getPosition",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
                 {
-                  internalType: "address",
                   name: "owner",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "int24",
                   name: "tickLower",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "int24",
                   name: "tickUpper",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
-              name: "getPosition",
               outputs: [
                 {
-                  components: [
-                    {
-                      internalType: "uint128",
-                      name: "liquidity",
-                      type: "uint128",
-                    },
-                    {
-                      internalType: "uint256",
-                      name: "feeGrowthInside0LastX128",
-                      type: "uint256",
-                    },
-                    {
-                      internalType: "uint256",
-                      name: "feeGrowthInside1LastX128",
-                      type: "uint256",
-                    },
-                  ],
-                  internalType: "struct Position.Info",
                   name: "position",
                   type: "tuple",
+                  internalType: "struct Position.Info",
+                  components: [
+                    {
+                      name: "liquidity",
+                      type: "uint128",
+                      internalType: "uint128",
+                    },
+                    {
+                      name: "feeGrowthInside0LastX128",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "feeGrowthInside1LastX128",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getSlot0",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "getSlot0",
               outputs: [
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "int24",
                   name: "tick",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "uint24",
                   name: "protocolFees",
                   type: "uint24",
+                  internalType: "uint24",
                 },
                 {
-                  internalType: "uint24",
                   name: "hookFees",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "hookFeesAccrued",
               inputs: [
                 {
-                  internalType: "address",
                   name: "hookAddress",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "hookFeesAccrued",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "initialize",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "initialize",
               outputs: [
                 {
-                  internalType: "int24",
                   name: "tick",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "isApprovedForAll",
               inputs: [
                 {
-                  internalType: "address",
                   name: "account",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "operator",
                   type: "address",
+                  internalType: "address",
                 },
               ],
-              name: "isApprovedForAll",
               outputs: [
                 {
-                  internalType: "bool",
                   name: "",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "lock",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "lock",
               outputs: [
                 {
-                  internalType: "bytes",
                   name: "result",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "lockData",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "uint128",
                   name: "length",
                   type: "uint128",
+                  internalType: "uint128",
                 },
                 {
-                  internalType: "uint128",
                   name: "nonzeroDeltaCount",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "mint",
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "mint",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "modifyPosition",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "modifyPosition",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "onERC1155BatchReceived",
               inputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "ids",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "values",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "bytes",
                   name: "",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "onERC1155BatchReceived",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "onERC1155Received",
               inputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "id",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "value",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "onERC1155Received",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "owner",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "pools",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "pools",
               outputs: [
                 {
-                  components: [
-                    {
-                      internalType: "uint160",
-                      name: "sqrtPriceX96",
-                      type: "uint160",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tick",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "protocolFees",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "hookFees",
-                      type: "uint24",
-                    },
-                  ],
-                  internalType: "struct Pool.Slot0",
                   name: "slot0",
                   type: "tuple",
+                  internalType: "struct Pool.Slot0",
+                  components: [
+                    {
+                      name: "sqrtPriceX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                    {
+                      name: "tick",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "protocolFees",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "hookFees",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
                   name: "feeGrowthGlobal0X128",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "feeGrowthGlobal1X128",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint128",
                   name: "liquidity",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "protocolFeeController",
+              inputs: [],
               outputs: [
                 {
+                  name: "",
+                  type: "address",
                   internalType: "contract IProtocolFeeController",
-                  name: "",
-                  type: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "Currency",
-                  name: "currency",
-                  type: "address",
-                },
-              ],
+              type: "function",
               name: "protocolFeesAccrued",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "reservesOf",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "reservesOf",
               inputs: [
                 {
-                  internalType: "address",
+                  name: "currency",
+                  type: "address",
+                  internalType: "Currency",
+                },
+              ],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "safeBatchTransferFrom",
+              inputs: [
+                {
                   name: "from",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "ids",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "amounts",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "safeBatchTransferFrom",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "safeTransferFrom",
               inputs: [
                 {
-                  internalType: "address",
                   name: "from",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "id",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "safeTransferFrom",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setApprovalForAll",
               inputs: [
                 {
-                  internalType: "address",
                   name: "operator",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "bool",
                   name: "approved",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
-              name: "setApprovalForAll",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setHookFees",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
               ],
-              name: "setHookFees",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setOwner",
               inputs: [
                 {
-                  internalType: "address",
                   name: "_owner",
                   type: "address",
+                  internalType: "address",
                 },
               ],
-              name: "setOwner",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setProtocolFeeController",
               inputs: [
                 {
-                  internalType: "contract IProtocolFeeController",
                   name: "controller",
                   type: "address",
+                  internalType: "contract IProtocolFeeController",
                 },
               ],
-              name: "setProtocolFeeController",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setProtocolFees",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
               ],
-              name: "setProtocolFees",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "settle",
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "settle",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "paid",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "payable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "supportsInterface",
               inputs: [
                 {
-                  internalType: "bytes4",
                   name: "interfaceId",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
-              name: "supportsInterface",
               outputs: [
                 {
-                  internalType: "bool",
                   name: "",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "swap",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "swap",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "take",
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "take",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "uri",
               inputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "uri",
               outputs: [
                 {
-                  internalType: "string",
                   name: "",
                   type: "string",
+                  internalType: "string",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              stateMutability: "payable",
-              type: "receive",
+              type: "event",
+              name: "ApprovalForAll",
+              inputs: [
+                {
+                  name: "account",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "operator",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "approved",
+                  type: "bool",
+                  indexed: false,
+                  internalType: "bool",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "HookFeeUpdated",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "hookFees",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "Initialize",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "currency0",
+                  type: "address",
+                  indexed: true,
+                  internalType: "Currency",
+                },
+                {
+                  name: "currency1",
+                  type: "address",
+                  indexed: true,
+                  internalType: "Currency",
+                },
+                {
+                  name: "fee",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+                {
+                  name: "tickSpacing",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "hooks",
+                  type: "address",
+                  indexed: false,
+                  internalType: "contract IHooks",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "ModifyPosition",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "sender",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "tickLower",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "tickUpper",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "liquidityDelta",
+                  type: "int256",
+                  indexed: false,
+                  internalType: "int256",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "OwnerChanged",
+              inputs: [
+                {
+                  name: "oldOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "newOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "ProtocolFeeControllerUpdated",
+              inputs: [
+                {
+                  name: "protocolFeeController",
+                  type: "address",
+                  indexed: false,
+                  internalType: "address",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "ProtocolFeeUpdated",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "protocolFees",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "Swap",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "sender",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "amount0",
+                  type: "int128",
+                  indexed: false,
+                  internalType: "int128",
+                },
+                {
+                  name: "amount1",
+                  type: "int128",
+                  indexed: false,
+                  internalType: "int128",
+                },
+                {
+                  name: "sqrtPriceX96",
+                  type: "uint160",
+                  indexed: false,
+                  internalType: "uint160",
+                },
+                {
+                  name: "liquidity",
+                  type: "uint128",
+                  indexed: false,
+                  internalType: "uint128",
+                },
+                {
+                  name: "tick",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "fee",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "TransferBatch",
+              inputs: [
+                {
+                  name: "operator",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "from",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "to",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "ids",
+                  type: "uint256[]",
+                  indexed: false,
+                  internalType: "uint256[]",
+                },
+                {
+                  name: "values",
+                  type: "uint256[]",
+                  indexed: false,
+                  internalType: "uint256[]",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "TransferSingle",
+              inputs: [
+                {
+                  name: "operator",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "from",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "to",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "id",
+                  type: "uint256",
+                  indexed: false,
+                  internalType: "uint256",
+                },
+                {
+                  name: "value",
+                  type: "uint256",
+                  indexed: false,
+                  internalType: "uint256",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "URI",
+              inputs: [
+                {
+                  name: "value",
+                  type: "string",
+                  indexed: false,
+                  internalType: "string",
+                },
+                {
+                  name: "id",
+                  type: "uint256",
+                  indexed: true,
+                  internalType: "uint256",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "error",
+              name: "CannotUpdateEmptyPosition",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "CurrenciesInitializedOutOfOrder",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "CurrencyNotSettled",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "ERC20TransferFailed",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "FeeTooLarge",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "HookAddressNotValid",
+              inputs: [
+                {
+                  name: "hooks",
+                  type: "address",
+                  internalType: "address",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "InvalidCaller",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "InvalidHookResponse",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "InvalidSqrtRatio",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "InvalidTick",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "LockedBy",
+              inputs: [
+                {
+                  name: "locker",
+                  type: "address",
+                  internalType: "address",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "MaxCurrenciesTouched",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "NativeTransferFailed",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "NotPoolManagerToken",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "PoolAlreadyInitialized",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "PoolNotInitialized",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "PriceLimitAlreadyExceeded",
+              inputs: [
+                {
+                  name: "sqrtPriceCurrentX96",
+                  type: "uint160",
+                  internalType: "uint160",
+                },
+                {
+                  name: "sqrtPriceLimitX96",
+                  type: "uint160",
+                  internalType: "uint160",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "PriceLimitOutOfBounds",
+              inputs: [
+                {
+                  name: "sqrtPriceLimitX96",
+                  type: "uint160",
+                  internalType: "uint160",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "ProtocolFeeCannotBeFetched",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "SwapAmountCannotBeZero",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "TickLiquidityOverflow",
+              inputs: [
+                {
+                  name: "tick",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TickLowerOutOfBounds",
+              inputs: [
+                {
+                  name: "tickLower",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TickMisaligned",
+              inputs: [
+                {
+                  name: "tick",
+                  type: "int24",
+                  internalType: "int24",
+                },
+                {
+                  name: "tickSpacing",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TickSpacingTooLarge",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "TickSpacingTooSmall",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "TickUpperOutOfBounds",
+              inputs: [
+                {
+                  name: "tickUpper",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TicksMisordered",
+              inputs: [
+                {
+                  name: "tickLower",
+                  type: "int24",
+                  internalType: "int24",
+                },
+                {
+                  name: "tickUpper",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
             },
           ],
         },
@@ -6872,6 +7027,16 @@ const contracts = {
                   type: "uint256",
                   internalType: "uint256",
                 },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
               ],
               outputs: [
                 {
@@ -6881,6 +7046,45 @@ const contracts = {
                 },
               ],
               stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "deployedHooks",
+              inputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "owner",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "hookAddr",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "creationTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
             },
             {
               type: "function",
@@ -6908,6 +7112,52 @@ const contracts = {
             },
             {
               type: "function",
+              name: "getHookInfo",
+              inputs: [
+                {
+                  name: "hookId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "hook",
+                  type: "tuple",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
               name: "getPrecomputedHookAddress",
               inputs: [
                 {
@@ -6921,6 +7171,32 @@ const contracts = {
                   name: "",
                   type: "address",
                   internalType: "address",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "hookCount",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "lastNonce",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
@@ -6966,6 +7242,19 @@ const contracts = {
                   name: "newOwner",
                   type: "address",
                   internalType: "address",
+                },
+              ],
+              outputs: [],
+              stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "updateManager",
+              inputs: [
+                {
+                  name: "_manager",
+                  type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               outputs: [],
@@ -6995,16 +7284,37 @@ const contracts = {
               name: "HookCreated",
               inputs: [
                 {
-                  name: "owner",
-                  type: "address",
+                  name: "hook",
+                  type: "tuple",
                   indexed: false,
-                  internalType: "address",
-                },
-                {
-                  name: "hookAddr",
-                  type: "address",
-                  indexed: false,
-                  internalType: "address",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
                 },
               ],
               anonymous: false,
@@ -7034,358 +7344,358 @@ const contracts = {
           address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
           abi: [
             {
+              type: "constructor",
               inputs: [
                 {
-                  internalType: "contract IPoolManager",
                   name: "_manager",
                   type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "constructor",
             },
             {
-              inputs: [],
-              name: "ERC20TransferFailed",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "LockFailure",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "NativeTransferFailed",
-              type: "error",
-            },
-            {
+              type: "function",
+              name: "lockAcquired",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "lockAcquired",
               outputs: [
                 {
-                  internalType: "bytes",
                   name: "",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "lockAcquiredModifyPosition",
               inputs: [
                 {
+                  name: "data",
+                  type: "tuple",
+                  internalType: "struct Router04.CallbackDataModifyPosition",
                   components: [
                     {
-                      internalType: "address",
                       name: "sender",
                       type: "address",
+                      internalType: "address",
                     },
                     {
-                      components: [
-                        {
-                          internalType: "Currency",
-                          name: "currency0",
-                          type: "address",
-                        },
-                        {
-                          internalType: "Currency",
-                          name: "currency1",
-                          type: "address",
-                        },
-                        {
-                          internalType: "uint24",
-                          name: "fee",
-                          type: "uint24",
-                        },
-                        {
-                          internalType: "int24",
-                          name: "tickSpacing",
-                          type: "int24",
-                        },
-                        {
-                          internalType: "contract IHooks",
-                          name: "hooks",
-                          type: "address",
-                        },
-                      ],
-                      internalType: "struct PoolKey",
                       name: "key",
                       type: "tuple",
-                    },
-                    {
+                      internalType: "struct PoolKey",
                       components: [
                         {
+                          name: "currency0",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "currency1",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "fee",
+                          type: "uint24",
+                          internalType: "uint24",
+                        },
+                        {
+                          name: "tickSpacing",
+                          type: "int24",
                           internalType: "int24",
+                        },
+                        {
+                          name: "hooks",
+                          type: "address",
+                          internalType: "contract IHooks",
+                        },
+                      ],
+                    },
+                    {
+                      name: "params",
+                      type: "tuple",
+                      internalType: "struct IPoolManager.ModifyPositionParams",
+                      components: [
+                        {
                           name: "tickLower",
                           type: "int24",
+                          internalType: "int24",
                         },
                         {
-                          internalType: "int24",
                           name: "tickUpper",
                           type: "int24",
+                          internalType: "int24",
                         },
                         {
-                          internalType: "int256",
                           name: "liquidityDelta",
                           type: "int256",
+                          internalType: "int256",
                         },
                       ],
-                      internalType: "struct IPoolManager.ModifyPositionParams",
-                      name: "params",
-                      type: "tuple",
                     },
                   ],
-                  internalType: "struct Router04.CallbackDataModifyPosition",
-                  name: "data",
-                  type: "tuple",
                 },
               ],
-              name: "lockAcquiredModifyPosition",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "lockAcquiredSwap",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "address",
-                      name: "sender",
-                      type: "address",
-                    },
-                    {
-                      components: [
-                        {
-                          internalType: "Currency",
-                          name: "currency0",
-                          type: "address",
-                        },
-                        {
-                          internalType: "Currency",
-                          name: "currency1",
-                          type: "address",
-                        },
-                        {
-                          internalType: "uint24",
-                          name: "fee",
-                          type: "uint24",
-                        },
-                        {
-                          internalType: "int24",
-                          name: "tickSpacing",
-                          type: "int24",
-                        },
-                        {
-                          internalType: "contract IHooks",
-                          name: "hooks",
-                          type: "address",
-                        },
-                      ],
-                      internalType: "struct PoolKey",
-                      name: "key",
-                      type: "tuple",
-                    },
-                    {
-                      components: [
-                        {
-                          internalType: "bool",
-                          name: "zeroForOne",
-                          type: "bool",
-                        },
-                        {
-                          internalType: "int256",
-                          name: "amountSpecified",
-                          type: "int256",
-                        },
-                        {
-                          internalType: "uint160",
-                          name: "sqrtPriceLimitX96",
-                          type: "uint160",
-                        },
-                      ],
-                      internalType: "struct IPoolManager.SwapParams",
-                      name: "params",
-                      type: "tuple",
-                    },
-                  ],
-                  internalType: "struct Router04.CallbackDataSwap",
                   name: "data",
                   type: "tuple",
+                  internalType: "struct Router04.CallbackDataSwap",
+                  components: [
+                    {
+                      name: "sender",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "key",
+                      type: "tuple",
+                      internalType: "struct PoolKey",
+                      components: [
+                        {
+                          name: "currency0",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "currency1",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "fee",
+                          type: "uint24",
+                          internalType: "uint24",
+                        },
+                        {
+                          name: "tickSpacing",
+                          type: "int24",
+                          internalType: "int24",
+                        },
+                        {
+                          name: "hooks",
+                          type: "address",
+                          internalType: "contract IHooks",
+                        },
+                      ],
+                    },
+                    {
+                      name: "params",
+                      type: "tuple",
+                      internalType: "struct IPoolManager.SwapParams",
+                      components: [
+                        {
+                          name: "zeroForOne",
+                          type: "bool",
+                          internalType: "bool",
+                        },
+                        {
+                          name: "amountSpecified",
+                          type: "int256",
+                          internalType: "int256",
+                        },
+                        {
+                          name: "sqrtPriceLimitX96",
+                          type: "uint160",
+                          internalType: "uint160",
+                        },
+                      ],
+                    },
+                  ],
                 },
               ],
-              name: "lockAcquiredSwap",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "manager",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "contract IPoolManager",
                   name: "",
                   type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "modifyPosition",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
               ],
-              name: "modifyPosition",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "payable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "swap",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
               ],
-              name: "swap",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "payable",
-              type: "function",
+            },
+            {
+              type: "error",
+              name: "ERC20TransferFailed",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "LockFailure",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "NativeTransferFailed",
+              inputs: [],
             },
           ],
         },
@@ -7393,1118 +7703,1119 @@ const contracts = {
           address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
           abi: [
             {
+              type: "constructor",
               inputs: [
                 {
-                  internalType: "contract IPoolManager",
                   name: "_manager",
                   type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "constructor",
             },
             {
+              type: "function",
+              name: "addTradingVolumeDiscountThresholds",
               inputs: [
                 {
-                  internalType: "bytes4",
-                  name: "",
-                  type: "bytes4",
-                },
-                {
-                  internalType: "enum IUniversalHook.Action",
-                  name: "",
-                  type: "uint8",
-                },
-              ],
-              name: "FunctionFailed",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint24",
-                  name: "",
-                  type: "uint24",
-                },
-              ],
-              name: "InvalidFee",
-              type: "error",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "previousOwner",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "newOwner",
-                  type: "address",
-                },
-              ],
-              name: "OwnershipTransferred",
-              type: "event",
-            },
-            {
-              inputs: [
-                {
-                  components: [
-                    {
-                      internalType: "uint256",
-                      name: "volume",
-                      type: "uint256",
-                    },
-                    {
-                      internalType: "uint8",
-                      name: "discountPts",
-                      type: "uint8",
-                    },
-                  ],
-                  internalType: "struct IUniversalHook.TradingVolumeDiscountThreshold",
                   name: "_tradingVolumeDiscountThreshold",
                   type: "tuple",
+                  internalType:
+                    "struct IUniversalHook.TradingVolumeDiscountThreshold",
+                  components: [
+                    {
+                      name: "volume",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "discountPts",
+                      type: "uint8",
+                      internalType: "uint8",
+                    },
+                  ],
                 },
               ],
-              name: "addTradingVolumeDiscountThresholds",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterDonate",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
                   name: "amount0",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount1",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterDonate",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterInitialize",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "int24",
                   name: "tick",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterInitialize",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterModifyPosition",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterModifyPosition",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterSwap",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
                       name: "zeroForOne",
                       type: "bool",
+                      internalType: "bool",
                     },
                     {
-                      internalType: "int256",
                       name: "amountSpecified",
                       type: "int256",
+                      internalType: "int256",
                     },
                     {
-                      internalType: "uint160",
                       name: "sqrtPriceLimitX96",
                       type: "uint160",
+                      internalType: "uint160",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterSwap",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeDonate",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
                   name: "amount0",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount1",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeDonate",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeInitialize",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeInitialize",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeModifyPosition",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeModifyPosition",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeSwap",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeSwap",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "clearTradingVolumeDiscountThresholds",
+              inputs: [],
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "day_of_the_week_before_swap",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "day_of_the_week_before_swap",
               outputs: [],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getFee",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "getFee",
               outputs: [
                 {
-                  internalType: "uint24",
                   name: "fee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getHookFees",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
               ],
-              name: "getHookFees",
               outputs: [
                 {
-                  internalType: "uint24",
                   name: "hookFee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getUserTradingVolumeByPool",
               inputs: [
                 {
-                  internalType: "address",
                   name: "user",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "PoolId",
                   name: "poolId",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "getUserTradingVolumeByPool",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "manager",
+              inputs: [],
               outputs: [
                 {
+                  name: "",
+                  type: "address",
                   internalType: "contract IPoolManager",
-                  name: "",
-                  type: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "bytes",
-                  name: "data",
-                  type: "bytes",
-                },
-              ],
+              type: "function",
               name: "not_blacklisted_before_initialize",
-              outputs: [],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "only_owner_before_initialize",
               outputs: [],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
+              name: "only_owner_before_initialize",
+              inputs: [
+                {
+                  name: "data",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+              ],
+              outputs: [],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
               name: "owner",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "renounceOwnership",
+              inputs: [],
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setAllowedDaysOfTheWeek",
               inputs: [
                 {
-                  internalType: "bool[8]",
                   name: "allowedDaysOfTheWeek",
                   type: "bool[8]",
+                  internalType: "bool[8]",
                 },
               ],
-              name: "setAllowedDaysOfTheWeek",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setBlacklistedForAction",
               inputs: [
                 {
-                  internalType: "address",
                   name: "user",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "enum IUniversalHook.Action",
                   name: "action",
                   type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
                 },
                 {
-                  internalType: "bool",
                   name: "blacklisted",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
-              name: "setBlacklistedForAction",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setFunctionsForAction",
               inputs: [
                 {
-                  internalType: "enum IUniversalHook.Action",
                   name: "action",
                   type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
                 },
                 {
-                  internalType: "bytes4[]",
                   name: "functions",
                   type: "bytes4[]",
+                  internalType: "bytes4[]",
                 },
               ],
-              name: "setFunctionsForAction",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setHookFee",
               inputs: [
                 {
-                  internalType: "uint24",
                   name: "hookFee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
-              name: "setHookFee",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setHookFeeForPool",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint24",
                   name: "hookFee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
-              name: "setHookFeeForPool",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setTradingHours",
               inputs: [
                 {
-                  internalType: "uint8",
                   name: "_tradingHoursStart",
                   type: "uint8",
+                  internalType: "uint8",
                 },
                 {
-                  internalType: "uint8",
                   name: "_tradingHoursEnd",
                   type: "uint8",
+                  internalType: "uint8",
                 },
               ],
-              name: "setTradingHours",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setWhitelistedForAction",
               inputs: [
                 {
-                  internalType: "address",
                   name: "user",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "enum IUniversalHook.Action",
                   name: "action",
                   type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
                 },
                 {
-                  internalType: "bool",
                   name: "whitelisted",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
-              name: "setWhitelistedForAction",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "trading_hours_before_Swap",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "trading_hours_before_Swap",
               outputs: [],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "transferOwnership",
               inputs: [
                 {
-                  internalType: "address",
                   name: "newOwner",
                   type: "address",
+                  internalType: "address",
                 },
               ],
-              name: "transferOwnership",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "user_trading_volume_dynamic_fee",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "user_trading_volume_dynamic_fee",
               outputs: [
                 {
-                  internalType: "uint8",
                   name: "",
                   type: "uint8",
+                  internalType: "uint8",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "bytes",
-                  name: "data",
-                  type: "bytes",
-                },
-              ],
+              type: "function",
               name: "whitelist_before_initialize",
-              outputs: [],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "whitelist_swap",
               outputs: [],
               stateMutability: "view",
+            },
+            {
               type: "function",
+              name: "whitelist_swap",
+              inputs: [
+                {
+                  name: "data",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+              ],
+              outputs: [],
+              stateMutability: "view",
+            },
+            {
+              type: "event",
+              name: "OwnershipTransferred",
+              inputs: [
+                {
+                  name: "previousOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "newOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "error",
+              name: "FunctionFailed",
+              inputs: [
+                {
+                  name: "",
+                  type: "bytes4",
+                  internalType: "bytes4",
+                },
+                {
+                  name: "",
+                  type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "InvalidFee",
+              inputs: [
+                {
+                  name: "",
+                  type: "uint24",
+                  internalType: "uint24",
+                },
+              ],
             },
           ],
         },
@@ -9270,1650 +9581,1650 @@ const contracts = {
           address: "0xfc195873C77D36111948d8e151568c410DA9fD30",
           abi: [
             {
+              type: "constructor",
               inputs: [
                 {
-                  internalType: "uint256",
                   name: "controllerGasLimit",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "constructor",
             },
             {
-              inputs: [],
-              name: "CannotUpdateEmptyPosition",
-              type: "error",
+              type: "receive",
+              stateMutability: "payable",
             },
             {
-              inputs: [],
-              name: "CurrenciesInitializedOutOfOrder",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "CurrencyNotSettled",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "ERC20TransferFailed",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "FeeTooLarge",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "hooks",
-                  type: "address",
-                },
-              ],
-              name: "HookAddressNotValid",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidCaller",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidHookResponse",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidSqrtRatio",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidTick",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "locker",
-                  type: "address",
-                },
-              ],
-              name: "LockedBy",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "MaxCurrenciesTouched",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "NativeTransferFailed",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "NotPoolManagerToken",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "PoolAlreadyInitialized",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "PoolNotInitialized",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint160",
-                  name: "sqrtPriceCurrentX96",
-                  type: "uint160",
-                },
-                {
-                  internalType: "uint160",
-                  name: "sqrtPriceLimitX96",
-                  type: "uint160",
-                },
-              ],
-              name: "PriceLimitAlreadyExceeded",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint160",
-                  name: "sqrtPriceLimitX96",
-                  type: "uint160",
-                },
-              ],
-              name: "PriceLimitOutOfBounds",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "ProtocolFeeCannotBeFetched",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "SwapAmountCannotBeZero",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tick",
-                  type: "int24",
-                },
-              ],
-              name: "TickLiquidityOverflow",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tickLower",
-                  type: "int24",
-                },
-              ],
-              name: "TickLowerOutOfBounds",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tick",
-                  type: "int24",
-                },
-                {
-                  internalType: "int24",
-                  name: "tickSpacing",
-                  type: "int24",
-                },
-              ],
-              name: "TickMisaligned",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "TickSpacingTooLarge",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "TickSpacingTooSmall",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tickUpper",
-                  type: "int24",
-                },
-              ],
-              name: "TickUpperOutOfBounds",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tickLower",
-                  type: "int24",
-                },
-                {
-                  internalType: "int24",
-                  name: "tickUpper",
-                  type: "int24",
-                },
-              ],
-              name: "TicksMisordered",
-              type: "error",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "account",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "operator",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "bool",
-                  name: "approved",
-                  type: "bool",
-                },
-              ],
-              name: "ApprovalForAll",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "hookFees",
-                  type: "uint24",
-                },
-              ],
-              name: "HookFeeUpdated",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: true,
-                  internalType: "Currency",
-                  name: "currency0",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "Currency",
-                  name: "currency1",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "fee",
-                  type: "uint24",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tickSpacing",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "contract IHooks",
-                  name: "hooks",
-                  type: "address",
-                },
-              ],
-              name: "Initialize",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "sender",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tickLower",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tickUpper",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "int256",
-                  name: "liquidityDelta",
-                  type: "int256",
-                },
-              ],
-              name: "ModifyPosition",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "oldOwner",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "newOwner",
-                  type: "address",
-                },
-              ],
-              name: "OwnerChanged",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: false,
-                  internalType: "address",
-                  name: "protocolFeeController",
-                  type: "address",
-                },
-              ],
-              name: "ProtocolFeeControllerUpdated",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "protocolFees",
-                  type: "uint24",
-                },
-              ],
-              name: "ProtocolFeeUpdated",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "sender",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "int128",
-                  name: "amount0",
-                  type: "int128",
-                },
-                {
-                  indexed: false,
-                  internalType: "int128",
-                  name: "amount1",
-                  type: "int128",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint160",
-                  name: "sqrtPriceX96",
-                  type: "uint160",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint128",
-                  name: "liquidity",
-                  type: "uint128",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tick",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "fee",
-                  type: "uint24",
-                },
-              ],
-              name: "Swap",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "operator",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "from",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "to",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256[]",
-                  name: "ids",
-                  type: "uint256[]",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256[]",
-                  name: "values",
-                  type: "uint256[]",
-                },
-              ],
-              name: "TransferBatch",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "operator",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "from",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "to",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256",
-                  name: "id",
-                  type: "uint256",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256",
-                  name: "value",
-                  type: "uint256",
-                },
-              ],
-              name: "TransferSingle",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: false,
-                  internalType: "string",
-                  name: "value",
-                  type: "string",
-                },
-                {
-                  indexed: true,
-                  internalType: "uint256",
-                  name: "id",
-                  type: "uint256",
-                },
-              ],
-              name: "URI",
-              type: "event",
-            },
-            {
-              inputs: [],
+              type: "function",
               name: "MAX_TICK_SPACING",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "int24",
                   name: "",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "MIN_PROTOCOL_FEE_DENOMINATOR",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "uint8",
                   name: "",
                   type: "uint8",
+                  internalType: "uint8",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "MIN_TICK_SPACING",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "int24",
                   name: "",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "balanceOf",
               inputs: [
                 {
-                  internalType: "address",
                   name: "account",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "id",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "balanceOf",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "balanceOfBatch",
               inputs: [
                 {
-                  internalType: "address[]",
                   name: "accounts",
                   type: "address[]",
+                  internalType: "address[]",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "ids",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
               ],
-              name: "balanceOfBatch",
               outputs: [
                 {
-                  internalType: "uint256[]",
                   name: "",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "recipient",
-                  type: "address",
-                },
-                {
-                  internalType: "Currency",
-                  name: "currency",
-                  type: "address",
-                },
-                {
-                  internalType: "uint256",
-                  name: "amount",
-                  type: "uint256",
-                },
-              ],
+              type: "function",
               name: "collectHookFees",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "amountCollected",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "nonpayable",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "address",
                   name: "recipient",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "collectProtocolFees",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "amountCollected",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "collectProtocolFees",
               inputs: [
                 {
+                  name: "recipient",
+                  type: "address",
                   internalType: "address",
+                },
+                {
+                  name: "currency",
+                  type: "address",
+                  internalType: "Currency",
+                },
+                {
+                  name: "amount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "amountCollected",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "currencyDelta",
+              inputs: [
+                {
                   name: "locker",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "currencyDelta",
               outputs: [
                 {
-                  internalType: "int256",
                   name: "currencyDelta",
                   type: "int256",
+                  internalType: "int256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getLiquidity",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
                 {
-                  internalType: "address",
                   name: "_owner",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "int24",
                   name: "tickLower",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "int24",
                   name: "tickUpper",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
-              name: "getLiquidity",
               outputs: [
                 {
-                  internalType: "uint128",
                   name: "liquidity",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getLiquidity",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "getLiquidity",
               outputs: [
                 {
-                  internalType: "uint128",
                   name: "liquidity",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getLock",
               inputs: [
                 {
-                  internalType: "uint256",
                   name: "i",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "getLock",
               outputs: [
                 {
-                  internalType: "address",
                   name: "locker",
                   type: "address",
+                  internalType: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getPosition",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
                 {
-                  internalType: "address",
                   name: "owner",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "int24",
                   name: "tickLower",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "int24",
                   name: "tickUpper",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
-              name: "getPosition",
               outputs: [
                 {
-                  components: [
-                    {
-                      internalType: "uint128",
-                      name: "liquidity",
-                      type: "uint128",
-                    },
-                    {
-                      internalType: "uint256",
-                      name: "feeGrowthInside0LastX128",
-                      type: "uint256",
-                    },
-                    {
-                      internalType: "uint256",
-                      name: "feeGrowthInside1LastX128",
-                      type: "uint256",
-                    },
-                  ],
-                  internalType: "struct Position.Info",
                   name: "position",
                   type: "tuple",
+                  internalType: "struct Position.Info",
+                  components: [
+                    {
+                      name: "liquidity",
+                      type: "uint128",
+                      internalType: "uint128",
+                    },
+                    {
+                      name: "feeGrowthInside0LastX128",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "feeGrowthInside1LastX128",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getSlot0",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "getSlot0",
               outputs: [
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "int24",
                   name: "tick",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "uint24",
                   name: "protocolFees",
                   type: "uint24",
+                  internalType: "uint24",
                 },
                 {
-                  internalType: "uint24",
                   name: "hookFees",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "hookFeesAccrued",
               inputs: [
                 {
-                  internalType: "address",
                   name: "hookAddress",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "hookFeesAccrued",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "initialize",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "initialize",
               outputs: [
                 {
-                  internalType: "int24",
                   name: "tick",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "isApprovedForAll",
               inputs: [
                 {
-                  internalType: "address",
                   name: "account",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "operator",
                   type: "address",
+                  internalType: "address",
                 },
               ],
-              name: "isApprovedForAll",
               outputs: [
                 {
-                  internalType: "bool",
                   name: "",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "lock",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "lock",
               outputs: [
                 {
-                  internalType: "bytes",
                   name: "result",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "lockData",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "uint128",
                   name: "length",
                   type: "uint128",
+                  internalType: "uint128",
                 },
                 {
-                  internalType: "uint128",
                   name: "nonzeroDeltaCount",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "mint",
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "mint",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "modifyPosition",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "modifyPosition",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "onERC1155BatchReceived",
               inputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "ids",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "values",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "bytes",
                   name: "",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "onERC1155BatchReceived",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "onERC1155Received",
               inputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "id",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "value",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "onERC1155Received",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "owner",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "pools",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "pools",
               outputs: [
                 {
-                  components: [
-                    {
-                      internalType: "uint160",
-                      name: "sqrtPriceX96",
-                      type: "uint160",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tick",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "protocolFees",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "hookFees",
-                      type: "uint24",
-                    },
-                  ],
-                  internalType: "struct Pool.Slot0",
                   name: "slot0",
                   type: "tuple",
+                  internalType: "struct Pool.Slot0",
+                  components: [
+                    {
+                      name: "sqrtPriceX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                    {
+                      name: "tick",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "protocolFees",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "hookFees",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
                   name: "feeGrowthGlobal0X128",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "feeGrowthGlobal1X128",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint128",
                   name: "liquidity",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "protocolFeeController",
+              inputs: [],
               outputs: [
                 {
+                  name: "",
+                  type: "address",
                   internalType: "contract IProtocolFeeController",
-                  name: "",
-                  type: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "Currency",
-                  name: "currency",
-                  type: "address",
-                },
-              ],
+              type: "function",
               name: "protocolFeesAccrued",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "reservesOf",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "reservesOf",
               inputs: [
                 {
-                  internalType: "address",
+                  name: "currency",
+                  type: "address",
+                  internalType: "Currency",
+                },
+              ],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "safeBatchTransferFrom",
+              inputs: [
+                {
                   name: "from",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "ids",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "amounts",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "safeBatchTransferFrom",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "safeTransferFrom",
               inputs: [
                 {
-                  internalType: "address",
                   name: "from",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "id",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "safeTransferFrom",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setApprovalForAll",
               inputs: [
                 {
-                  internalType: "address",
                   name: "operator",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "bool",
                   name: "approved",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
-              name: "setApprovalForAll",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setHookFees",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
               ],
-              name: "setHookFees",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setOwner",
               inputs: [
                 {
-                  internalType: "address",
                   name: "_owner",
                   type: "address",
+                  internalType: "address",
                 },
               ],
-              name: "setOwner",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setProtocolFeeController",
               inputs: [
                 {
-                  internalType: "contract IProtocolFeeController",
                   name: "controller",
                   type: "address",
+                  internalType: "contract IProtocolFeeController",
                 },
               ],
-              name: "setProtocolFeeController",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setProtocolFees",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
               ],
-              name: "setProtocolFees",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "settle",
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "settle",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "paid",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "payable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "supportsInterface",
               inputs: [
                 {
-                  internalType: "bytes4",
                   name: "interfaceId",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
-              name: "supportsInterface",
               outputs: [
                 {
-                  internalType: "bool",
                   name: "",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "swap",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "swap",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "take",
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "take",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "uri",
               inputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "uri",
               outputs: [
                 {
-                  internalType: "string",
                   name: "",
                   type: "string",
+                  internalType: "string",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              stateMutability: "payable",
-              type: "receive",
+              type: "event",
+              name: "ApprovalForAll",
+              inputs: [
+                {
+                  name: "account",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "operator",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "approved",
+                  type: "bool",
+                  indexed: false,
+                  internalType: "bool",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "HookFeeUpdated",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "hookFees",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "Initialize",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "currency0",
+                  type: "address",
+                  indexed: true,
+                  internalType: "Currency",
+                },
+                {
+                  name: "currency1",
+                  type: "address",
+                  indexed: true,
+                  internalType: "Currency",
+                },
+                {
+                  name: "fee",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+                {
+                  name: "tickSpacing",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "hooks",
+                  type: "address",
+                  indexed: false,
+                  internalType: "contract IHooks",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "ModifyPosition",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "sender",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "tickLower",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "tickUpper",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "liquidityDelta",
+                  type: "int256",
+                  indexed: false,
+                  internalType: "int256",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "OwnerChanged",
+              inputs: [
+                {
+                  name: "oldOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "newOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "ProtocolFeeControllerUpdated",
+              inputs: [
+                {
+                  name: "protocolFeeController",
+                  type: "address",
+                  indexed: false,
+                  internalType: "address",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "ProtocolFeeUpdated",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "protocolFees",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "Swap",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "sender",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "amount0",
+                  type: "int128",
+                  indexed: false,
+                  internalType: "int128",
+                },
+                {
+                  name: "amount1",
+                  type: "int128",
+                  indexed: false,
+                  internalType: "int128",
+                },
+                {
+                  name: "sqrtPriceX96",
+                  type: "uint160",
+                  indexed: false,
+                  internalType: "uint160",
+                },
+                {
+                  name: "liquidity",
+                  type: "uint128",
+                  indexed: false,
+                  internalType: "uint128",
+                },
+                {
+                  name: "tick",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "fee",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "TransferBatch",
+              inputs: [
+                {
+                  name: "operator",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "from",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "to",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "ids",
+                  type: "uint256[]",
+                  indexed: false,
+                  internalType: "uint256[]",
+                },
+                {
+                  name: "values",
+                  type: "uint256[]",
+                  indexed: false,
+                  internalType: "uint256[]",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "TransferSingle",
+              inputs: [
+                {
+                  name: "operator",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "from",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "to",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "id",
+                  type: "uint256",
+                  indexed: false,
+                  internalType: "uint256",
+                },
+                {
+                  name: "value",
+                  type: "uint256",
+                  indexed: false,
+                  internalType: "uint256",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "URI",
+              inputs: [
+                {
+                  name: "value",
+                  type: "string",
+                  indexed: false,
+                  internalType: "string",
+                },
+                {
+                  name: "id",
+                  type: "uint256",
+                  indexed: true,
+                  internalType: "uint256",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "error",
+              name: "CannotUpdateEmptyPosition",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "CurrenciesInitializedOutOfOrder",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "CurrencyNotSettled",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "ERC20TransferFailed",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "FeeTooLarge",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "HookAddressNotValid",
+              inputs: [
+                {
+                  name: "hooks",
+                  type: "address",
+                  internalType: "address",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "InvalidCaller",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "InvalidHookResponse",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "InvalidSqrtRatio",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "InvalidTick",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "LockedBy",
+              inputs: [
+                {
+                  name: "locker",
+                  type: "address",
+                  internalType: "address",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "MaxCurrenciesTouched",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "NativeTransferFailed",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "NotPoolManagerToken",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "PoolAlreadyInitialized",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "PoolNotInitialized",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "PriceLimitAlreadyExceeded",
+              inputs: [
+                {
+                  name: "sqrtPriceCurrentX96",
+                  type: "uint160",
+                  internalType: "uint160",
+                },
+                {
+                  name: "sqrtPriceLimitX96",
+                  type: "uint160",
+                  internalType: "uint160",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "PriceLimitOutOfBounds",
+              inputs: [
+                {
+                  name: "sqrtPriceLimitX96",
+                  type: "uint160",
+                  internalType: "uint160",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "ProtocolFeeCannotBeFetched",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "SwapAmountCannotBeZero",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "TickLiquidityOverflow",
+              inputs: [
+                {
+                  name: "tick",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TickLowerOutOfBounds",
+              inputs: [
+                {
+                  name: "tickLower",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TickMisaligned",
+              inputs: [
+                {
+                  name: "tick",
+                  type: "int24",
+                  internalType: "int24",
+                },
+                {
+                  name: "tickSpacing",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TickSpacingTooLarge",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "TickSpacingTooSmall",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "TickUpperOutOfBounds",
+              inputs: [
+                {
+                  name: "tickUpper",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TicksMisordered",
+              inputs: [
+                {
+                  name: "tickLower",
+                  type: "int24",
+                  internalType: "int24",
+                },
+                {
+                  name: "tickUpper",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
             },
           ],
         },
@@ -10940,6 +11251,16 @@ const contracts = {
                   type: "uint256",
                   internalType: "uint256",
                 },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
               ],
               outputs: [
                 {
@@ -10949,6 +11270,45 @@ const contracts = {
                 },
               ],
               stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "deployedHooks",
+              inputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "owner",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "hookAddr",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "creationTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
             },
             {
               type: "function",
@@ -10976,6 +11336,52 @@ const contracts = {
             },
             {
               type: "function",
+              name: "getHookInfo",
+              inputs: [
+                {
+                  name: "hookId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "hook",
+                  type: "tuple",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
               name: "getPrecomputedHookAddress",
               inputs: [
                 {
@@ -10989,6 +11395,32 @@ const contracts = {
                   name: "",
                   type: "address",
                   internalType: "address",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "hookCount",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "lastNonce",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
@@ -11034,6 +11466,19 @@ const contracts = {
                   name: "newOwner",
                   type: "address",
                   internalType: "address",
+                },
+              ],
+              outputs: [],
+              stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "updateManager",
+              inputs: [
+                {
+                  name: "_manager",
+                  type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               outputs: [],
@@ -11063,16 +11508,37 @@ const contracts = {
               name: "HookCreated",
               inputs: [
                 {
-                  name: "owner",
-                  type: "address",
+                  name: "hook",
+                  type: "tuple",
                   indexed: false,
-                  internalType: "address",
-                },
-                {
-                  name: "hookAddr",
-                  type: "address",
-                  indexed: false,
-                  internalType: "address",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
                 },
               ],
               anonymous: false,
@@ -11102,358 +11568,358 @@ const contracts = {
           address: "0xe4A13Dc8BC9EF7D03f668eD03558BF22D9b9c869",
           abi: [
             {
+              type: "constructor",
               inputs: [
                 {
-                  internalType: "contract IPoolManager",
                   name: "_manager",
                   type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "constructor",
             },
             {
-              inputs: [],
-              name: "ERC20TransferFailed",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "LockFailure",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "NativeTransferFailed",
-              type: "error",
-            },
-            {
+              type: "function",
+              name: "lockAcquired",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "lockAcquired",
               outputs: [
                 {
-                  internalType: "bytes",
                   name: "",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "lockAcquiredModifyPosition",
               inputs: [
                 {
+                  name: "data",
+                  type: "tuple",
+                  internalType: "struct Router04.CallbackDataModifyPosition",
                   components: [
                     {
-                      internalType: "address",
                       name: "sender",
                       type: "address",
+                      internalType: "address",
                     },
                     {
-                      components: [
-                        {
-                          internalType: "Currency",
-                          name: "currency0",
-                          type: "address",
-                        },
-                        {
-                          internalType: "Currency",
-                          name: "currency1",
-                          type: "address",
-                        },
-                        {
-                          internalType: "uint24",
-                          name: "fee",
-                          type: "uint24",
-                        },
-                        {
-                          internalType: "int24",
-                          name: "tickSpacing",
-                          type: "int24",
-                        },
-                        {
-                          internalType: "contract IHooks",
-                          name: "hooks",
-                          type: "address",
-                        },
-                      ],
-                      internalType: "struct PoolKey",
                       name: "key",
                       type: "tuple",
-                    },
-                    {
+                      internalType: "struct PoolKey",
                       components: [
                         {
+                          name: "currency0",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "currency1",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "fee",
+                          type: "uint24",
+                          internalType: "uint24",
+                        },
+                        {
+                          name: "tickSpacing",
+                          type: "int24",
                           internalType: "int24",
+                        },
+                        {
+                          name: "hooks",
+                          type: "address",
+                          internalType: "contract IHooks",
+                        },
+                      ],
+                    },
+                    {
+                      name: "params",
+                      type: "tuple",
+                      internalType: "struct IPoolManager.ModifyPositionParams",
+                      components: [
+                        {
                           name: "tickLower",
                           type: "int24",
+                          internalType: "int24",
                         },
                         {
-                          internalType: "int24",
                           name: "tickUpper",
                           type: "int24",
+                          internalType: "int24",
                         },
                         {
-                          internalType: "int256",
                           name: "liquidityDelta",
                           type: "int256",
+                          internalType: "int256",
                         },
                       ],
-                      internalType: "struct IPoolManager.ModifyPositionParams",
-                      name: "params",
-                      type: "tuple",
                     },
                   ],
-                  internalType: "struct Router04.CallbackDataModifyPosition",
-                  name: "data",
-                  type: "tuple",
                 },
               ],
-              name: "lockAcquiredModifyPosition",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "lockAcquiredSwap",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "address",
-                      name: "sender",
-                      type: "address",
-                    },
-                    {
-                      components: [
-                        {
-                          internalType: "Currency",
-                          name: "currency0",
-                          type: "address",
-                        },
-                        {
-                          internalType: "Currency",
-                          name: "currency1",
-                          type: "address",
-                        },
-                        {
-                          internalType: "uint24",
-                          name: "fee",
-                          type: "uint24",
-                        },
-                        {
-                          internalType: "int24",
-                          name: "tickSpacing",
-                          type: "int24",
-                        },
-                        {
-                          internalType: "contract IHooks",
-                          name: "hooks",
-                          type: "address",
-                        },
-                      ],
-                      internalType: "struct PoolKey",
-                      name: "key",
-                      type: "tuple",
-                    },
-                    {
-                      components: [
-                        {
-                          internalType: "bool",
-                          name: "zeroForOne",
-                          type: "bool",
-                        },
-                        {
-                          internalType: "int256",
-                          name: "amountSpecified",
-                          type: "int256",
-                        },
-                        {
-                          internalType: "uint160",
-                          name: "sqrtPriceLimitX96",
-                          type: "uint160",
-                        },
-                      ],
-                      internalType: "struct IPoolManager.SwapParams",
-                      name: "params",
-                      type: "tuple",
-                    },
-                  ],
-                  internalType: "struct Router04.CallbackDataSwap",
                   name: "data",
                   type: "tuple",
+                  internalType: "struct Router04.CallbackDataSwap",
+                  components: [
+                    {
+                      name: "sender",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "key",
+                      type: "tuple",
+                      internalType: "struct PoolKey",
+                      components: [
+                        {
+                          name: "currency0",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "currency1",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "fee",
+                          type: "uint24",
+                          internalType: "uint24",
+                        },
+                        {
+                          name: "tickSpacing",
+                          type: "int24",
+                          internalType: "int24",
+                        },
+                        {
+                          name: "hooks",
+                          type: "address",
+                          internalType: "contract IHooks",
+                        },
+                      ],
+                    },
+                    {
+                      name: "params",
+                      type: "tuple",
+                      internalType: "struct IPoolManager.SwapParams",
+                      components: [
+                        {
+                          name: "zeroForOne",
+                          type: "bool",
+                          internalType: "bool",
+                        },
+                        {
+                          name: "amountSpecified",
+                          type: "int256",
+                          internalType: "int256",
+                        },
+                        {
+                          name: "sqrtPriceLimitX96",
+                          type: "uint160",
+                          internalType: "uint160",
+                        },
+                      ],
+                    },
+                  ],
                 },
               ],
-              name: "lockAcquiredSwap",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "manager",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "contract IPoolManager",
                   name: "",
                   type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "modifyPosition",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
               ],
-              name: "modifyPosition",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "payable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "swap",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
               ],
-              name: "swap",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "payable",
-              type: "function",
+            },
+            {
+              type: "error",
+              name: "ERC20TransferFailed",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "LockFailure",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "NativeTransferFailed",
+              inputs: [],
             },
           ],
         },
@@ -11461,1119 +11927,1119 @@ const contracts = {
           address: "0xA05f77d7807c89FDc824c0F08Ba5a8B0aBcE6Ca3",
           abi: [
             {
+              type: "constructor",
               inputs: [
                 {
-                  internalType: "contract IPoolManager",
                   name: "_manager",
                   type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "constructor",
             },
             {
+              type: "function",
+              name: "addTradingVolumeDiscountThresholds",
               inputs: [
                 {
-                  internalType: "bytes4",
-                  name: "",
-                  type: "bytes4",
-                },
-                {
-                  internalType: "enum IUniversalHook.Action",
-                  name: "",
-                  type: "uint8",
-                },
-              ],
-              name: "FunctionFailed",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint24",
-                  name: "",
-                  type: "uint24",
-                },
-              ],
-              name: "InvalidFee",
-              type: "error",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "previousOwner",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "newOwner",
-                  type: "address",
-                },
-              ],
-              name: "OwnershipTransferred",
-              type: "event",
-            },
-            {
-              inputs: [
-                {
-                  components: [
-                    {
-                      internalType: "uint256",
-                      name: "volume",
-                      type: "uint256",
-                    },
-                    {
-                      internalType: "uint8",
-                      name: "discountPts",
-                      type: "uint8",
-                    },
-                  ],
-                  internalType:
-                    "struct IUniversalHook.TradingVolumeDiscountThreshold",
                   name: "_tradingVolumeDiscountThreshold",
                   type: "tuple",
+                  internalType:
+                    "struct IUniversalHook.TradingVolumeDiscountThreshold",
+                  components: [
+                    {
+                      name: "volume",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "discountPts",
+                      type: "uint8",
+                      internalType: "uint8",
+                    },
+                  ],
                 },
               ],
-              name: "addTradingVolumeDiscountThresholds",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterDonate",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
                   name: "amount0",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount1",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterDonate",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterInitialize",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "int24",
                   name: "tick",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterInitialize",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterModifyPosition",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterModifyPosition",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterSwap",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
                       name: "zeroForOne",
                       type: "bool",
+                      internalType: "bool",
                     },
                     {
-                      internalType: "int256",
                       name: "amountSpecified",
                       type: "int256",
+                      internalType: "int256",
                     },
                     {
-                      internalType: "uint160",
                       name: "sqrtPriceLimitX96",
                       type: "uint160",
+                      internalType: "uint160",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterSwap",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeDonate",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
                   name: "amount0",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount1",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeDonate",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeInitialize",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeInitialize",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeModifyPosition",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeModifyPosition",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeSwap",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeSwap",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "clearTradingVolumeDiscountThresholds",
+              inputs: [],
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "day_of_the_week_before_swap",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "day_of_the_week_before_swap",
               outputs: [],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getFee",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "getFee",
               outputs: [
                 {
-                  internalType: "uint24",
                   name: "fee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getHookFees",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
               ],
-              name: "getHookFees",
               outputs: [
                 {
-                  internalType: "uint24",
                   name: "hookFee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getUserTradingVolumeByPool",
               inputs: [
                 {
-                  internalType: "address",
                   name: "user",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "PoolId",
                   name: "poolId",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "getUserTradingVolumeByPool",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "manager",
+              inputs: [],
               outputs: [
                 {
+                  name: "",
+                  type: "address",
                   internalType: "contract IPoolManager",
-                  name: "",
-                  type: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "bytes",
-                  name: "data",
-                  type: "bytes",
-                },
-              ],
+              type: "function",
               name: "not_blacklisted_before_initialize",
-              outputs: [],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "only_owner_before_initialize",
               outputs: [],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
+              name: "only_owner_before_initialize",
+              inputs: [
+                {
+                  name: "data",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+              ],
+              outputs: [],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
               name: "owner",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "renounceOwnership",
+              inputs: [],
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setAllowedDaysOfTheWeek",
               inputs: [
                 {
-                  internalType: "bool[8]",
                   name: "allowedDaysOfTheWeek",
                   type: "bool[8]",
+                  internalType: "bool[8]",
                 },
               ],
-              name: "setAllowedDaysOfTheWeek",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setBlacklistedForAction",
               inputs: [
                 {
-                  internalType: "address",
                   name: "user",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "enum IUniversalHook.Action",
                   name: "action",
                   type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
                 },
                 {
-                  internalType: "bool",
                   name: "blacklisted",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
-              name: "setBlacklistedForAction",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setFunctionsForAction",
               inputs: [
                 {
-                  internalType: "enum IUniversalHook.Action",
                   name: "action",
                   type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
                 },
                 {
-                  internalType: "bytes4[]",
                   name: "functions",
                   type: "bytes4[]",
+                  internalType: "bytes4[]",
                 },
               ],
-              name: "setFunctionsForAction",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setHookFee",
               inputs: [
                 {
-                  internalType: "uint24",
                   name: "hookFee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
-              name: "setHookFee",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setHookFeeForPool",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint24",
                   name: "hookFee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
-              name: "setHookFeeForPool",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setTradingHours",
               inputs: [
                 {
-                  internalType: "uint8",
                   name: "_tradingHoursStart",
                   type: "uint8",
+                  internalType: "uint8",
                 },
                 {
-                  internalType: "uint8",
                   name: "_tradingHoursEnd",
                   type: "uint8",
+                  internalType: "uint8",
                 },
               ],
-              name: "setTradingHours",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setWhitelistedForAction",
               inputs: [
                 {
-                  internalType: "address",
                   name: "user",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "enum IUniversalHook.Action",
                   name: "action",
                   type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
                 },
                 {
-                  internalType: "bool",
                   name: "whitelisted",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
-              name: "setWhitelistedForAction",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "trading_hours_before_Swap",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "trading_hours_before_Swap",
               outputs: [],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "transferOwnership",
               inputs: [
                 {
-                  internalType: "address",
                   name: "newOwner",
                   type: "address",
+                  internalType: "address",
                 },
               ],
-              name: "transferOwnership",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "user_trading_volume_dynamic_fee",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "user_trading_volume_dynamic_fee",
               outputs: [
                 {
-                  internalType: "uint8",
                   name: "",
                   type: "uint8",
+                  internalType: "uint8",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "bytes",
-                  name: "data",
-                  type: "bytes",
-                },
-              ],
+              type: "function",
               name: "whitelist_before_initialize",
-              outputs: [],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "whitelist_swap",
               outputs: [],
               stateMutability: "view",
+            },
+            {
               type: "function",
+              name: "whitelist_swap",
+              inputs: [
+                {
+                  name: "data",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+              ],
+              outputs: [],
+              stateMutability: "view",
+            },
+            {
+              type: "event",
+              name: "OwnershipTransferred",
+              inputs: [
+                {
+                  name: "previousOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "newOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "error",
+              name: "FunctionFailed",
+              inputs: [
+                {
+                  name: "",
+                  type: "bytes4",
+                  internalType: "bytes4",
+                },
+                {
+                  name: "",
+                  type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "InvalidFee",
+              inputs: [
+                {
+                  name: "",
+                  type: "uint24",
+                  internalType: "uint24",
+                },
+              ],
             },
           ],
         },
@@ -13339,1650 +13805,1650 @@ const contracts = {
           address: "0x8d48c62d029e082F0376f5Be47A8d8096eE8856b",
           abi: [
             {
+              type: "constructor",
               inputs: [
                 {
-                  internalType: "uint256",
                   name: "controllerGasLimit",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "constructor",
             },
             {
-              inputs: [],
-              name: "CannotUpdateEmptyPosition",
-              type: "error",
+              type: "receive",
+              stateMutability: "payable",
             },
             {
-              inputs: [],
-              name: "CurrenciesInitializedOutOfOrder",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "CurrencyNotSettled",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "ERC20TransferFailed",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "FeeTooLarge",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "hooks",
-                  type: "address",
-                },
-              ],
-              name: "HookAddressNotValid",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidCaller",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidHookResponse",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidSqrtRatio",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "InvalidTick",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "locker",
-                  type: "address",
-                },
-              ],
-              name: "LockedBy",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "MaxCurrenciesTouched",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "NativeTransferFailed",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "NotPoolManagerToken",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "PoolAlreadyInitialized",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "PoolNotInitialized",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint160",
-                  name: "sqrtPriceCurrentX96",
-                  type: "uint160",
-                },
-                {
-                  internalType: "uint160",
-                  name: "sqrtPriceLimitX96",
-                  type: "uint160",
-                },
-              ],
-              name: "PriceLimitAlreadyExceeded",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint160",
-                  name: "sqrtPriceLimitX96",
-                  type: "uint160",
-                },
-              ],
-              name: "PriceLimitOutOfBounds",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "ProtocolFeeCannotBeFetched",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "SwapAmountCannotBeZero",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tick",
-                  type: "int24",
-                },
-              ],
-              name: "TickLiquidityOverflow",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tickLower",
-                  type: "int24",
-                },
-              ],
-              name: "TickLowerOutOfBounds",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tick",
-                  type: "int24",
-                },
-                {
-                  internalType: "int24",
-                  name: "tickSpacing",
-                  type: "int24",
-                },
-              ],
-              name: "TickMisaligned",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "TickSpacingTooLarge",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "TickSpacingTooSmall",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tickUpper",
-                  type: "int24",
-                },
-              ],
-              name: "TickUpperOutOfBounds",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "int24",
-                  name: "tickLower",
-                  type: "int24",
-                },
-                {
-                  internalType: "int24",
-                  name: "tickUpper",
-                  type: "int24",
-                },
-              ],
-              name: "TicksMisordered",
-              type: "error",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "account",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "operator",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "bool",
-                  name: "approved",
-                  type: "bool",
-                },
-              ],
-              name: "ApprovalForAll",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "hookFees",
-                  type: "uint24",
-                },
-              ],
-              name: "HookFeeUpdated",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: true,
-                  internalType: "Currency",
-                  name: "currency0",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "Currency",
-                  name: "currency1",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "fee",
-                  type: "uint24",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tickSpacing",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "contract IHooks",
-                  name: "hooks",
-                  type: "address",
-                },
-              ],
-              name: "Initialize",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "sender",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tickLower",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tickUpper",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "int256",
-                  name: "liquidityDelta",
-                  type: "int256",
-                },
-              ],
-              name: "ModifyPosition",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "oldOwner",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "newOwner",
-                  type: "address",
-                },
-              ],
-              name: "OwnerChanged",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: false,
-                  internalType: "address",
-                  name: "protocolFeeController",
-                  type: "address",
-                },
-              ],
-              name: "ProtocolFeeControllerUpdated",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "protocolFees",
-                  type: "uint24",
-                },
-              ],
-              name: "ProtocolFeeUpdated",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "PoolId",
-                  name: "id",
-                  type: "bytes32",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "sender",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "int128",
-                  name: "amount0",
-                  type: "int128",
-                },
-                {
-                  indexed: false,
-                  internalType: "int128",
-                  name: "amount1",
-                  type: "int128",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint160",
-                  name: "sqrtPriceX96",
-                  type: "uint160",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint128",
-                  name: "liquidity",
-                  type: "uint128",
-                },
-                {
-                  indexed: false,
-                  internalType: "int24",
-                  name: "tick",
-                  type: "int24",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint24",
-                  name: "fee",
-                  type: "uint24",
-                },
-              ],
-              name: "Swap",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "operator",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "from",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "to",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256[]",
-                  name: "ids",
-                  type: "uint256[]",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256[]",
-                  name: "values",
-                  type: "uint256[]",
-                },
-              ],
-              name: "TransferBatch",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "operator",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "from",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "to",
-                  type: "address",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256",
-                  name: "id",
-                  type: "uint256",
-                },
-                {
-                  indexed: false,
-                  internalType: "uint256",
-                  name: "value",
-                  type: "uint256",
-                },
-              ],
-              name: "TransferSingle",
-              type: "event",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: false,
-                  internalType: "string",
-                  name: "value",
-                  type: "string",
-                },
-                {
-                  indexed: true,
-                  internalType: "uint256",
-                  name: "id",
-                  type: "uint256",
-                },
-              ],
-              name: "URI",
-              type: "event",
-            },
-            {
-              inputs: [],
+              type: "function",
               name: "MAX_TICK_SPACING",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "int24",
                   name: "",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "MIN_PROTOCOL_FEE_DENOMINATOR",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "uint8",
                   name: "",
                   type: "uint8",
+                  internalType: "uint8",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "MIN_TICK_SPACING",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "int24",
                   name: "",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "balanceOf",
               inputs: [
                 {
-                  internalType: "address",
                   name: "account",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "id",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "balanceOf",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "balanceOfBatch",
               inputs: [
                 {
-                  internalType: "address[]",
                   name: "accounts",
                   type: "address[]",
+                  internalType: "address[]",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "ids",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
               ],
-              name: "balanceOfBatch",
               outputs: [
                 {
-                  internalType: "uint256[]",
                   name: "",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "recipient",
-                  type: "address",
-                },
-                {
-                  internalType: "Currency",
-                  name: "currency",
-                  type: "address",
-                },
-                {
-                  internalType: "uint256",
-                  name: "amount",
-                  type: "uint256",
-                },
-              ],
+              type: "function",
               name: "collectHookFees",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "amountCollected",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "nonpayable",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "address",
                   name: "recipient",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "collectProtocolFees",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "amountCollected",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "collectProtocolFees",
               inputs: [
                 {
+                  name: "recipient",
+                  type: "address",
                   internalType: "address",
+                },
+                {
+                  name: "currency",
+                  type: "address",
+                  internalType: "Currency",
+                },
+                {
+                  name: "amount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "amountCollected",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "currencyDelta",
+              inputs: [
+                {
                   name: "locker",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "currencyDelta",
               outputs: [
                 {
-                  internalType: "int256",
                   name: "currencyDelta",
                   type: "int256",
+                  internalType: "int256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getLiquidity",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
                 {
-                  internalType: "address",
                   name: "_owner",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "int24",
                   name: "tickLower",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "int24",
                   name: "tickUpper",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
-              name: "getLiquidity",
               outputs: [
                 {
-                  internalType: "uint128",
                   name: "liquidity",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getLiquidity",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "getLiquidity",
               outputs: [
                 {
-                  internalType: "uint128",
                   name: "liquidity",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getLock",
               inputs: [
                 {
-                  internalType: "uint256",
                   name: "i",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "getLock",
               outputs: [
                 {
-                  internalType: "address",
                   name: "locker",
                   type: "address",
+                  internalType: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getPosition",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
                 {
-                  internalType: "address",
                   name: "owner",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "int24",
                   name: "tickLower",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "int24",
                   name: "tickUpper",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
-              name: "getPosition",
               outputs: [
                 {
-                  components: [
-                    {
-                      internalType: "uint128",
-                      name: "liquidity",
-                      type: "uint128",
-                    },
-                    {
-                      internalType: "uint256",
-                      name: "feeGrowthInside0LastX128",
-                      type: "uint256",
-                    },
-                    {
-                      internalType: "uint256",
-                      name: "feeGrowthInside1LastX128",
-                      type: "uint256",
-                    },
-                  ],
-                  internalType: "struct Position.Info",
                   name: "position",
                   type: "tuple",
+                  internalType: "struct Position.Info",
+                  components: [
+                    {
+                      name: "liquidity",
+                      type: "uint128",
+                      internalType: "uint128",
+                    },
+                    {
+                      name: "feeGrowthInside0LastX128",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "feeGrowthInside1LastX128",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getSlot0",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "getSlot0",
               outputs: [
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "int24",
                   name: "tick",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "uint24",
                   name: "protocolFees",
                   type: "uint24",
+                  internalType: "uint24",
                 },
                 {
-                  internalType: "uint24",
                   name: "hookFees",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "hookFeesAccrued",
               inputs: [
                 {
-                  internalType: "address",
                   name: "hookAddress",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "hookFeesAccrued",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "initialize",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "initialize",
               outputs: [
                 {
-                  internalType: "int24",
                   name: "tick",
                   type: "int24",
+                  internalType: "int24",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "isApprovedForAll",
               inputs: [
                 {
-                  internalType: "address",
                   name: "account",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "operator",
                   type: "address",
+                  internalType: "address",
                 },
               ],
-              name: "isApprovedForAll",
               outputs: [
                 {
-                  internalType: "bool",
                   name: "",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "lock",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "lock",
               outputs: [
                 {
-                  internalType: "bytes",
                   name: "result",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "lockData",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "uint128",
                   name: "length",
                   type: "uint128",
+                  internalType: "uint128",
                 },
                 {
-                  internalType: "uint128",
                   name: "nonzeroDeltaCount",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "mint",
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "mint",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "modifyPosition",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "modifyPosition",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "onERC1155BatchReceived",
               inputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "ids",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "values",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "bytes",
                   name: "",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "onERC1155BatchReceived",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "onERC1155Received",
               inputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "id",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "value",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "onERC1155Received",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "owner",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "pools",
               inputs: [
                 {
-                  internalType: "PoolId",
                   name: "id",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "pools",
               outputs: [
                 {
-                  components: [
-                    {
-                      internalType: "uint160",
-                      name: "sqrtPriceX96",
-                      type: "uint160",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tick",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "protocolFees",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "hookFees",
-                      type: "uint24",
-                    },
-                  ],
-                  internalType: "struct Pool.Slot0",
                   name: "slot0",
                   type: "tuple",
+                  internalType: "struct Pool.Slot0",
+                  components: [
+                    {
+                      name: "sqrtPriceX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                    {
+                      name: "tick",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "protocolFees",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "hookFees",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
                   name: "feeGrowthGlobal0X128",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "feeGrowthGlobal1X128",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint128",
                   name: "liquidity",
                   type: "uint128",
+                  internalType: "uint128",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "protocolFeeController",
+              inputs: [],
               outputs: [
                 {
+                  name: "",
+                  type: "address",
                   internalType: "contract IProtocolFeeController",
-                  name: "",
-                  type: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "Currency",
-                  name: "currency",
-                  type: "address",
-                },
-              ],
+              type: "function",
               name: "protocolFeesAccrued",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "reservesOf",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "reservesOf",
               inputs: [
                 {
-                  internalType: "address",
+                  name: "currency",
+                  type: "address",
+                  internalType: "Currency",
+                },
+              ],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "safeBatchTransferFrom",
+              inputs: [
+                {
                   name: "from",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "ids",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "uint256[]",
                   name: "amounts",
                   type: "uint256[]",
+                  internalType: "uint256[]",
                 },
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "safeBatchTransferFrom",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "safeTransferFrom",
               inputs: [
                 {
-                  internalType: "address",
                   name: "from",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "id",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "safeTransferFrom",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setApprovalForAll",
               inputs: [
                 {
-                  internalType: "address",
                   name: "operator",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "bool",
                   name: "approved",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
-              name: "setApprovalForAll",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setHookFees",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
               ],
-              name: "setHookFees",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setOwner",
               inputs: [
                 {
-                  internalType: "address",
                   name: "_owner",
                   type: "address",
+                  internalType: "address",
                 },
               ],
-              name: "setOwner",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setProtocolFeeController",
               inputs: [
                 {
-                  internalType: "contract IProtocolFeeController",
                   name: "controller",
                   type: "address",
+                  internalType: "contract IProtocolFeeController",
                 },
               ],
-              name: "setProtocolFeeController",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setProtocolFees",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
               ],
-              name: "setProtocolFees",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "settle",
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
               ],
-              name: "settle",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "paid",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "payable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "supportsInterface",
               inputs: [
                 {
-                  internalType: "bytes4",
                   name: "interfaceId",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
-              name: "supportsInterface",
               outputs: [
                 {
-                  internalType: "bool",
                   name: "",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "swap",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "swap",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "take",
               inputs: [
                 {
-                  internalType: "Currency",
                   name: "currency",
                   type: "address",
+                  internalType: "Currency",
                 },
                 {
-                  internalType: "address",
                   name: "to",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "take",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "uri",
               inputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
-              name: "uri",
               outputs: [
                 {
-                  internalType: "string",
                   name: "",
                   type: "string",
+                  internalType: "string",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              stateMutability: "payable",
-              type: "receive",
+              type: "event",
+              name: "ApprovalForAll",
+              inputs: [
+                {
+                  name: "account",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "operator",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "approved",
+                  type: "bool",
+                  indexed: false,
+                  internalType: "bool",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "HookFeeUpdated",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "hookFees",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "Initialize",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "currency0",
+                  type: "address",
+                  indexed: true,
+                  internalType: "Currency",
+                },
+                {
+                  name: "currency1",
+                  type: "address",
+                  indexed: true,
+                  internalType: "Currency",
+                },
+                {
+                  name: "fee",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+                {
+                  name: "tickSpacing",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "hooks",
+                  type: "address",
+                  indexed: false,
+                  internalType: "contract IHooks",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "ModifyPosition",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "sender",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "tickLower",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "tickUpper",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "liquidityDelta",
+                  type: "int256",
+                  indexed: false,
+                  internalType: "int256",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "OwnerChanged",
+              inputs: [
+                {
+                  name: "oldOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "newOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "ProtocolFeeControllerUpdated",
+              inputs: [
+                {
+                  name: "protocolFeeController",
+                  type: "address",
+                  indexed: false,
+                  internalType: "address",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "ProtocolFeeUpdated",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "protocolFees",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "Swap",
+              inputs: [
+                {
+                  name: "id",
+                  type: "bytes32",
+                  indexed: true,
+                  internalType: "PoolId",
+                },
+                {
+                  name: "sender",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "amount0",
+                  type: "int128",
+                  indexed: false,
+                  internalType: "int128",
+                },
+                {
+                  name: "amount1",
+                  type: "int128",
+                  indexed: false,
+                  internalType: "int128",
+                },
+                {
+                  name: "sqrtPriceX96",
+                  type: "uint160",
+                  indexed: false,
+                  internalType: "uint160",
+                },
+                {
+                  name: "liquidity",
+                  type: "uint128",
+                  indexed: false,
+                  internalType: "uint128",
+                },
+                {
+                  name: "tick",
+                  type: "int24",
+                  indexed: false,
+                  internalType: "int24",
+                },
+                {
+                  name: "fee",
+                  type: "uint24",
+                  indexed: false,
+                  internalType: "uint24",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "TransferBatch",
+              inputs: [
+                {
+                  name: "operator",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "from",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "to",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "ids",
+                  type: "uint256[]",
+                  indexed: false,
+                  internalType: "uint256[]",
+                },
+                {
+                  name: "values",
+                  type: "uint256[]",
+                  indexed: false,
+                  internalType: "uint256[]",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "TransferSingle",
+              inputs: [
+                {
+                  name: "operator",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "from",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "to",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "id",
+                  type: "uint256",
+                  indexed: false,
+                  internalType: "uint256",
+                },
+                {
+                  name: "value",
+                  type: "uint256",
+                  indexed: false,
+                  internalType: "uint256",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "event",
+              name: "URI",
+              inputs: [
+                {
+                  name: "value",
+                  type: "string",
+                  indexed: false,
+                  internalType: "string",
+                },
+                {
+                  name: "id",
+                  type: "uint256",
+                  indexed: true,
+                  internalType: "uint256",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "error",
+              name: "CannotUpdateEmptyPosition",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "CurrenciesInitializedOutOfOrder",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "CurrencyNotSettled",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "ERC20TransferFailed",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "FeeTooLarge",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "HookAddressNotValid",
+              inputs: [
+                {
+                  name: "hooks",
+                  type: "address",
+                  internalType: "address",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "InvalidCaller",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "InvalidHookResponse",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "InvalidSqrtRatio",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "InvalidTick",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "LockedBy",
+              inputs: [
+                {
+                  name: "locker",
+                  type: "address",
+                  internalType: "address",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "MaxCurrenciesTouched",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "NativeTransferFailed",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "NotPoolManagerToken",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "PoolAlreadyInitialized",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "PoolNotInitialized",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "PriceLimitAlreadyExceeded",
+              inputs: [
+                {
+                  name: "sqrtPriceCurrentX96",
+                  type: "uint160",
+                  internalType: "uint160",
+                },
+                {
+                  name: "sqrtPriceLimitX96",
+                  type: "uint160",
+                  internalType: "uint160",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "PriceLimitOutOfBounds",
+              inputs: [
+                {
+                  name: "sqrtPriceLimitX96",
+                  type: "uint160",
+                  internalType: "uint160",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "ProtocolFeeCannotBeFetched",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "SwapAmountCannotBeZero",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "TickLiquidityOverflow",
+              inputs: [
+                {
+                  name: "tick",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TickLowerOutOfBounds",
+              inputs: [
+                {
+                  name: "tickLower",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TickMisaligned",
+              inputs: [
+                {
+                  name: "tick",
+                  type: "int24",
+                  internalType: "int24",
+                },
+                {
+                  name: "tickSpacing",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TickSpacingTooLarge",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "TickSpacingTooSmall",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "TickUpperOutOfBounds",
+              inputs: [
+                {
+                  name: "tickUpper",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "TicksMisordered",
+              inputs: [
+                {
+                  name: "tickLower",
+                  type: "int24",
+                  internalType: "int24",
+                },
+                {
+                  name: "tickUpper",
+                  type: "int24",
+                  internalType: "int24",
+                },
+              ],
             },
           ],
         },
@@ -15009,6 +15475,16 @@ const contracts = {
                   type: "uint256",
                   internalType: "uint256",
                 },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
               ],
               outputs: [
                 {
@@ -15018,6 +15494,45 @@ const contracts = {
                 },
               ],
               stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "deployedHooks",
+              inputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "owner",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "hookAddr",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "creationTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
             },
             {
               type: "function",
@@ -15045,6 +15560,52 @@ const contracts = {
             },
             {
               type: "function",
+              name: "getHookInfo",
+              inputs: [
+                {
+                  name: "hookId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              outputs: [
+                {
+                  name: "hook",
+                  type: "tuple",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
               name: "getPrecomputedHookAddress",
               inputs: [
                 {
@@ -15058,6 +15619,32 @@ const contracts = {
                   name: "",
                   type: "address",
                   internalType: "address",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "hookCount",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
+              name: "lastNonce",
+              inputs: [],
+              outputs: [
+                {
+                  name: "",
+                  type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
@@ -15103,6 +15690,19 @@ const contracts = {
                   name: "newOwner",
                   type: "address",
                   internalType: "address",
+                },
+              ],
+              outputs: [],
+              stateMutability: "nonpayable",
+            },
+            {
+              type: "function",
+              name: "updateManager",
+              inputs: [
+                {
+                  name: "_manager",
+                  type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               outputs: [],
@@ -15132,16 +15732,37 @@ const contracts = {
               name: "HookCreated",
               inputs: [
                 {
-                  name: "owner",
-                  type: "address",
+                  name: "hook",
+                  type: "tuple",
                   indexed: false,
-                  internalType: "address",
-                },
-                {
-                  name: "hookAddr",
-                  type: "address",
-                  indexed: false,
-                  internalType: "address",
+                  internalType: "struct UniversalHookFactory.Hook",
+                  components: [
+                    {
+                      name: "owner",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "hookAddr",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "name",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "symbol",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "creationTime",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
                 },
               ],
               anonymous: false,
@@ -15171,358 +15792,358 @@ const contracts = {
           address: "0x302f875A11edFA1c90c86A4bD877Dbc7C4040BF9",
           abi: [
             {
+              type: "constructor",
               inputs: [
                 {
-                  internalType: "contract IPoolManager",
                   name: "_manager",
                   type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "constructor",
             },
             {
-              inputs: [],
-              name: "ERC20TransferFailed",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "LockFailure",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "NativeTransferFailed",
-              type: "error",
-            },
-            {
+              type: "function",
+              name: "lockAcquired",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "lockAcquired",
               outputs: [
                 {
-                  internalType: "bytes",
                   name: "",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "lockAcquiredModifyPosition",
               inputs: [
                 {
+                  name: "data",
+                  type: "tuple",
+                  internalType: "struct Router04.CallbackDataModifyPosition",
                   components: [
                     {
-                      internalType: "address",
                       name: "sender",
                       type: "address",
+                      internalType: "address",
                     },
                     {
-                      components: [
-                        {
-                          internalType: "Currency",
-                          name: "currency0",
-                          type: "address",
-                        },
-                        {
-                          internalType: "Currency",
-                          name: "currency1",
-                          type: "address",
-                        },
-                        {
-                          internalType: "uint24",
-                          name: "fee",
-                          type: "uint24",
-                        },
-                        {
-                          internalType: "int24",
-                          name: "tickSpacing",
-                          type: "int24",
-                        },
-                        {
-                          internalType: "contract IHooks",
-                          name: "hooks",
-                          type: "address",
-                        },
-                      ],
-                      internalType: "struct PoolKey",
                       name: "key",
                       type: "tuple",
-                    },
-                    {
+                      internalType: "struct PoolKey",
                       components: [
                         {
+                          name: "currency0",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "currency1",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "fee",
+                          type: "uint24",
+                          internalType: "uint24",
+                        },
+                        {
+                          name: "tickSpacing",
+                          type: "int24",
                           internalType: "int24",
+                        },
+                        {
+                          name: "hooks",
+                          type: "address",
+                          internalType: "contract IHooks",
+                        },
+                      ],
+                    },
+                    {
+                      name: "params",
+                      type: "tuple",
+                      internalType: "struct IPoolManager.ModifyPositionParams",
+                      components: [
+                        {
                           name: "tickLower",
                           type: "int24",
+                          internalType: "int24",
                         },
                         {
-                          internalType: "int24",
                           name: "tickUpper",
                           type: "int24",
+                          internalType: "int24",
                         },
                         {
-                          internalType: "int256",
                           name: "liquidityDelta",
                           type: "int256",
+                          internalType: "int256",
                         },
                       ],
-                      internalType: "struct IPoolManager.ModifyPositionParams",
-                      name: "params",
-                      type: "tuple",
                     },
                   ],
-                  internalType: "struct Router04.CallbackDataModifyPosition",
-                  name: "data",
-                  type: "tuple",
                 },
               ],
-              name: "lockAcquiredModifyPosition",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "lockAcquiredSwap",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "address",
-                      name: "sender",
-                      type: "address",
-                    },
-                    {
-                      components: [
-                        {
-                          internalType: "Currency",
-                          name: "currency0",
-                          type: "address",
-                        },
-                        {
-                          internalType: "Currency",
-                          name: "currency1",
-                          type: "address",
-                        },
-                        {
-                          internalType: "uint24",
-                          name: "fee",
-                          type: "uint24",
-                        },
-                        {
-                          internalType: "int24",
-                          name: "tickSpacing",
-                          type: "int24",
-                        },
-                        {
-                          internalType: "contract IHooks",
-                          name: "hooks",
-                          type: "address",
-                        },
-                      ],
-                      internalType: "struct PoolKey",
-                      name: "key",
-                      type: "tuple",
-                    },
-                    {
-                      components: [
-                        {
-                          internalType: "bool",
-                          name: "zeroForOne",
-                          type: "bool",
-                        },
-                        {
-                          internalType: "int256",
-                          name: "amountSpecified",
-                          type: "int256",
-                        },
-                        {
-                          internalType: "uint160",
-                          name: "sqrtPriceLimitX96",
-                          type: "uint160",
-                        },
-                      ],
-                      internalType: "struct IPoolManager.SwapParams",
-                      name: "params",
-                      type: "tuple",
-                    },
-                  ],
-                  internalType: "struct Router04.CallbackDataSwap",
                   name: "data",
                   type: "tuple",
+                  internalType: "struct Router04.CallbackDataSwap",
+                  components: [
+                    {
+                      name: "sender",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "key",
+                      type: "tuple",
+                      internalType: "struct PoolKey",
+                      components: [
+                        {
+                          name: "currency0",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "currency1",
+                          type: "address",
+                          internalType: "Currency",
+                        },
+                        {
+                          name: "fee",
+                          type: "uint24",
+                          internalType: "uint24",
+                        },
+                        {
+                          name: "tickSpacing",
+                          type: "int24",
+                          internalType: "int24",
+                        },
+                        {
+                          name: "hooks",
+                          type: "address",
+                          internalType: "contract IHooks",
+                        },
+                      ],
+                    },
+                    {
+                      name: "params",
+                      type: "tuple",
+                      internalType: "struct IPoolManager.SwapParams",
+                      components: [
+                        {
+                          name: "zeroForOne",
+                          type: "bool",
+                          internalType: "bool",
+                        },
+                        {
+                          name: "amountSpecified",
+                          type: "int256",
+                          internalType: "int256",
+                        },
+                        {
+                          name: "sqrtPriceLimitX96",
+                          type: "uint160",
+                          internalType: "uint160",
+                        },
+                      ],
+                    },
+                  ],
                 },
               ],
-              name: "lockAcquiredSwap",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "manager",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "contract IPoolManager",
                   name: "",
                   type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "modifyPosition",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
               ],
-              name: "modifyPosition",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "payable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "swap",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
               ],
-              name: "swap",
               outputs: [
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
               ],
               stateMutability: "payable",
-              type: "function",
+            },
+            {
+              type: "error",
+              name: "ERC20TransferFailed",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "LockFailure",
+              inputs: [],
+            },
+            {
+              type: "error",
+              name: "NativeTransferFailed",
+              inputs: [],
             },
           ],
         },
@@ -15530,1119 +16151,1119 @@ const contracts = {
           address: "0x3DD9c81dc05c2a5a7a6F75aCCee0e671EE353Ef9",
           abi: [
             {
+              type: "constructor",
               inputs: [
                 {
-                  internalType: "contract IPoolManager",
                   name: "_manager",
                   type: "address",
+                  internalType: "contract IPoolManager",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "constructor",
             },
             {
+              type: "function",
+              name: "addTradingVolumeDiscountThresholds",
               inputs: [
                 {
-                  internalType: "bytes4",
-                  name: "",
-                  type: "bytes4",
-                },
-                {
-                  internalType: "enum IUniversalHook.Action",
-                  name: "",
-                  type: "uint8",
-                },
-              ],
-              name: "FunctionFailed",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint24",
-                  name: "",
-                  type: "uint24",
-                },
-              ],
-              name: "InvalidFee",
-              type: "error",
-            },
-            {
-              anonymous: false,
-              inputs: [
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "previousOwner",
-                  type: "address",
-                },
-                {
-                  indexed: true,
-                  internalType: "address",
-                  name: "newOwner",
-                  type: "address",
-                },
-              ],
-              name: "OwnershipTransferred",
-              type: "event",
-            },
-            {
-              inputs: [
-                {
-                  components: [
-                    {
-                      internalType: "uint256",
-                      name: "volume",
-                      type: "uint256",
-                    },
-                    {
-                      internalType: "uint8",
-                      name: "discountPts",
-                      type: "uint8",
-                    },
-                  ],
-                  internalType:
-                    "struct IUniversalHook.TradingVolumeDiscountThreshold",
                   name: "_tradingVolumeDiscountThreshold",
                   type: "tuple",
+                  internalType:
+                    "struct IUniversalHook.TradingVolumeDiscountThreshold",
+                  components: [
+                    {
+                      name: "volume",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "discountPts",
+                      type: "uint8",
+                      internalType: "uint8",
+                    },
+                  ],
                 },
               ],
-              name: "addTradingVolumeDiscountThresholds",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterDonate",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
                   name: "amount0",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount1",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterDonate",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterInitialize",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "int24",
                   name: "tick",
                   type: "int24",
+                  internalType: "int24",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterInitialize",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterModifyPosition",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterModifyPosition",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "afterSwap",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
                       name: "zeroForOne",
                       type: "bool",
+                      internalType: "bool",
                     },
                     {
-                      internalType: "int256",
                       name: "amountSpecified",
                       type: "int256",
+                      internalType: "int256",
                     },
                     {
-                      internalType: "uint160",
                       name: "sqrtPriceLimitX96",
                       type: "uint160",
+                      internalType: "uint160",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "BalanceDelta",
                   name: "delta",
                   type: "int256",
+                  internalType: "BalanceDelta",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "afterSwap",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeDonate",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
                   name: "amount0",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint256",
                   name: "amount1",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeDonate",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeInitialize",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint160",
                   name: "sqrtPriceX96",
                   type: "uint160",
+                  internalType: "uint160",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeInitialize",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeModifyPosition",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
                       internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
+                },
+                {
+                  name: "params",
+                  type: "tuple",
+                  internalType: "struct IPoolManager.ModifyPositionParams",
+                  components: [
+                    {
                       name: "tickLower",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int24",
                       name: "tickUpper",
                       type: "int24",
+                      internalType: "int24",
                     },
                     {
-                      internalType: "int256",
                       name: "liquidityDelta",
                       type: "int256",
+                      internalType: "int256",
                     },
                   ],
-                  internalType: "struct IPoolManager.ModifyPositionParams",
-                  name: "params",
-                  type: "tuple",
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeModifyPosition",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "beforeSwap",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
                 {
-                  internalType: "bytes",
                   name: "hookData",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "beforeSwap",
               outputs: [
                 {
-                  internalType: "bytes4",
                   name: "",
                   type: "bytes4",
+                  internalType: "bytes4",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "clearTradingVolumeDiscountThresholds",
+              inputs: [],
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "day_of_the_week_before_swap",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "day_of_the_week_before_swap",
               outputs: [],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getFee",
               inputs: [
                 {
-                  internalType: "address",
                   name: "sender",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
-                },
-                {
+                  internalType: "struct PoolKey",
                   components: [
                     {
-                      internalType: "bool",
-                      name: "zeroForOne",
-                      type: "bool",
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "int256",
-                      name: "amountSpecified",
-                      type: "int256",
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
                     },
                     {
-                      internalType: "uint160",
-                      name: "sqrtPriceLimitX96",
-                      type: "uint160",
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
                     },
                   ],
-                  internalType: "struct IPoolManager.SwapParams",
+                },
+                {
                   name: "params",
                   type: "tuple",
+                  internalType: "struct IPoolManager.SwapParams",
+                  components: [
+                    {
+                      name: "zeroForOne",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                    {
+                      name: "amountSpecified",
+                      type: "int256",
+                      internalType: "int256",
+                    },
+                    {
+                      name: "sqrtPriceLimitX96",
+                      type: "uint160",
+                      internalType: "uint160",
+                    },
+                  ],
                 },
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "getFee",
               outputs: [
                 {
-                  internalType: "uint24",
                   name: "fee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getHookFees",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
               ],
-              name: "getHookFees",
               outputs: [
                 {
-                  internalType: "uint24",
                   name: "hookFee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "getUserTradingVolumeByPool",
               inputs: [
                 {
-                  internalType: "address",
                   name: "user",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "PoolId",
                   name: "poolId",
                   type: "bytes32",
+                  internalType: "PoolId",
                 },
               ],
-              name: "getUserTradingVolumeByPool",
               outputs: [
                 {
-                  internalType: "uint256",
                   name: "",
                   type: "uint256",
+                  internalType: "uint256",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "manager",
+              inputs: [],
               outputs: [
                 {
+                  name: "",
+                  type: "address",
                   internalType: "contract IPoolManager",
-                  name: "",
-                  type: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "bytes",
-                  name: "data",
-                  type: "bytes",
-                },
-              ],
+              type: "function",
               name: "not_blacklisted_before_initialize",
-              outputs: [],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "only_owner_before_initialize",
               outputs: [],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
+              name: "only_owner_before_initialize",
+              inputs: [
+                {
+                  name: "data",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+              ],
+              outputs: [],
+              stateMutability: "view",
+            },
+            {
+              type: "function",
               name: "owner",
+              inputs: [],
               outputs: [
                 {
-                  internalType: "address",
                   name: "",
                   type: "address",
+                  internalType: "address",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [],
+              type: "function",
               name: "renounceOwnership",
+              inputs: [],
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setAllowedDaysOfTheWeek",
               inputs: [
                 {
-                  internalType: "bool[8]",
                   name: "allowedDaysOfTheWeek",
                   type: "bool[8]",
+                  internalType: "bool[8]",
                 },
               ],
-              name: "setAllowedDaysOfTheWeek",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setBlacklistedForAction",
               inputs: [
                 {
-                  internalType: "address",
                   name: "user",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "enum IUniversalHook.Action",
                   name: "action",
                   type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
                 },
                 {
-                  internalType: "bool",
                   name: "blacklisted",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
-              name: "setBlacklistedForAction",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setFunctionsForAction",
               inputs: [
                 {
-                  internalType: "enum IUniversalHook.Action",
                   name: "action",
                   type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
                 },
                 {
-                  internalType: "bytes4[]",
                   name: "functions",
                   type: "bytes4[]",
+                  internalType: "bytes4[]",
                 },
               ],
-              name: "setFunctionsForAction",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setHookFee",
               inputs: [
                 {
-                  internalType: "uint24",
                   name: "hookFee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
-              name: "setHookFee",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setHookFeeForPool",
               inputs: [
                 {
-                  components: [
-                    {
-                      internalType: "Currency",
-                      name: "currency0",
-                      type: "address",
-                    },
-                    {
-                      internalType: "Currency",
-                      name: "currency1",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint24",
-                      name: "fee",
-                      type: "uint24",
-                    },
-                    {
-                      internalType: "int24",
-                      name: "tickSpacing",
-                      type: "int24",
-                    },
-                    {
-                      internalType: "contract IHooks",
-                      name: "hooks",
-                      type: "address",
-                    },
-                  ],
-                  internalType: "struct PoolKey",
                   name: "key",
                   type: "tuple",
+                  internalType: "struct PoolKey",
+                  components: [
+                    {
+                      name: "currency0",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "currency1",
+                      type: "address",
+                      internalType: "Currency",
+                    },
+                    {
+                      name: "fee",
+                      type: "uint24",
+                      internalType: "uint24",
+                    },
+                    {
+                      name: "tickSpacing",
+                      type: "int24",
+                      internalType: "int24",
+                    },
+                    {
+                      name: "hooks",
+                      type: "address",
+                      internalType: "contract IHooks",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint24",
                   name: "hookFee",
                   type: "uint24",
+                  internalType: "uint24",
                 },
               ],
-              name: "setHookFeeForPool",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setTradingHours",
               inputs: [
                 {
-                  internalType: "uint8",
                   name: "_tradingHoursStart",
                   type: "uint8",
+                  internalType: "uint8",
                 },
                 {
-                  internalType: "uint8",
                   name: "_tradingHoursEnd",
                   type: "uint8",
+                  internalType: "uint8",
                 },
               ],
-              name: "setTradingHours",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "setWhitelistedForAction",
               inputs: [
                 {
-                  internalType: "address",
                   name: "user",
                   type: "address",
+                  internalType: "address",
                 },
                 {
-                  internalType: "enum IUniversalHook.Action",
                   name: "action",
                   type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
                 },
                 {
-                  internalType: "bool",
                   name: "whitelisted",
                   type: "bool",
+                  internalType: "bool",
                 },
               ],
-              name: "setWhitelistedForAction",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "trading_hours_before_Swap",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "trading_hours_before_Swap",
               outputs: [],
               stateMutability: "view",
-              type: "function",
             },
             {
+              type: "function",
+              name: "transferOwnership",
               inputs: [
                 {
-                  internalType: "address",
                   name: "newOwner",
                   type: "address",
+                  internalType: "address",
                 },
               ],
-              name: "transferOwnership",
               outputs: [],
               stateMutability: "nonpayable",
-              type: "function",
             },
             {
+              type: "function",
+              name: "user_trading_volume_dynamic_fee",
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "user_trading_volume_dynamic_fee",
               outputs: [
                 {
-                  internalType: "uint8",
                   name: "",
                   type: "uint8",
+                  internalType: "uint8",
                 },
               ],
               stateMutability: "view",
-              type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "bytes",
-                  name: "data",
-                  type: "bytes",
-                },
-              ],
+              type: "function",
               name: "whitelist_before_initialize",
-              outputs: [],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [
                 {
-                  internalType: "bytes",
                   name: "data",
                   type: "bytes",
+                  internalType: "bytes",
                 },
               ],
-              name: "whitelist_swap",
               outputs: [],
               stateMutability: "view",
+            },
+            {
               type: "function",
+              name: "whitelist_swap",
+              inputs: [
+                {
+                  name: "data",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+              ],
+              outputs: [],
+              stateMutability: "view",
+            },
+            {
+              type: "event",
+              name: "OwnershipTransferred",
+              inputs: [
+                {
+                  name: "previousOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+                {
+                  name: "newOwner",
+                  type: "address",
+                  indexed: true,
+                  internalType: "address",
+                },
+              ],
+              anonymous: false,
+            },
+            {
+              type: "error",
+              name: "FunctionFailed",
+              inputs: [
+                {
+                  name: "",
+                  type: "bytes4",
+                  internalType: "bytes4",
+                },
+                {
+                  name: "",
+                  type: "uint8",
+                  internalType: "enum IUniversalHook.Action",
+                },
+              ],
+            },
+            {
+              type: "error",
+              name: "InvalidFee",
+              inputs: [
+                {
+                  name: "",
+                  type: "uint24",
+                  internalType: "uint24",
+                },
+              ],
             },
           ],
         },

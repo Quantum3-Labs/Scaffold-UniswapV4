@@ -8,7 +8,7 @@ import {FeeLibrary} from "../libraries/FeeLibrary.sol";
 /// the hooks contract is deployed to.
 /// For example, a hooks contract deployed to address: 0x9000000000000000000000000000000000000000
 /// has leading bits '1001' which would cause the 'before initialize' and 'after modify position' hooks to be used.
-library UniversalFactoryDeployHook {
+library Hooks {
     using FeeLibrary for uint24;
 
     uint256 internal constant BEFORE_INITIALIZE_FLAG = 1 << 159;
@@ -42,14 +42,20 @@ library UniversalFactoryDeployHook {
     /// the deployed hooks address causes the intended hooks to be called
     /// @param calls The hooks that are intended to be called
     /// @dev calls param is memory as the function will be called from constructors
-    function validateHookAddress(IHooks self, Calls memory calls) internal pure {
+    function validateHookAddress(
+        IHooks self,
+        Calls memory calls
+    ) internal pure {
         if (
-            calls.beforeInitialize != shouldCallBeforeInitialize(self)
-                || calls.afterInitialize != shouldCallAfterInitialize(self)
-                || calls.beforeModifyPosition != shouldCallBeforeModifyPosition(self)
-                || calls.afterModifyPosition != shouldCallAfterModifyPosition(self)
-                || calls.beforeSwap != shouldCallBeforeSwap(self) || calls.afterSwap != shouldCallAfterSwap(self)
-                || calls.beforeDonate != shouldCallBeforeDonate(self) || calls.afterDonate != shouldCallAfterDonate(self)
+            calls.beforeInitialize != shouldCallBeforeInitialize(self) ||
+            calls.afterInitialize != shouldCallAfterInitialize(self) ||
+            calls.beforeModifyPosition !=
+            shouldCallBeforeModifyPosition(self) ||
+            calls.afterModifyPosition != shouldCallAfterModifyPosition(self) ||
+            calls.beforeSwap != shouldCallBeforeSwap(self) ||
+            calls.afterSwap != shouldCallAfterSwap(self) ||
+            calls.beforeDonate != shouldCallBeforeDonate(self) ||
+            calls.afterDonate != shouldCallAfterDonate(self)
         ) {
             revert HookAddressNotValid(address(self));
         }
@@ -57,30 +63,46 @@ library UniversalFactoryDeployHook {
 
     /// @notice Ensures that the hook address includes at least one hook flag or dynamic fees, or is the 0 address
     /// @param hook The hook to verify
-    function isValidHookAddress(IHooks hook, uint24 fee) internal pure returns (bool) {
+    function isValidHookAddress(
+        IHooks hook,
+        uint24 fee
+    ) internal pure returns (bool) {
         // If there is no hook contract set, then fee cannot be dynamic and there cannot be a hook fee on swap or withdrawal.
-        return address(hook) == address(0)
-            ? !fee.isDynamicFee() && !fee.hasHookSwapFee() && !fee.hasHookWithdrawFee()
-            : (
-                uint160(address(hook)) >= AFTER_DONATE_FLAG || fee.isDynamicFee() || fee.hasHookSwapFee()
-                    || fee.hasHookWithdrawFee()
-            );
+        return
+            address(hook) == address(0)
+                ? !fee.isDynamicFee() &&
+                    !fee.hasHookSwapFee() &&
+                    !fee.hasHookWithdrawFee()
+                : (uint160(address(hook)) >= AFTER_DONATE_FLAG ||
+                    fee.isDynamicFee() ||
+                    fee.hasHookSwapFee() ||
+                    fee.hasHookWithdrawFee());
     }
 
-    function shouldCallBeforeInitialize(IHooks self) internal pure returns (bool) {
+    function shouldCallBeforeInitialize(
+        IHooks self
+    ) internal pure returns (bool) {
         return uint256(uint160(address(self))) & BEFORE_INITIALIZE_FLAG != 0;
     }
 
-    function shouldCallAfterInitialize(IHooks self) internal pure returns (bool) {
+    function shouldCallAfterInitialize(
+        IHooks self
+    ) internal pure returns (bool) {
         return uint256(uint160(address(self))) & AFTER_INITIALIZE_FLAG != 0;
     }
 
-    function shouldCallBeforeModifyPosition(IHooks self) internal pure returns (bool) {
-        return uint256(uint160(address(self))) & BEFORE_MODIFY_POSITION_FLAG != 0;
+    function shouldCallBeforeModifyPosition(
+        IHooks self
+    ) internal pure returns (bool) {
+        return
+            uint256(uint160(address(self))) & BEFORE_MODIFY_POSITION_FLAG != 0;
     }
 
-    function shouldCallAfterModifyPosition(IHooks self) internal pure returns (bool) {
-        return uint256(uint160(address(self))) & AFTER_MODIFY_POSITION_FLAG != 0;
+    function shouldCallAfterModifyPosition(
+        IHooks self
+    ) internal pure returns (bool) {
+        return
+            uint256(uint160(address(self))) & AFTER_MODIFY_POSITION_FLAG != 0;
     }
 
     function shouldCallBeforeSwap(IHooks self) internal pure returns (bool) {
