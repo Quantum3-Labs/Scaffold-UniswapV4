@@ -4,27 +4,27 @@ pragma solidity ^0.8.20;
 
 // WORKING CODE
 
-import "../contracts/YourContract.sol";
 import "./DeployHelpers.s.sol";
 import {PoolManager, IPoolManager} from "../contracts/v4-core/PoolManager.sol";
-import {TokenFixture} from "../test/utils/TokenFixture.sol";
-import {TestERC20} from "../contracts/v4-core/test/TestERC20.sol";
 import {CurrencyLibrary, Currency} from "../contracts/v4-core/types/Currency.sol";
 import {UniversalHookFactory} from "../contracts/UniversalHookFactory.sol";
 import {Router04} from "../contracts/Router04.sol";
 import {UniversalHook} from "../contracts/UniversalHook.sol";
+import {MockERC20} from "../test/utils/MockERC20.sol";
 
-contract DeployScript is ScaffoldETHDeploy, TokenFixture {
+contract DeployScript is ScaffoldETHDeploy {
     error InvalidPrivateKey(string);
 
-    TestERC20 token0;
-    TestERC20 token1;
+    MockERC20 token0;
+    MockERC20 token1;
+    MockERC20 token2;
     PoolManager manager;
     Router04 router;
     UniversalHookFactory hookFactory;
     UniversalHook sampleHook;
 
-    address secondTestWallet = address(0x51f9B9fcBDCb13029779bcaA3fbb34adCcf04BCC);
+    address secondTestWallet =
+        address(0x51f9B9fcBDCb13029779bcaA3fbb34adCcf04BCC);
 
     function run() external {
         uint256 deployerPrivateKey = setupLocalhostEnv();
@@ -36,13 +36,20 @@ contract DeployScript is ScaffoldETHDeploy, TokenFixture {
 
         vm.startBroadcast(deployerPrivateKey);
 
-        initializeTokens();
+        string[] memory tokenNames = new string[](3);
+        tokenNames[0] = "TESTA";
+        tokenNames[1] = "TESTB";
+        tokenNames[2] = "TESTC";
 
-        token0 = TestERC20(Currency.unwrap(currency0));
-        token1 = TestERC20(Currency.unwrap(currency1));
+        MockERC20[] memory deployedTokens = deployTokens(tokenNames);
 
-        deployments.push(Deployment("currency0", address(token0)));
-        deployments.push(Deployment("currency1", address(token1)));
+        token0 = deployedTokens[0];
+        token1 = deployedTokens[1];
+        token2 = deployedTokens[2];
+
+        deployments.push(Deployment(token0.name(), address(token0)));
+        deployments.push(Deployment(token1.name(), address(token1)));
+        deployments.push(Deployment(token2.name(), address(token2)));
 
         // deploy manager
         manager = new PoolManager(500000);
@@ -51,7 +58,6 @@ contract DeployScript is ScaffoldETHDeploy, TokenFixture {
         UniversalHookFactory hookFactory = new UniversalHookFactory(
             PoolManager(manager)
         );
-        hookFactory.setHashedKey(keccak256(bytes("Scaffold Is awesome")));
 
         // deploy router
         router = new Router04(manager);
@@ -69,33 +75,20 @@ contract DeployScript is ScaffoldETHDeploy, TokenFixture {
         exportDeployments();
     }
 
+    function deployTokens(
+        string[] memory tokenNames
+    ) public returns (MockERC20[] memory) {
+        MockERC20[] memory tokens = new MockERC20[](tokenNames.length);
+        for (uint256 i = 0; i < tokenNames.length; i++) {
+            tokens[i] = new MockERC20(
+                tokenNames[i],
+                tokenNames[i],
+                18,
+                100000 ether
+            );
+        }
+        return tokens;
+    }
+
     function test() public {}
 }
-
-// COMMENT OUT BELOW CODE
-
-// import "../contracts/YourContract.sol";
-// import "./DeployHelpers.s.sol";
-// import {PoolManager, IPoolManager} from "v4-core/PoolManager.sol";
-
-// contract DeployScript is ScaffoldETHDeploy {
-//     error InvalidPrivateKey(string);
-//     PoolManager manager;
-
-//     function run() external {
-//         uint256 deployerPrivateKey = setupLocalhostEnv();
-//         if (deployerPrivateKey == 0) {
-//             revert InvalidPrivateKey(
-//                 "You don't have a deployer account. Make sure you have set DEPLOYER_PRIVATE_KEY in .env or use `yarn generate` to generate a new random account"
-//             );
-//         }
-
-//         vm.startBroadcast(deployerPrivateKey);
-
-//         manager = new PoolManager(500000);
-//         vm.stopBroadcast();
-//         exportDeployments();
-//     }
-
-//     function test() public {}
-// }
