@@ -2,14 +2,29 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { HiArrowLeft } from "react-icons/hi";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { useAccount } from "wagmi";
+import { ArrowSmallRightIcon } from "@heroicons/react/20/solid";
 import ButtonSecondary from "~~/components/Button/ButtonSecondary";
 import CustomInput from "~~/components/InputDetails/CustomInput";
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 const Hooks = () => {
   const [showSecondBlock, setShowSecondBlock] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
+  const { writeAsync, isLoading } = useScaffoldContractWrite({
+    contractName: "UniversalFactoryDeploy",
+    functionName: "deploy",
+    args: [inputValue],
+    value: BigInt(0),
+    onBlockConfirmation: txnReceipt => {
+      console.log("📦 Transaction blockHash", txnReceipt.blockHash);
+    },
+    blockConfirmations: 0,
+  });
   const handleDeployClick = () => {
     setShowSecondBlock(true);
+    writeAsync();
     console.log("Deploy button clicked!");
   };
   return (
@@ -30,15 +45,22 @@ const Hooks = () => {
               <div className=" flex gap-[15px] flex-col">
                 <div className="flex px-[20px] items-center justify-center bg-[#1E293B]">
                   <span className="max-w-[130px] w-full ">Name</span>
-                  <CustomInput />
+                  <CustomInput onValueChange={setInputValue} />
                 </div>
                 <div className="flex px-[20px] items-center justify-center bg-[#1E293B]">
                   <span className="max-w-[130px] w-full ">Symbol</span>
-                  <CustomInput />
+                  <CustomInput onValueChange={setInputValue} />
                 </div>
               </div>
               <div className="py-[30px]">
                 <ButtonSecondary textButton={"Deploy"} onClick={handleDeployClick} />
+                {isLoading ? (
+                  <span className="loading loading-spinner loading-sm"></span>
+                ) : (
+                  <>
+                    Send <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
+                  </>
+                )}
               </div>
             </div>
             {showSecondBlock && (
