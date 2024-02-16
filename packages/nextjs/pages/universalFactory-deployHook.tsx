@@ -50,7 +50,7 @@ const UniversalFactoryDeployHook = () => {
               <DetailsInputer label={"Discount Point"} />
             </div>
             <div className="p-[40px]">
-              <ButtonSecondary textButton={"Execute"} onClick={() => router.push("/deploy-hooks")} />
+              <ButtonSecondary textButton={"Execute"} onClick={() => router.push("/")} />
             </div>
           </div>
         </div>

@@ -6,6 +6,8 @@ import ButtonPrimary from "~~/components/Button/ButtonPrimary";
 import { MetaHeader } from "~~/components/MetaHeader";
 import Table from "~~/components/Table/Table";
 import { data } from "~~/domain/domain";
+import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
+import { useAccount } from "wagmi";
 
 export const formatAddress = (address: string) => {
   const formattedAddress = address && address.startsWith("0x") ? address : `0x${address || ""}`;
@@ -13,16 +15,17 @@ export const formatAddress = (address: string) => {
 };
 
 const Home: NextPage = () => {
+  const { address } = useAccount();
   const router = useRouter();
   // const [visibleItems, setVisibleItems] = useState(5);
 
-  const columnItems = data.map(item => [
-    item.name,
-    item.symbol,
-    formatAddress(item.address),
-    formatAddress(item.owner),
-  ]);
+  const { data: counter } = useScaffoldContractRead({
+    contractName: "UniversalHookFactory",
+    functionName: "getBulkPrecomputeHookAddresses",
+    args: [BigInt(1), BigInt(9)],
+  });
 
+  console.log(counter);
   return (
     <>
       <MetaHeader />
@@ -36,9 +39,9 @@ const Home: NextPage = () => {
                 <span className="px-[5px]">Show my hooks</span>
               </div>
             </div>
-            <ButtonPrimary destination={() => router.push("/universalFactory-deployHook")} buttonText={"Deploy hook"} />
+            <ButtonPrimary destination={() => router.push("/deploy-hooks")} buttonText={"Deploy hook"} />
           </div>
-          <Table headers={["Hook name", "Hook symbol", "Hook address", "Hook owner"]} columns={columnItems} />
+          <Table headers={["Hook name", "Hook symbol", "Hook address", "Hook owner"]} columns={[]} />
         </div>
       </div>
     </>
