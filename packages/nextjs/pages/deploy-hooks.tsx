@@ -4,16 +4,8 @@ import { HiArrowLeft } from "react-icons/hi";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import ButtonSecondary from "~~/components/Button/ButtonSecondary";
 import Input from "~~/components/InputDetails/Input";
-import { useScaffoldContractRead, useScaffoldContractWrite, useTransactor } from "~~/hooks/scaffold-eth";
-import { parseEther } from "viem";
+import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import { toast } from "react-hot-toast";
-import { bigint } from "superstruct";
-
-interface HookConfig {
-  nonce: number;
-  name: string;
-  symbol: string;
-}
 
 const Hooks = () => {
   const [showSecondBlock, setShowSecondBlock] = useState(false);
@@ -22,6 +14,8 @@ const Hooks = () => {
   const [isTransactionConfirmed, setIsTransactionConfirmed] = useState(false);
   const [start, setStart] = useState(BigInt(0));
   const [end, setEnd] = useState(BigInt(100));
+  const [confirmedName, setConfirmedName] = useState("");
+  const [confirmedSymbol, setConfirmedSymbol] = useState("");
 
   const { data: counter, ...arg } = useScaffoldContractRead({
     contractName: "UniversalHookFactory",
@@ -46,6 +40,8 @@ const Hooks = () => {
     onBlockConfirmation: txnReceipt => {
       toast.success(`📦 Transaction blockHash ${txnReceipt.blockHash}`);
       setIsTransactionConfirmed(true);
+      setConfirmedName(name);
+      setConfirmedSymbol(symbol);
       setName("");
       setSymbol("");
     },
@@ -63,7 +59,7 @@ const Hooks = () => {
         await writeAsync({
           args: [BigInt(currentAddress), name, symbol],
         });
-        // await writeTxn();
+        await writeTxn();
       } catch (e) {
         console.log(e);
       }
@@ -106,8 +102,8 @@ const Hooks = () => {
                   <span>Transaction Complete! </span>
                 </div>
                 <div className="flex flex-col pl-[40px] pb-[30px]">
-                  <span>Hook name : {name} Universal Hook</span>
-                  <span>Hook symbol : {symbol} </span>
+                  <span>Hook name : {confirmedName} Universal Hook</span>
+                  <span>Hook symbol : {confirmedSymbol} </span>
                 </div>
               </div>
             )}

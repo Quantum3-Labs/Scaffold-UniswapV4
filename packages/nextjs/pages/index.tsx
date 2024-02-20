@@ -5,7 +5,9 @@ import { MdOutlineCheckBox } from "react-icons/md";
 import ButtonPrimary from "~~/components/Button/ButtonPrimary";
 import { MetaHeader } from "~~/components/MetaHeader";
 import Table from "~~/components/Table/Table";
-import { useScaffoldContract, useScaffoldContractRead } from "~~/hooks/scaffold-eth";
+import { useDeployedContractInfo, useScaffoldContract, useScaffoldContractRead } from "~~/hooks/scaffold-eth";
+import { useContractRead, useContractReads, useNetwork } from "wagmi";
+import { getTargetNetwork } from "~~/utils/scaffold-eth";
 
 export const formatAddress = (address: string) => {
   const formattedAddress = address && address.startsWith("0x") ? address : `0x${address || ""}`;
@@ -17,6 +19,48 @@ interface HookData {
 
 const Home: NextPage = () => {
   const router = useRouter();
+  const { chain } = useNetwork();
+  const configuredNetwork = chain ?? getTargetNetwork();
+
+  const { data: hookCount = BigInt(0) } = useScaffoldContractRead({
+    contractName: "UniversalHookFactory",
+    functionName: "hookCount",
+  });
+
+  console.log(hookCount);
+
+  const { data: deployedHooks } = useScaffoldContractRead({
+    contractName: "UniversalHookFactory",
+    functionName: "deployedHooks",
+    args: [hookCount],
+  });
+  const { data: getHookInfo } = useScaffoldContractRead({
+    contractName: "UniversalHookFactory",
+    functionName: "getHookInfo",
+    args: [BigInt(0)],
+  });
+
+  const { data: deployedContractData } = useDeployedContractInfo("UniversalHookFactory", configuredNetwork.id);
+
+  const { data: hooks } = useContractReads({
+    contracts: [
+      {
+        address: deployedContractData?.address,
+        abi: deployedContractData?.abi,
+        functionName: "getHookInfo",
+        args: [BigInt(0)],
+      },
+      {
+        address: deployedContractData?.address,
+        abi: deployedContractData?.abi,
+        functionName: "getHookInfo",
+        args: [BigInt(hookCount)],
+      },
+    ],
+  });
+
+  console.log({ hooks });
+  // const columns = deployedHooks?.map((hook, index) => [hook]);
 
   return (
     <>
