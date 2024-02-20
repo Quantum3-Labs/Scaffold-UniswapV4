@@ -7,7 +7,7 @@ import InitializePoolSelectHookAddress from "~~/components/InitializePoolSteps/I
 import InitializePoolSetHook from "~~/components/InitializePoolSteps/InitializePoolSetHook";
 import InitializePoolSetPrice from "~~/components/InitializePoolSteps/InitializePoolSetPrice";
 import InitializePoolSuccess from "~~/components/InitializePoolSteps/InitializePoolSuccess";
-import CustomInput from "~~/components/InputDetails/CustomInput";
+import Input from "~~/components/InputDetails/Input";
 import Step from "~~/components/Step/Step";
 
 const Initialize = () => {

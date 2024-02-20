@@ -5,7 +5,7 @@ import { HiOutlineArrowTopRightOnSquare } from "react-icons/hi2";
 import { MdOutlineCheckBox } from "react-icons/md";
 import ButtonPrimary from "~~/components/Button/ButtonPrimary";
 import ButtonSecondary from "~~/components/Button/ButtonSecondary";
-import CustomInput from "~~/components/InputDetails/CustomInput";
+import Input from "~~/components/InputDetails/Input";
 import Modal from "~~/components/Modal/Modal";
 import AddLiquidityForm from "~~/components/PoolDetailPopUp/AddLiquidityForm";
 import SwapForm from "~~/components/PoolDetailPopUp/SwapForm";

@@ -1,6 +1,6 @@
 import React from "react";
 import ButtonSecondary from "~~/components/Button/ButtonSecondary";
-import CustomInput from "~~/components/InputDetails/CustomInput";
+import Input from "~~/components/InputDetails/Input";
 
 const SwapForm = () => {
   return (
@@ -22,14 +22,14 @@ const SwapForm = () => {
       <div className="flex flex-col gap-[15px] pb-[20px]">
         <span>Deposit amount</span>
         <div className="bg-[#1E293B] px-[10px] py-[14px]  rounded-lg flex">
-          <CustomInput placeholder={""} />
+          <Input placeholder={""} />
           <div className="bg-[#334155] flex items-center justify-center rounded-full max-w-[110px] w-full gap-[5px]">
             <img src={"/ethereum-logo.png"} className="w-[21px]" alt="ETH Logo" />
             <span>ETH</span>
           </div>
         </div>
         <div className="bg-[#1E293B] px-[10px] py-[14px]  rounded-lg flex">
-          <CustomInput placeholder={""} />
+          <Input placeholder={""} />
           <div className="bg-[#334155] flex items-center justify-center rounded-full max-w-[110px] w-full gap-[5px] ">
             <img src={"/b-logo.png"} className="w-[21px] " alt="WBTC Logo" />
             <span>WBTC</span>

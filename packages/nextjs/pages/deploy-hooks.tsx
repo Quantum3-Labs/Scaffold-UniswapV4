@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { HiArrowLeft } from "react-icons/hi";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import ButtonSecondary from "~~/components/Button/ButtonSecondary";
-import CustomInput from "~~/components/InputDetails/CustomInput";
-import { useScaffoldContractWrite, useTransactor } from "~~/hooks/scaffold-eth";
-import { AbiFunction } from "abitype";
-import { Address, TransactionReceipt } from "viem";
+import Input from "~~/components/InputDetails/Input";
+import { useScaffoldContractRead, useScaffoldContractWrite, useTransactor } from "~~/hooks/scaffold-eth";
+import { parseEther } from "viem";
+import { toast } from "react-hot-toast";
+import { bigint } from "superstruct";
 
 interface HookConfig {
   nonce: number;
@@ -19,26 +20,53 @@ const Hooks = () => {
   const [name, setName] = useState("");
   const [symbol, setSymbol] = useState("");
   const [isTransactionConfirmed, setIsTransactionConfirmed] = useState(false);
-  const writeTxn = useTransactor();
+  const [start, setStart] = useState(BigInt(0));
+  const [end, setEnd] = useState(BigInt(100));
 
-  const { writeAsync } = useScaffoldContractWrite({
+  const { data: counter, ...arg } = useScaffoldContractRead({
+    contractName: "UniversalHookFactory",
+    functionName: "getBulkPrecomputeHookAddresses",
+    args: [start, end],
+  });
+
+  const { data: lastNonce = BigInt(0) } = useScaffoldContractRead({
+    contractName: "UniversalHookFactory",
+    functionName: "lastNonce",
+  });
+
+  useEffect(() => {
+    setStart(lastNonce);
+    setEnd(lastNonce + BigInt(100));
+  }, [lastNonce]);
+
+  const { writeAsync, data } = useScaffoldContractWrite({
     contractName: "UniversalHookFactory",
     functionName: "deploy",
-    args: [BigInt(1), name, symbol],
-    value: BigInt(0),
+    args: [BigInt(0), name, symbol],
     onBlockConfirmation: txnReceipt => {
-      console.log("📦 Transaction blockHash", txnReceipt.blockHash);
+      toast.success(`📦 Transaction blockHash", $(txnReceipt.blockHash)`);
       setIsTransactionConfirmed(true);
+      setName("");
+      setSymbol("");
     },
     blockConfirmations: 0,
+    onError: error => {
+      toast.error("error nonce");
+    },
   });
 
   const handleDeployClick = async () => {
-    try {
-      setShowSecondBlock(true);
-      await writeTxn(writeAsync({ value: BigInt(0) }));
-    } catch (e) {
-      console.log(e);
+    if (writeAsync) {
+      try {
+        setShowSecondBlock(true);
+        const currentAddress = counter.findIndex(address => address.toLowerCase().startsWith("0xff"));
+        await writeAsync({
+          args: [BigInt(currentAddress), name, symbol],
+        });
+        // await writeTxn();
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -60,11 +88,11 @@ const Hooks = () => {
               <div className=" flex gap-[15px] flex-col">
                 <div className="flex px-[20px] items-center justify-center bg-[#1E293B]">
                   <span className="max-w-[130px] w-full ">Name</span>
-                  <CustomInput onValueChange={setName} />
+                  <Input onChange={setName} value={name} />
                 </div>
                 <div className="flex px-[20px] items-center justify-center bg-[#1E293B]">
                   <span className="max-w-[130px] w-full ">Symbol</span>
-                  <CustomInput onValueChange={setSymbol} />
+                  <Input onChange={setSymbol} value={symbol} />
                 </div>
               </div>
               <div className="py-[30px]">

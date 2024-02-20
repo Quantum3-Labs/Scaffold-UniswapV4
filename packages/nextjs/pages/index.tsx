@@ -1,31 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import type { NextPage } from "next";
 import { MdOutlineCheckBox } from "react-icons/md";
 import ButtonPrimary from "~~/components/Button/ButtonPrimary";
 import { MetaHeader } from "~~/components/MetaHeader";
 import Table from "~~/components/Table/Table";
-import { data } from "~~/domain/domain";
-import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
-import { useAccount } from "wagmi";
+import { useScaffoldContract, useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 
 export const formatAddress = (address: string) => {
   const formattedAddress = address && address.startsWith("0x") ? address : `0x${address || ""}`;
   return formattedAddress.slice(0, 8) + "..." + formattedAddress.slice(-13);
 };
+interface HookData {
+  name: string;
+}
 
 const Home: NextPage = () => {
-  const { address } = useAccount();
   const router = useRouter();
-  // const [visibleItems, setVisibleItems] = useState(5);
 
-  const { data: counter } = useScaffoldContractRead({
-    contractName: "UniversalHookFactory",
-    functionName: "getBulkPrecomputeHookAddresses",
-    args: [BigInt(1), BigInt(9)],
-  });
-
-  console.log(counter);
   return (
     <>
       <MetaHeader />

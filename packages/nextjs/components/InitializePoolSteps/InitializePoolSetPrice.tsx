@@ -1,12 +1,12 @@
 import React from "react";
 import ButtonSecondary from "~~/components/Button/ButtonSecondary";
-import CustomInput from "~~/components/InputDetails/CustomInput";
+import Input from "~~/components/InputDetails/Input";
 
 const InitializePoolSetPrice: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
   return (
     <div className="flex flex-col max-w-[1026px] gap-[20px] justify-center">
       <span>Set price</span>
-      <CustomInput />
+      <Input />
       <div className="border-2 rounded-xl p-[20px]">
         <span>2 token A = 1 Token B </span>
       </div>
