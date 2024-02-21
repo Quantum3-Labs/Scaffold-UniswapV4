@@ -1,66 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import type { NextPage } from "next";
 import { MdOutlineCheckBox } from "react-icons/md";
 import ButtonPrimary from "~~/components/Button/ButtonPrimary";
 import { MetaHeader } from "~~/components/MetaHeader";
-import Table from "~~/components/Table/Table";
+import Table, { Column } from "~~/components/Table/Table";
 import { useDeployedContractInfo, useScaffoldContract, useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 import { useContractRead, useContractReads, useNetwork } from "wagmi";
 import { getTargetNetwork } from "~~/utils/scaffold-eth";
+import { Property } from "csstype";
+import Columns = Property.Columns;
 
 export const formatAddress = (address: string) => {
   const formattedAddress = address && address.startsWith("0x") ? address : `0x${address || ""}`;
   return formattedAddress.slice(0, 8) + "..." + formattedAddress.slice(-13);
 };
-interface HookData {
-  name: string;
-}
 
 const Home: NextPage = () => {
   const router = useRouter();
   const { chain } = useNetwork();
   const configuredNetwork = chain ?? getTargetNetwork();
+  const [columns, setColumns] = useState<Column[]>([]);
 
   const { data: hookCount = BigInt(0) } = useScaffoldContractRead({
     contractName: "UniversalHookFactory",
     functionName: "hookCount",
   });
 
-  console.log(hookCount);
-
-  const { data: deployedHooks } = useScaffoldContractRead({
-    contractName: "UniversalHookFactory",
-    functionName: "deployedHooks",
-    args: [hookCount],
-  });
-  const { data: getHookInfo } = useScaffoldContractRead({
-    contractName: "UniversalHookFactory",
-    functionName: "getHookInfo",
-    args: [BigInt(0)],
-  });
-
+  const numberHook = new Array(Number(hookCount)).fill(undefined);
   const { data: deployedContractData } = useDeployedContractInfo("UniversalHookFactory", configuredNetwork.id);
 
-  const { data: hooks } = useContractReads({
-    contracts: [
-      {
+  const { data: hooks = [] } = useContractReads({
+    contracts: numberHook.map((_, index) => {
+      return {
         address: deployedContractData?.address,
         abi: deployedContractData?.abi,
         functionName: "getHookInfo",
-        args: [BigInt(0)],
-      },
-      {
-        address: deployedContractData?.address,
-        abi: deployedContractData?.abi,
-        functionName: "getHookInfo",
-        args: [BigInt(hookCount)],
-      },
-    ],
+        args: [BigInt(index + 1)],
+      };
+    }),
   });
 
-  console.log({ hooks });
-  // const columns = deployedHooks?.map((hook, index) => [hook]);
+  useEffect(() => {
+    if (hooks?.length > 0) {
+      setColumns(
+        hooks.map(({ result }: any) => [
+          result.name,
+          result.symbol,
+          formatAddress(result.hookAddr),
+          formatAddress(result.owner),
+        ]),
+      );
+    }
+  }, [hooks]);
 
   return (
     <>
@@ -77,7 +69,7 @@ const Home: NextPage = () => {
             </div>
             <ButtonPrimary destination={() => router.push("/deploy-hooks")} buttonText={"Deploy hook"} />
           </div>
-          <Table headers={["Hook name", "Hook symbol", "Hook address", "Hook owner"]} columns={[]} />
+          <Table headers={["Hook name", "Hook symbol", "Hook address", "Hook owner"]} columns={columns} />
         </div>
       </div>
     </>
