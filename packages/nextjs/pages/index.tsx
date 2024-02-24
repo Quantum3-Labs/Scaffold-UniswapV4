@@ -42,6 +42,7 @@ const Home: NextPage = () => {
   });
 
   useEffect(() => {
+    console.log("hooks:", hooks);
     if (hooks?.length > 0) {
       setColumns(
         hooks.map(({ result }: any) => [

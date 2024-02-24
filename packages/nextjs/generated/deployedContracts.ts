@@ -5,7 +5,7 @@ const contracts = {
       chainId: "31337",
       contracts: {
         TESTA: {
-          address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+          address: "0x9E545E3C0baAB3E08CdfD552C960A1050f373042",
           abi: [
             {
               type: "constructor",
@@ -380,7 +380,7 @@ const contracts = {
           ],
         },
         TESTB: {
-          address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+          address: "0xa82fF9aFd8f496c3d6ac40E2a0F282E47488CFc9",
           abi: [
             {
               type: "constructor",
@@ -755,7 +755,7 @@ const contracts = {
           ],
         },
         TESTC: {
-          address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+          address: "0x1613beB3B2C4f22Ee086B2b38C1476A3cE7f78E8",
           abi: [
             {
               type: "constructor",
@@ -1130,7 +1130,7 @@ const contracts = {
           ],
         },
         PoolManager: {
-          address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+          address: "0x851356ae760d987E095750cCeb3bC6014560891C",
           abi: [
             {
               type: "constructor",
@@ -2781,7 +2781,7 @@ const contracts = {
           ],
         },
         UniversalHookFactory: {
-          address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+          address: "0xf5059a5D33d5853360D16C683c16e67980206f36",
           abi: [
             {
               type: "constructor",
@@ -3117,7 +3117,7 @@ const contracts = {
           ],
         },
         Router04: {
-          address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+          address: "0x95401dc811bb5740090279Ba06cfA8fcF6113778",
           abi: [
             {
               type: "constructor",
@@ -3476,7 +3476,7 @@ const contracts = {
           ],
         },
         UniversalHook: {
-          address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+          address: "0x998abeb3E57409262aE5b751f60747921B33613E",
           abi: [
             {
               type: "constructor",

@@ -38,7 +38,7 @@ contract UniversalHookFactory is Ownable {
     ) external returns (address contractDeployed) {
         require(!usedNonces[nonce], "nonce has already been used");
         address precomputedAddr = getPrecomputedHookAddress(nonce);
-//        require(bytes1(bytes20(precomputedAddr)) == 0xff, "Invalid address");
+        require(bytes1(bytes20(precomputedAddr)) == 0xff, "Invalid address");
         usedNonces[nonce] = true;
         lastNonce = uint256(nonce);
         contractDeployed = address(

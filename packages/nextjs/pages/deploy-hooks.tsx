@@ -5,7 +5,7 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import ButtonSecondary from "~~/components/Button/ButtonSecondary";
 import Input from "~~/components/InputDetails/Input";
 import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
-import { toast } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const Hooks = () => {
   const [showSecondBlock, setShowSecondBlock] = useState(false);
@@ -14,6 +14,7 @@ const Hooks = () => {
   const [isTransactionConfirmed, setIsTransactionConfirmed] = useState(false);
   const [start, setStart] = useState(BigInt(0));
   const [end, setEnd] = useState(BigInt(100));
+  const [shouldSearchMore, setShouldSearchMore] = useState(false);
   const [confirmedName, setConfirmedName] = useState("");
   const [confirmedSymbol, setConfirmedSymbol] = useState("");
 
@@ -23,14 +24,21 @@ const Hooks = () => {
     args: [start, end],
   });
 
-  const { data: lastNonce = BigInt(0) } = useScaffoldContractRead({
+  const { data: lastNonce = BigInt(0), refetch } = useScaffoldContractRead({
     contractName: "UniversalHookFactory",
     functionName: "lastNonce",
   });
 
+  // const { data: usedNonces } = useScaffoldContractRead({
+  //   contractName: "UniversalHookFactory",
+  //   functionName: "usedNonces",
+  //   args: [BigInt(0)],
+  // });
+
   useEffect(() => {
-    setStart(lastNonce);
+    setStart(lastNonce === BigInt(0) ? lastNonce : lastNonce + BigInt(1));
     setEnd(lastNonce + BigInt(100));
+    console.log({ lastNonce });
   }, [lastNonce]);
 
   const { writeAsync, data } = useScaffoldContractWrite({
@@ -44,6 +52,7 @@ const Hooks = () => {
       setConfirmedSymbol(symbol);
       setName("");
       setSymbol("");
+      refetch();
     },
     blockConfirmations: 0,
     onError: error => {
@@ -51,15 +60,32 @@ const Hooks = () => {
     },
   });
 
+  useEffect(() => {
+    if (shouldSearchMore) {
+      setTimeout(() => {
+        handleDeployClick();
+      }, 1000);
+    }
+  }, [counter, shouldSearchMore]);
+
   const handleDeployClick = async () => {
-    if (writeAsync) {
+    if (writeAsync && counter && counter.length > 0) {
       try {
         setShowSecondBlock(true);
         const currentAddress = counter.findIndex(address => address.toLowerCase().startsWith("0xff"));
-        await writeAsync({
-          args: [BigInt(currentAddress), name, symbol],
-        });
-        await writeTxn();
+        // console.log({ currentAddress });
+        // console.log({ lastNonce });
+        if (currentAddress != -1) {
+          setShouldSearchMore(false);
+          await writeAsync({
+            args: [BigInt(currentAddress) + (start - lastNonce) + lastNonce, name, symbol],
+          });
+        } else {
+          toast.loading("Loading Hook..", { duration: 1000 });
+          setStart(end);
+          setEnd(end + BigInt(100));
+          setShouldSearchMore(true);
+        }
       } catch (e) {
         console.log(e);
       }
@@ -110,6 +136,7 @@ const Hooks = () => {
           </div>
         </div>
       </div>
+      <Toaster />
     </>
   );
 };
