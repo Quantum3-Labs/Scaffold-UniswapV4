@@ -83,39 +83,15 @@ export const RainbowKitCustomConnectButton = () => {
 
               return (
                 <div className="px-2 flex justify-end items-center gap-3 dropdown">
-                  <div className="flex flex-col items-center mr-1">
-                    <Balance address={account.address} className="min-h-0 h-auto" />
-                  </div>
+                  {/*<div className="flex flex-col items-center mr-1">*/}
+                  {/*  <Balance address={account.address} className="min-h-0 h-auto" />*/}
+                  {/*</div>*/}
 
                   <div>
                     <label
                       onClick={openChainModal}
                       className="bg-[#151F30] flex items-center rounded py-[29px] px-[10px] btn-sm shadow-md cursor-pointer hover:bg-[#1E293B] "
-                    >
-                      {chain.hasIcon && (
-                        <div
-                          style={{
-                            background: chain.iconBackground,
-                            width: 28,
-                            height: 28,
-                            borderRadius: 999,
-                            overflow: "hidden",
-                            marginRight: 4,
-                          }}
-                        >
-                          {chain.iconUrl && (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
-                              alt={chain.name ?? "Chain icon"}
-                              src={chain.iconUrl}
-                              style={{ width: 328, height: 28 }}
-                            />
-                          )}
-                        </div>
-                      )}
-                      <span>{chain.name}</span>
-                      <ChevronDownIcon className="h-6 w-4 ml-2 sm:ml-0" />
-                    </label>
+                    ></label>
                   </div>
 
                   <div className="dropdown dropdown-end leading-3 border-lg">

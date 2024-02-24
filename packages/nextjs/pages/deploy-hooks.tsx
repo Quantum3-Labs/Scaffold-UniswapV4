@@ -46,7 +46,7 @@ const Hooks = () => {
     functionName: "deploy",
     args: [BigInt(0), name, symbol],
     onBlockConfirmation: txnReceipt => {
-      toast.success(`📦 Transaction blockHash ${txnReceipt.blockHash}`);
+      // toast.success(`📦 Transaction blockHash ${txnReceipt.blockHash}`);
       setIsTransactionConfirmed(true);
       setConfirmedName(name);
       setConfirmedSymbol(symbol);
